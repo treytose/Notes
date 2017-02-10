@@ -1,0 +1,16 @@
+----Creating a Repository----
+Go onto your Github account and create a new repository. 
+Initialize it with a READ_ME
+Copy the URL for the repository
+On the command prompt naviagate to the location you want to save the repository
+git clone <URL> 			--creates the repository in the current directory
+git status    				--Shows you what is different between the Github repos and your own files
+git add <file name>			--adds any changes or new files
+
+Now if you were to type git status --again it would show the files ready to be committed
+
+git commit -m "Descriptive Message" --locks into the repository with a message of whats changed
+
+now it's locked in but the Github repository still has not changed!!!
+
+git push 					--will take the commits on your machine and PUSH it up to github
