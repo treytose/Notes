@@ -1,4 +1,4 @@
------inling functions-------------
+-----inlining functions-------------
 //inlining a function makes a copy of the function everywhere its called
 //this makes it where the program doesnt have to jump back and forth so
 //it can speed up performance on short frequently called functions
