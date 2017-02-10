@@ -1,0 +1,192 @@
+-----inling functions-------------
+//inlining a function makes a copy of the function everywhere its called
+//this makes it where the program doesnt have to jump back and forth so
+//it can speed up performance on short frequently called functions
+inline int radiation(100)
+{
+	//generic code here
+}
+//don't put the "inline" keyword in the prototype
+//-------------------------------------------------------
+watch shiki
+//------------Referenced Variables---------------------------pg 177
+int name = 20;
+int& bob = name; //bob is referencing name, they change the same value
+//reference variables must always be initialized
+//reference variables can be used in function to actually change the variable argument given
+//and not just copy it. For example
+void function(int& a)
+{
+ a = 20;
+}
+
+int main()
+{
+	int b = 5;
+	function(b);
+	//the variable b has been changed to 20 since function has a referenced parameter
+}
+//---------constant reference-----------------
+//constant references act like other references except you cant change the value of what its referring to
+void function(const int& a)
+{
+	//Note: you cannot change the value of a!
+	int b = a;
+}
+//*****Pass by value (normal way) when working with the primitive types or you want to make a copy of the argument. Or you want to alter the paramter but not alter the argument
+//*****Pass by constant reference when you want to efficiently pass an argument but you dont need to alter it
+//*****Pass by reference when you want to alter the arguments. **this should usually be avoided**** typically you should just return something
+
+//-------------------Returning References-------------------------
+string& function(string& a){
+
+	return a;
+}
+//Do not return a local variable if you are referencing
+//-------------More algorithms--------------------
+count(board.being(), board.end(), 'B'); //this would check a vector called board made up of char's and will return how many 'B's are in the vector
+//-----------------------POINTERS--------------------------------------------
+//pointers are variables that can contain a memory address.
+//They give you the ability to work directly and efficiently with computer memory
+
+int* pAPointer; //declares a pointer
+int* pScore, score; //pScore is a pointer but score is a regular int so be careful
+//You should always initialize a pointer when you declare it.
+
+int* pScore = 0; //initializing to 0 means it points to nothing
+int* pScore = null; //another way to initialize
+
+//Pointers hold memory addresses of the type they were declare. In this case the memory address of an int
+int score = 500;
+int* pScore = &score; //&score returns the memory address of score
+
+//you can dereference a pointer (point to the thing the pointer is referring to and not the pointer itself) by using *pScore
+
+*pScore; // this is = to 500 since it is referencing score which is equal to 500
+
+//Unlike references, pointers can be changed to point to different objects throughout the program
+
+string bob = "yolo";
+string* pBob = &bob;
+
+(*pBob).size(); //returns the size of bob since it references that object. Be sure to include the parenthesis
+pBob->size() //just like iterators this does the same thing as above just another way to write it!
+
+//-----------Constant Pointers=======================================================
+//constant pointers are only allowed to points to the object they were initialized to. They CANNOT be changed unlike regular pointers
+
+int score = 100;
+int* const pScore = &score; //this sets a constant pointer initialized to the memory address of score.
+*pScore = 200; //this IS LEGAL
+
+@@ int* const pScore; *** //This is an error because remember pointers MUST be INITIALIZED when they are DECLARED
+
+//*NOTE: References should typically be used before Pointers because it has cleaner syntax and it's easier to READ!
+
+//=====================================POINTERS TO A CONSTANT==========pg 236 summary============================================================================================================================================
+const int* pNumber;			//this declares a POINTER to a CONSTANT. This means the pointers CANNOT change the referenced variable!! UNLIKE pointer constants or regular pointers!!
+int lives = 3;
+pNumber = &lives;       //This code is DIFFERENT from ABOVE. 
+@@ *pNumber = 5; //THIS is ILLEGAL
+
+//UNLIKE constant pointers. Pointers TO a constant CAN change what object it is pointing to!
+
+//==========================Combining constant pointers AND pointers to a constant==========================
+//these pointers have both qualities meaning they can only point to ONE object AND it CANNOT change the value of the object it is pointing too.
+
+const int BONUS = 100; //NOTE: BONUS does NOT have to be a constant here!
+const int* const pBONUS = &BONUS; //a constant pointer to a constant
+
+//=============================QUICK SUMMARY OF POINTERS=====================================================
+
+int* const p = &i;				//constant pointer---- can only point to initialized object---CANNOT point to a CONSTANT
+const int* p;					//pointer to a constant---- CANNOT change the value to which it points, CAN change what object its pointing to, CAN point to constant or non-constant
+const int* const p = &I;		//constant pointer to a constant ---only points to initialized object, CANNOT change the value of the object, CAN point to constant or non- constant
+
+//======================POINTERS IN FUNCTIONS----------------------------------------------------------------
+int main()
+{
+	int myScore = 100;
+	int yourScore = 500;
+
+	goodSwap(&myScore, &yourScore); //passing through the memory address of myScore and yourScore
+}
+
+void goodSwap(int* const pX, int* const pY) //takes in constant pointers which CAN change the value of the object, but CANT change its memory location once initialized
+{
+	int temp = *pX;     //dereferencing the pointers with *pX
+	*pX = *pY;
+	*pY = temp;
+}
+
+//To return a pointer
+
+*string returnPointer(vector<string>* const pVect, int i)   //returns pointer *string, takes in a memory address to a vector<string> object and sets it to the pointer
+{
+	return &((*pVec)[i]); //*pVec dereferences to the object itself so (*pVec)[i] is a string within the vector. Then the & converts the string into a memory address.
+}
+
+//POINTERS AND REGULAR ARRAYS
+
+//An array name acts as a pointer to the array itself.
+int highScores[3] = {20,15,64}; //Here the variable name "highScores" acts as a pointer for the rest of the array
+
+//since highScores is a pointer..
+
+*highScores //dereferences to the first object in highScores so highScores[0] = 20
+*(highScores + 1) //dereferences to the second object and so on... = 15
+
+//In general you can write an array object as *(arrayName + i) which is = to arrayName[i]
+
+//=============================CLASSES==================================================
+
+class Critter
+{
+public:
+	int health;
+	Critter(int healthh = 0);      //Must create the Critter constructor prototype in the header //Typically a good idea to create default arguments in the constructor
+	void greeting();
+};
+Critter::Critter(int healthh)  //This is the Critter Constructor
+{
+	health = healthh;
+}
+
+void Critter::greeting()
+{
+	cout << "Hello I am a critter and I have " << health << " health!" << endl;
+}
+
+int main()
+{
+	Critter albert(10);
+	Critter tom(20);
+
+	albert.greeting();
+	tom.greeting();
+
+	int x;
+	cin >> x;
+}
+
+//-----------------------------------------------------------------------------
+//You can inline class member functions by defining the function in the header //if you do that then you dont need to define it outside of the class
+
+
+//----------------------Constant member functions--------------------------
+
+int getHealth() const; //declares getHealth() to be a constant function
+//this means that getHealth() CANNOT change the value of any NON-STATIC variable in its class
+//It ALSO means getHealth() CANNOT call any NON-CONSTANT functions in the class
+
+//-----------------------------STATIC MEMBERS AND FUNCTIONS------------------------------------------
+static int s_critters; //declares a static int in the header of a class
+//public static members of a class can be accessed anywhere using:
+ Critter::s_critters;
+ //you can also access them through an object of the class
+ Critter critter1;
+ critter1.s_critters;
+
+
+
+
