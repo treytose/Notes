@@ -1,0 +1,19 @@
+---------------Interfaces---------------
+comparable <ClassToCompare> //if you don't type <classToCompare> the compareTo method will only accept an Object
+{
+public int compareTo(ClassToCompare o)
+{
+	return x.compareTo(o.getb());   //returns negative int if x is less than o.getb()
+}
+//for some reason calling x.compareTo() is not using recursion but using some other method that returns -int,0,+int
+}
+comparable <class> 
+{
+// Can be pass to a sort method such as Collections.sort or Arrays.sort
+// used to compare objects that do not have natural ordering
+
+int compare(Object o1, Object o2) 	//instead of Object type the class Name if you used <class> when implementing
+{
+	return o1.getInt() - o2.getInt();   //comparator doesn't use the compareTo() method so use if statements or the method used in the example to return -int, 0, or +int		
+}
+}
