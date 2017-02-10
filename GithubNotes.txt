@@ -16,5 +16,13 @@ now it's locked in but the Github repository still has not changed!!!
 git push 					--will take the commits on your machine and PUSH it up to github
 
 git pull 					--pulls the files from the github repos..only works if in the correct directory
+							--most recent version of Master
 
 git add -A 					--adds all your files
+
+esc :wq  enter     				--if you accidently commit without a -m "message"
+----------Branching, Merging, Pull Request-------------
+git branch 				--shows you all the branches in the repository and which branch you are on 
+git branch <branchName> --copies the current branch to a new branch called whatever you call it
+git checkout <branch>   --switches to the given branch
+git merge <branch>      --merges the github branch with your branch
