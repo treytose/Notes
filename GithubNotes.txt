@@ -14,3 +14,7 @@ git commit -m "Descriptive Message" --locks into the repository with a message o
 now it's locked in but the Github repository still has not changed!!!
 
 git push 					--will take the commits on your machine and PUSH it up to github
+
+git pull 					--pulls the files from the github repos..only works if in the correct directory
+
+git add -A 					--adds all your files
