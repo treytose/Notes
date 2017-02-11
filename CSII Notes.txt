@@ -1,0 +1,140 @@
+assert args.length == 1 : "Wrong number of arguments"; //use java -ea <class> to enable assertions
+//used for finding errors
+
+//-----------------------debugger------------------------
+//allows you to run a little bit of code at a time
+//javac -g <class>.java  use this to compile it for debugging
+//jdb <class>  			 use this to start debugging
+//stop at <class>:10     will stop at line 10 
+//print stringName       prints the string value
+//step 					 moves to the next line
+//cont					 will continue until it reaches a breakpoint
+//set variableName = ... sets a variable to a certain value
+//look up other jdb commands like: dump, where, stop in, etc.
+
+//------------------------Test----------------------------
+//Unit test - test the method of an object to see if it outputs the wanted results
+//Test suite - runs many test at once
+//Regression testing - re-test old code when changes are made
+//include tests in main() or in a test() method OR a Test class
+//------------example of creating a test-------
+public int distance(int x, int x2)
+{
+	return x2-x1;
+}
+public static void main(string[] args)
+{
+	if(distance(10,5) == 5)
+		System.out.println("distance method works correctly!");
+	else
+		System.out.println("distance method not working correctly!");
+}
+//-------------------------Recursion-------------------------
+public static int sum(int sumTo)
+{
+	if(sumTo == 1) //base case
+		return 1;
+	else{
+		return (sumTo + sum(sumTo - 1));
+		
+	}
+}
+//recursive statements have:
+//Branching if statements
+//Base cases: if the problem is small enough return the obvious answer
+//Every execution must end in a base case
+//recursive cases:
+//	call the function again, on smaller input
+//	computer with the answer in some way and return it
+//-===========================Inheritance-=================================
+//inheritance is just extending another class 
+//it gets its variables and methods so long as they are declared public or protected 
+
+//------------------Polymorphism-------------------------
+@lookup javadoc comments
+-promotes code reuse
+-promotes code sharing
+
+-object, person, student, undergrad
+^ inheritance
+an undergrad is a student,person,and an object
+a student is a person, object. etc.
+^polymorphism*
+
+-casting up is okay, casting down is not!
+Undergraduate u = new Undergraduate();
+Student s = u;  //okay because an undergraduate IS also a student
+Undergraduate u2 = s; //will NOT work..must cast (undergraduate)
+Undergraduate u2 = (Undergraduate)s; // okay!
+
+Student s = new Student();
+Undergraduate u = s; //NOT okay because a student is NOT an undergraduate
+
+undergrad --> student --> person --> object
+student = (student)undergrad;
+student = person;
+undergrad = student;
+object = (object)undergrad;
+
+----------------------------------------------------
+common to use super.method(); when overwriting in the subclass
+super.super.method(); //NOT ALLOWED*
+
+java's object class has the method toString();
+so you can override toString(); (called everytime you print an object)
+public String toString(){} //to override Object.toString();
+
+-----------------Abstract classes-----------------
+public abstract class Dog{
+	public abstract int scoreAccordingToStandard();
+}
+//abstract means you cannot create a dog object
+-abstact classes leave one or more methods undefined
+-cannot instantiate abstract classes directly
+-subclasses must implement each abstract method
+-a class can only extend 1 abstract class, 
+	-while it can implement multiple interfaces
+
+
+public class Labrador extends Dog
+{
+	public int scoreAccordingToStandard(){}
+}
+//----------------------INTERFACES----------------------------
+public Comparable arrayMaximum(Comparable[] arr)
+{
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

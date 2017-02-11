@@ -1,4 +1,167 @@
------inlining functions-------------
+cout << "String here" << endl; //prints to console
+cout << "String here"; //no newLine
+cout << String here\n"; //newLine
+
+//to Make Variables
+int a = 6;
+
+cout << a; // prints out the variable 
+cout << a << " hello" << " world" << endl;
+
+cin >> a;  //takes in input and sets the input = to a;
+
+================RANDOM NUMBERS - 27================================
+Random number generator
+#include <cstdlib> //import used for the random generator
+rand(); //returns a random number; (not so random though)
+srand(10); //creates a different algorithm for rand();
+
+#include <ctime> //import for the system time functions
+time(0); //returns time since 1970 or whatever
+
+srand(time(0));
+cout << rand() << endl; //this will truly print random	
+						//numbers everytime it is ran.
+						
+============DEFAULT ARGUMENTS================================================
+int volume(int l = 1, int h = 1, int w = 1); //prototype for method
+
+int main()
+{
+	cout << volume(); //no paramaters given so uses default values
+}
+
+int volume(int l, int h, int w){ //do NOT reinitialize
+	return l * w * h;
+}
+==============Unary Scope Resolution Operator=================
+::variable 	// will print the global variable not the local
+			//if they have the 
+			//same name
+//change variable type names
+typedef int bob; //changing the name 'int'
+bob x = 10; //same as int x = 10;
+typedef string hello;
+hello world = "helloWorld"; ///same as string world = "hello world";
+
+unsigned int; //an always positive int
+-------------------------ENUMERATORS-----------------------------------------------
+	//values = to +1 the last value so here SUPER_HARD = 4
+	//enums are unsigned ints. (ints that are always positive)
+	//EASY has value of 0
+ enum difficulty {EASY, HARD = 3, SUPER_HARD};
+ //create a variable Difficult of type difficulty 
+ //can only be = to one of the defined types.
+ 
+    difficulty Difficult = SUPER_HARD;
+
+    cout << Difficult << endl; //prints 4
+/------------------------READING INPUT------------------------------------------------------
+cin << text; // this will not read any whitespace and will stop reading once a whitespace is reached
+//so if a user typed h ello, text would only be set to "h";
+getline(cin,<variable>); //this readds in the entire line unline just regular cin << <variable>
+
+
+----------------------------Strings---------------------------------------
+3 ways to create a string
+string word1 = "Hello World!";
+string word2("Hello World!");
+string word3(3,'!'); //3 '!' characters
+
+words1[0]; //use [] to get characters of the string	
+word1.size(); //returns string length
+word1.length(); //does the same thing
+word1.find("World"); //returns index of where World begins
+string::npos // returns an int. this int is returned if the find function doesnt find the phrase
+words1.find("World, 5"); //begins searching starting at index 5
+words1.erase(1,5); //remove character starting at index 1 for length 5
+words1.erase(5); //remove all letters after index 5
+words1.empty(); //boolean telling whether the string has letters or not
+
+if("bob" > "Bob") //returns true because the b char number > B char number
+if("bob" > "Bobbie") //returns true because ^ length doesnt matter in this case
+if("bob" > "bobbie") //returns false because b == b and bobbie is longer
+
+----------------------C-Style Strings----------------------------------------------------
+//C-strings are an array of characters with a \0 character at the end (a null character)
+//the last char in a cStyle string is a newline '\n'????
+char word1[] = "Hello"; //cStyle string basically a string but an array of chars. Limited amount of space
+char myMessage[20] = "Hi there"; //automagically puts \0 at the end
+char word2[] = "abc" //note the size is 4 NOT 3
+
+#include <cstring> //needed for string manipulations otherwise you don't need to include it
+
+strcpy(string1, "bilbo"); //copies "bilbo" into the string string1
+word2 = "hello"; //will NOT work. you must use the above method to change the value of the cstring
+
+strcmp(string1,"bilbo"); //compares the two strings 
+//returns -1 - string1 < "bilbo, 0 - equal, 1- string1 > "bilbo"
+	
+strcpy(aCString, stringVariable.c_str()); //how to copy a normal string into a c-string
+
+string word2 = " World";
+string phrase = word1 + word2; //a c string and a string can combine into a string but
+								//not into another cStyle string
+/-----------------------------arrays-------------------------------------------
+string items[10]; //declares the array with 10 spots
+string items2[] = {"sword","shield","bat"};
+string items3[10] = {"sword","shield","bat"};
+/-----------------------Multi-Dimensional Arrays-------------------------
+char board[3][3] = {{'O','X','O'}, //one way to create a 2d array
+					{'O','X','O'},
+					{'O','X','O'}}; 
+/-----------------------------Vectors (ArrayList)------------------------------
+#include <vector> //must include to use vectors
+vector<string> inventory; //declares a vector named inventory to hold strings
+//reserving slots will just create blank strings in this case. 0's for a vector<int>
+vector<string> inventory(10); //declares the vector with 10 available slots
+vector<string> inventory(10, "defaultValue");//delcares vector with 10 slots all with given default value
+vector<string> inventory(inventory2); //sets a new vector with the same contents as the inventory2 vector
+vector.at(0) = "Hatchet"; //sets inventory[0] = "hatchet";
+inventoy.push_back("sword"); //same thing as .add("sword");
+inventory.size(); //returns size of the vector
+inventory[0] = "battleAxe"; //sets the first value to battleaxe
+inventory[0].size(); //gives the size of the string in the vector "battleAxe" = 9
+inventory.pop_back(); //removes the last element from the vector
+invrnyoty.back(); //returns last element
+inventory.clear(); //removes everything
+inventory.empty(); //returns boolean
+iventory.insert(inventory.begin(), "crossbow"); //inserts crossbow at the beginning
+inventory.erase(inventory.begin() + 2); //removes element at inventory[2] and shifts everything down
+inventory.capacity(); //returns the amount of memory reserved for this vector(	for performance matters)
+inventory.reserve(20); //reserves 20 spots. useful for controlling when vector is resized (performance)
+
+/--------------------------------Iterators-----------------------------------------pg 118
+vector<string>::iterator myIterator; //declares an iterator. gives access to any string types in a vector
+vector<string>::const_iterator iter; //declares a constant iterator
+//constant iterator cannot change the values of the vector but it can read them
+
+iter = inventory.begin(); //returns an iterator referring to the vectors first element;
+iter = invetory.end(); //sets iter 1 passed the last element in the vector.
+cout << *iter; //the * means it prints the thing the iterator is referencing to not the iter itself
+
+*myIterator = "battle axe";//changes the value of the referenced vector
+//note: the above iterator would print out the changed
+(myIterator).size(); //returns size of the dereferenced string object.
+myIterator->size(); //does the same thing as above
+
+/---------------------------------------Algorithms---------------------------------------------
+#include <algorithm> //must include to use premade algorithms
+vector<int> score;
+score.push_back(1);
+score.push_back(2);
+score.push_back(3);
+score.push_back(4);
+
+vector<int>::iterator myIterator;
+myIterator = score.find(score.begin(), score.end(), 3);//uses the find algorithm to find the value 3
+//the find function takes find(startSearchPosition, endSearch+1, valueToSearchFor);
+//where the start and end search must be iterators
+srand(time(0)); //first seed the random algorithm
+random_shuffle(score.begin(), score.end());//randomizes
+sort(score.begin(),score.end()); //sorts in ascending order
+
+-----------------------inlining functions-------------
 //inlining a function makes a copy of the function everywhere its called
 //this makes it where the program doesnt have to jump back and forth so
 //it can speed up performance on short frequently called functions
@@ -9,7 +172,7 @@ inline int radiation(100)
 //don't put the "inline" keyword in the prototype
 //-------------------------------------------------------
 watch shiki
-//------------Referenced Variables---------------------------pg 177
+-----------------------Referenced Variables---------------------------pg 177
 int name = 20;
 int& bob = name; //bob is referencing name, they change the same value
 //reference variables must always be initialized
@@ -26,7 +189,7 @@ int main()
 	function(b);
 	//the variable b has been changed to 20 since function has a referenced parameter
 }
-//---------constant reference-----------------
+-----------------------------constant reference-----------------
 //constant references act like other references except you cant change the value of what its referring to
 void function(const int& a)
 {
@@ -37,15 +200,15 @@ void function(const int& a)
 //*****Pass by constant reference when you want to efficiently pass an argument but you dont need to alter it
 //*****Pass by reference when you want to alter the arguments. **this should usually be avoided**** typically you should just return something
 
-//-------------------Returning References-------------------------
+------------------------------Returning References-------------------------
 string& function(string& a){
 
 	return a;
 }
 //Do not return a local variable if you are referencing
-//-------------More algorithms--------------------
+--------------------------------More algorithms--------------------
 count(board.being(), board.end(), 'B'); //this would check a vector called board made up of char's and will return how many 'B's are in the vector
-//-----------------------POINTERS--------------------------------------------
+----------------------------------POINTERS--------------------------------------------
 //pointers are variables that can contain a memory address.
 //They give you the ability to work directly and efficiently with computer memory
 
@@ -72,7 +235,7 @@ string* pBob = &bob;
 (*pBob).size(); //returns the size of bob since it references that object. Be sure to include the parenthesis
 pBob->size() //just like iterators this does the same thing as above just another way to write it!
 
-//-----------Constant Pointers=======================================================
+----------------------------Constant Pointers=======================================================
 //constant pointers are only allowed to points to the object they were initialized to. They CANNOT be changed unlike regular pointers
 
 int score = 100;
@@ -83,7 +246,7 @@ int* const pScore = &score; //this sets a constant pointer initialized to the me
 
 //*NOTE: References should typically be used before Pointers because it has cleaner syntax and it's easier to READ!
 
-//=====================================POINTERS TO A CONSTANT==========pg 236 summary============================================================================================================================================
+================================POINTERS TO A CONSTANT==========pg 236 summary============================================================================================================================================
 const int* pNumber;			//this declares a POINTER to a CONSTANT. This means the pointers CANNOT change the referenced variable!! UNLIKE pointer constants or regular pointers!!
 int lives = 3;
 pNumber = &lives;       //This code is DIFFERENT from ABOVE. 
@@ -91,19 +254,19 @@ pNumber = &lives;       //This code is DIFFERENT from ABOVE.
 
 //UNLIKE constant pointers. Pointers TO a constant CAN change what object it is pointing to!
 
-//==========================Combining constant pointers AND pointers to a constant==========================
+==========================Combining constant pointers AND pointers to a constant==========================
 //these pointers have both qualities meaning they can only point to ONE object AND it CANNOT change the value of the object it is pointing too.
 
 const int BONUS = 100; //NOTE: BONUS does NOT have to be a constant here!
 const int* const pBONUS = &BONUS; //a constant pointer to a constant
 
-//=============================QUICK SUMMARY OF POINTERS=====================================================
+=============================QUICK SUMMARY OF POINTERS=====================================================
 
 int* const p = &i;				//constant pointer---- can only point to initialized object---CANNOT point to a CONSTANT
 const int* p;					//pointer to a constant---- CANNOT change the value to which it points, CAN change what object its pointing to, CAN point to constant or non-constant
 const int* const p = &I;		//constant pointer to a constant ---only points to initialized object, CANNOT change the value of the object, CAN point to constant or non- constant
 
-//======================POINTERS IN FUNCTIONS----------------------------------------------------------------
+======================POINTERS IN FUNCTIONS----------------------------------------------------------------
 int main()
 {
 	int myScore = 100;
@@ -138,7 +301,7 @@ int highScores[3] = {20,15,64}; //Here the variable name "highScores" acts as a 
 
 //In general you can write an array object as *(arrayName + i) which is = to arrayName[i]
 
-//=============================CLASSES==================================================
+=============================CLASSES==================================================
 
 class Critter
 {
@@ -173,13 +336,13 @@ int main()
 //You can inline class member functions by defining the function in the header //if you do that then you dont need to define it outside of the class
 
 
-//----------------------Constant member functions--------------------------
+---------------------------Constant member functions--------------------------
 
 int getHealth() const; //declares getHealth() to be a constant function
 //this means that getHealth() CANNOT change the value of any NON-STATIC variable in its class
 //It ALSO means getHealth() CANNOT call any NON-CONSTANT functions in the class
 
-//-----------------------------STATIC MEMBERS AND FUNCTIONS------------------------------------------
+-------------------------------STATIC MEMBERS AND FUNCTIONS------------------------------------------
 static int s_critters; //declares a static int in the header of a class
 //public static members of a class can be accessed anywhere using:
  Critter::s_critters;
