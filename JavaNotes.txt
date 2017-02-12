@@ -6,6 +6,7 @@ public int compareTo(ClassToCompare o)
 	return x.compareTo(o.getb());   //returns negative int if x is less than o.getb()
 }
 //for some reason calling x.compareTo() is not using recursion but using some other method that returns -int,0,+int
+//compareTo() only takes objects so for wrapper classes must be used or casted 
 }
 comparable <class> 
 {
@@ -17,3 +18,101 @@ int compare(Object o1, Object o2) 	//instead of Object type the class Name if yo
 	return o1.getInt() - o2.getInt();   //comparator doesn't use the compareTo() method so use if statements or the method used in the example to return -int, 0, or +int		
 }
 }
+------------Abstract Classes--------------
+//Absract classes are used for classes that should not be instantiated
+//it contains abstract method which must be implemented for its subclasses but
+//	cannot find a good reason to implement it in the super class
+
+public abstract class Animal
+{
+	//animal is a good example to make an abstract class because
+	//animal is very generic and you dont make Animal objects
+	//because an Animal is not an object but a dog is!
+	abstract void makeNoise();
+	
+	//makeNoise is abstract because you dont know what sound an animal makes!
+	public static void main(String[] args) //abstract classes CAN contain normal methods too!
+	{
+		Animal a = new Dog();  //we use this because we want the object to reference an animal but act like a dog!
+		//for example if we had a method that took an animal as an argument we could then use the object a
+		Animal[] b = new Animal[5];
+		b[0] = new Dog();  //This works fine because a dog IS an animal
+		
+		Dog c = new Dog(); //This is the same but Animal c = new Dog(); makes it a little more clear that dog extends animal!?
+	}
+}
+
+//NOTE:** Animal aDog = new Dog();
+//		  Dog d = aDog; //THIS will NOT COMPILE because aDog is of reference type animal and d is referencing Dog
+// An Animal CANNOT be converted into a Dog, but a Dog can be converted into an Animal
+
+public class Dog extends Animal
+{
+	public void makeNoise()  //implements the abstract method from Animal class
+	{
+		System.out.println("Woof!"); //we know what sound a Dog makes!
+	}
+}
+---------------------------More abstract examples-------------------PG 213
+public abstract Class Animal
+{
+	abstract void speak(); 		//Must have an abstract method for Animal references to work with subclasses
+	public static void main(String[] args)
+	{
+		Animal dog1 = new Dog();	//speak() MUST be in the Animal class because a references Animal!
+		dog1.speak();				//this method would not work if speak() was not in Animal class
+								//because dog1 is referencing Animal, but is an instance of Dog!
+	}
+}
+class Dog extends Animal
+{
+	public void speak()
+	{
+		System.out.println("Woof!");
+	}
+	//if you know dog1 is a Dog object but referencing an Animal you can cast it back down
+	Animal dog1 = new Dog();
+	Dog dog2 = (Dog)dog1;  	//this will work!
+	Dog dog2 = dog1; 		//will NOT work Animal cannot be dereferenced to a Dog!
+	
+	Dog dog1 = new Dog();
+	Animal dog2 = dog1; 	//this will work fine!
+}	
+--------------------------Object Class--------------------------
+//every class extends object
+//object has various methods that can be used
+public class Animal
+{
+	public static void main(String[] args)
+	{
+		Cat c = new Cat();
+		Dog d = new Dog();
+		//---------------------
+		if(d.equals(c)) //returns false .equals() is a method in the object class that compares two classes
+		c.getClass(); //returns the name of the class of the object
+		c.hashCode(); //returns the hashcode for the object
+		c.toString(); //returns the memory location of the object. Usually overridden
+			
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
