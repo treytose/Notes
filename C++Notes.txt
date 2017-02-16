@@ -68,7 +68,8 @@ string word1 = "Hello World!";
 string word2("Hello World!");
 string word3(3,'!'); //3 '!' characters
 
-words1[0]; //use [] to get characters of the string	
+word1[0]; //use [] to get characters of the string	 NOTE: using word1[50] would NOT generate an error but using word1.at(50) would generate an error thus words1.at(50) is safer!
+word1.at(0); //does the same thing ^
 word1.size(); //returns string length
 word1.length(); //does the same thing
 word1.find("World"); //returns index of where World begins
@@ -76,7 +77,9 @@ string::npos // returns an int. this int is returned if the find function doesnt
 words1.find("World, 5"); //begins searching starting at index 5
 words1.erase(1,5); //remove character starting at index 1 for length 5
 words1.erase(5); //remove all letters after index 5
-words1.empty(); //boolean telling whether the string has letters or not
+words1.empty(); //boolean telling whether the string has letters or not, same as if using if(word1.length() == 0)
+word1.substr(0,3); //returns a substring starting at index 0 with length of 3....So it includes chars from index 0 to and including index 2...0,1,2
+
 
 if("bob" > "Bob") //returns true because the b char number > B char number
 if("bob" > "Bobbie") //returns true because ^ length doesnt matter in this case
