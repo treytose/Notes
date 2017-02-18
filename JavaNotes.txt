@@ -95,7 +95,12 @@ public class Animal
 			
 	}
 }
-
+------------------------------------------JAVA SWING---------------------------------------------
+public void paintComponent(Graphics g)  //must import java.awt.*; for graphics
+{
+	super.paintComponent(g);			//do this for some reason
+	g.drawString("message",x,y);  
+}
 
 
 
