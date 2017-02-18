@@ -112,6 +112,10 @@ strcpy(aCString, stringVariable.c_str()); //how to copy a normal string into a c
 string word2 = " World";
 string phrase = word1 + word2; //a c string and a string can combine into a string but
 								//not into another cStyle string
+/------------------------------Chars---------------------------------------
+isalpha('a'); //returns true if the char is between a-z, A-Z
+isdigit(5); 	//returns true if the char is a digits
+isspace(' ');  //returns true if the char is a space
 /-----------------------------arrays-------------------------------------------
 string items[10]; //declares the array with 10 spots
 string items2[] = {"sword","shield","bat"};
