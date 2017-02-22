@@ -106,7 +106,19 @@ public Comparable arrayMaximum(Comparable[] arr)
 	
 }
 
+Random(long seed) //seeds the random number to have a particular sequence
 
+public class MyPanel extends JPanel
+{
+	public void paintComponent(Graphics g)  //overrides method in Component class (parent of JPanel)
+	{
+		super.paintComponent(g); //very  important
+		
+	}
+}
+
+use the whole screen as parameters at first then divide the entire screen into thirds 1 up 2 below
+---------------------------------------------Widgets--------------------------------------------
 
 
 

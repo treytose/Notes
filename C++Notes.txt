@@ -61,6 +61,8 @@ cin << text; // this will not read any whitespace and will stop reading once a w
 //so if a user typed h ello, text would only be set to "h";
 getline(cin,<variable>); //this readds in the entire line unline just regular cin << <variable>
 
+----------------------------Conditional Statements-----------------------
+y = (x > 50) ? 10 : 5;  //If x > 50 then y is set to 10 else y is set to 50
 
 ----------------------------Strings---------------------------------------
 3 ways to create a string
@@ -357,6 +359,30 @@ static int s_critters; //declares a static int in the header of a class
  Critter critter1;
  critter1.s_critters;
 
+\/\/\/\/\/\\/\/\/\/\*_*_*_*_*_*_*_*_*_*_*_*_GENERAL NOTES_*_*_*_*_*_*_*_*_*_*_*_*_*_*_/\\/\/\/\/\/\/\/\/\/\/
+fabs(double, double) //fabs compares two floating points numbers	
+do NOT compare floating point numbers with ==  instead use if(fabs(x-4.32) < 0.0001); //this compares the difference of two floating points to the given accuracy
 
+-------------------------<cstring> library---------------------------
+NOTE: do NOT copy a string to a string of only a few chars like if char[5] var; and you copy "remember" to it. THATS AN ERROR
+strcpy(destStr, sourceStr);  //copies the string
+//Must append a null character below
+strcpy(destStr, sourceStr, numChars);//copies up to numChars, so deletes and replaces the first numChars characters
+strcat(destStr, sourceStr); //adds sourceStr to the end of destStr
+strCat(destStr, sourceStr, numChars); //adds the first numChars characters to the end of destStr
+strchr(sourceStr, searchChar) // returns null if searchChar doesn't exist in sourceStr else returns address NOT INDEX of first occurence
+strlen(sourceStr); //returns the length of the str..make sure the string checked has a null char. doesnt include null char in length
+strcmp(str1, str2); //returns 0 if str1 and str2 are equals else returns non-zero
+isalpha(str[0]); //returns true if the char is a letters
+isdigit(str[0]); //returns true if the char is a number
+isalnum(str[0]); //returns true if its eiter a number or a letter
+isspace(str[0]); //returns true if its a whitespace
+islower(c); //returns true if c is lowercase. Punctuation marks return false
+isupper(c); //returns true if c is uppercase
+isblank(c); //returns true if c is a whitespace
+ispunct(c); //returns true if c is a punctuation mark !@#$%^&*()etc
+isprint(c); //returns true if c is a printable character
+iscntrl(c); //returns true if c is not a printable character
 
-
+toUpper(str[0]); //returns the uppercase version of str[0] even if its already uppercase
+toLower(str[0]); //you can guess what this does
