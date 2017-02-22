@@ -81,6 +81,13 @@ words1.erase(1,5); //remove character starting at index 1 for length 5
 words1.erase(5); //remove all letters after index 5
 words1.empty(); //boolean telling whether the string has letters or not, same as if using if(word1.length() == 0)
 word1.substr(0,3); //returns a substring starting at index 0 with length of 3....So it includes chars from index 0 to and including index 2...0,1,2
+words1.push_back('c'); //appends the char 'c' to the end of word1
+word1.append("string"); //adds "string" to the end of word1
+word1.insert(0,"Hello "); //inserts the substring "Hello " starting at index 0
+word1.replace(0,5,"subString"); //replaces text in a string starting at index 0 and deleting 5 characters (including 0) and inserting the substring
+word1.clear(); //remove everything sets size to 0
+word1.resize(20);  //resizes the string to have 20 characters, if it increases the size the new characters are null('\0'), if a decrease in size then characters are erased.
+
 
 
 if("bob" > "Bob") //returns true because the b char number > B char number
