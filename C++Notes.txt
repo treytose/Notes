@@ -391,5 +391,5 @@ ispunct(c); //returns true if c is a punctuation mark !@#$%^&*()etc
 isprint(c); //returns true if c is a printable character
 iscntrl(c); //returns true if c is not a printable character
 
-toUpper(str[0]); //returns the uppercase version of str[0] even if its already uppercase
-toLower(str[0]); //you can guess what this does
+toupper(str[0]); //returns the uppercase version of str[0] even if its already uppercase
+tolower(str[0]); //you can guess what this does

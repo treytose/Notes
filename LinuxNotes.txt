@@ -1,0 +1,14 @@
+-----terminal commands-----
+pwd -print working directory- prints the path of the current directory-
+cat	Desktop/Story  -prints the contents of Story.txt on the desktop
+ls -l  ;prints a more detailed list
+ls -a  ;shows all the hidden files
+ls -la ;shows hidden files AND the details
+mkdir Notes ;make a directory called Notes at the current directory
+rmdir Notes ;removes the directory
+touch Story; makes a new file called Story (only if the file doesn't already exist)
+rm Story;  deletes a file
+cp Story Story2; copies story file and creates a new file Story2 and copies it to it
+(NOTE: mv deletes the original file location)
+mv Story2 Notes/Story2; moves Story2 file to the dir Notes with the name Story2 
+mv Story Tuna; Deletes Story and moves it to Tuna

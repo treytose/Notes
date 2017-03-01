@@ -18,6 +18,13 @@ int compare(Object o1, Object o2) 	//instead of Object type the class Name if yo
 	return o1.getInt() - o2.getInt();   //comparator doesn't use the compareTo() method so use if statements or the method used in the example to return -int, 0, or +int		
 }
 }
+
+--------------More on interfaces--------------------------
+Interfaces can be references just like a class can this is why they are so useful in polymorphism
+interface Pettable{...}
+
+Pettable cat1 = new Cat(); //if Cat implements Pettable it can be used with a Pettable reference allowing it to be used with any
+							//methods or arrays that take Pettable objects
 ------------Abstract Classes--------------
 //Absract classes are used for classes that should not be instantiated
 //it contains abstract method which must be implemented for its subclasses but
@@ -95,26 +102,208 @@ public class Animal
 			
 	}
 }
-------------------------------------------JAVA SWING---------------------------------------------
+--------------------------------------------FORMATTING-------------------------------------------
+String s = String.format("%, d",100000000); //this will format 1000000000 to have commas like 1,000,000,000
+String.format("%.2f",100.12345); //returns 100.12
+String.format("%,.2f",100000.12345); //returns 100,000.12
+String.format("%x", 42); //returns 42 in hexadecimal
+%c //char
+-----------DATES---------------
+java.util.Date; //good for getting the current date and time
+java.util.Calendar; //good for other dates
+Calendar cal = Calendar.getInstance(); //calendar class is abstract
+---calendar methods---
+add(int field, int amount); //c.add(c.DATE, 35);	adds 35 days to the date
+get(int field); //returns value of the given calendar field
+getInstance();	//returns a calendar you can specify a locale
+getTimeInMillis(); //returns time in millis as a long
+c.roll(c.DATE, 35);	//adds 35 days to the date but doesn't change the month
+c.set(c.DATE, 1);		//sets the day to 1
+-----------------------------------------SOUND-------------------------
+
+
+
+
+\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/--JAVA SWING--\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*
+
+
 public void paintComponent(Graphics g)  //must import java.awt.*; for graphics
 {
 	super.paintComponent(g);			//do this for some reason
 	g.drawString("message",x,y);  
 }
 
+
+-------------------------------Listeners---------------------------------------
+ActionListener(); //an interface for listening to buttons and other actions performed on jcomponents
+public void actionPerformed(ActionEvent e) //method must be implemented if implementing ActionListener
+{
+	e.getActionCommand(); //returns a string that has to do with the command action of the source
+	e.getSource(); //returns
+	e.getWhen(); //returns timestamp of when this event occured
+	e.paraString(); //returns a string giving you ACTION_PERFORMED, command string, when: time pressed, modifiers: ctrl + Button1
+	e.getModifiers(); //returns a string giving the keys pressed when the button was pressed ex: ctrl + Button1, means ctrl left click was used to click the button
+}
+
+
+-----------------------------LAYOUT MANAGERS-----------------------------------
+//NOTE:
+instead of adding a panel to the JFrame you can also set the contentPane of the jframe to a panel
+frame.setContentPane(panel);
+BorderLayout();
+panel.add(BorderLayout.SOUTH, button); //SOUTH, NORTH, CENTER, ETC
+panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); //set a boxlayout where components stack on top of eachother
+panel.setLayout(new FlowLayout()); //default layout for JPanel
+panel.setLayout(new GridLayout());
+panel.setLayout(null); //turns off all layoutmangers and now you have to hard code the location of components using setBounds(x,y,width,height);
+
+
+-------------------------------COMPONENTS/WIDGETS-------------------------------------
+JTextField field = new JTextField(20); //20 means 20 columns not 20 pixels. The width of the textField
+field.setText("text");
+field.addActionListener(new ActionListener...); //if you want to know everytime the user types in a key
+field.selectAll(); //highlight all the text
+field.requestFocus(); //puts the cursor back in the field so the user can continue typing without clicking on it
+field.setFont();
+
+JTextArea text = new JTextArea(10,20); //takes width and height in columns as paramters NOT PIXELS
+text.setLineWrap(true); //makes the text wrap when the user gets to the end
+text.setText("text here");
+text.append("addon text"); //adds text to the end of the text thats already there
+text.selectAll(); //selects all the text
+text.requestFocus();
+
+JScrollPane scroller = new JScrollPane(text); //JScrollPanes are just a pane that takes other components and gives them a scroll bar
+scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS); //tells the scroller to always have a scrollbar appeared also try AS_NEEDED
+panel.add(scroller); //always make sure you add the SCROLLER and NOT the component that you put into the scroller!!!!
+
+JCheckBox check = new JCheckBox("Goes to 11"); //create a check box with the text "Goes to 11" next to it
+check.addItemListener(new ItemListener(){
+	public void itemStateChanged(ItemEvent ev){
+		if(check.isSelected())
+			System.out.println("is selected!");
+	}
+});
+check.isSelected(); //returns true or false
+check.setSelected(true); 
+
+JList list = new JList(arrayName); //takes in an array of any objectType as the parameter
+//NOTE: must add this to a JScrollPane
+	list.addListSelectionListener(new ListSelectionListener(){			//NOTE!: YOU MUST import javax.swing.event.*; in order to use ListSelectionListener!!!!!!!!!!!!!
+		public void valueChanged(ListSelectionEvent lse)
+		{
+			if(!lse.getValueIsAdjusting()){			//!lse.getValueIsAdjusting() if you don't use this then the event is fired twice, once on down click and once on click release!
+				System.out.println((String)list.getSelectedValue() + "\n");
+			}
+		}
+	});
+list.setVisibleRowCount(4); //set how many rows of the list are shown at a time
+list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); //set how the things are selected
 --------------------EVENTS-------------------------------
 class extends MouseAdapter  //same as implementing mouse listener but you don't need to implement the metods
+------------------Random--------------------------------
+Random rand = new Random();
+rand.nextInt(50) + 1; //returns int with max including 50 and min 1
+setSeed(int seed); 
 
+\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/CODING EXAMPLES\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/
+\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/
+-------------Throwing exceptions example-----------------
 
+public class Hexa
+{
+	public static void main(String[] args)
+	{
+		try{
+			riskyMethod(-1);
+		}catch(BadException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static void riskyMethod(int x) throws BadException
+	{
+		if(x < 0)
+			throw new BadException();
+		else
+			System.out.println("Method ran");
+	}
+}
+class BadException extends Exception
+{
+	public void printStackTrace()
+	{
+		System.out.println("BadException stackTrace");
+	}
+}
+\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/
 
+-------------------Example of using an Object oriented Handler------------------So you don't have to use giant if-else chains in listeners
+//in a panel class......
 
+	private class ButtonHandler implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			System.out.println(((Button)e.getSource()).getText() + " button was pressed");	//must cast to the class in order to use its methods or else it will reference the Object class!
+		}
+	}
+	
+} //end of Panel class
 
-
-
-
-
-
-
+class Button extends JButton
+{
+	String text;
+	Button(String text)
+	{
+		super(text);
+		this.text = text;
+	}
+	public String getText()
+	{
+		return text;
+	}
+	public String toString()
+	{
+		return text;
+	}
+}
+\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/
+-----------------------------------DATES-------------------------DATES-----------------------DATES----------------------------DATES
+import java.util.*;
+public class Dates
+{
+	public static void main(String[] args)
+	{
+		Calendar c = Calendar.getInstance();
+		c.set(2004,0,7,15,40);  //year, month, day, hour, minute ---month is 0 based, hours:min is military time
+		
+		System.out.println("initial date: " + c.getTime());
+		
+		long day1 = c.getTimeInMillis();  //gets the time in milliseconds since 1970 jan 1
+		day1 += 1000 * 60 * 60;   	//add 1 hour converted to milliseconds to day1
+		
+		c.setTimeInMillis(day1);	//c now equals the initial date + 1 hour
+		
+		System.out.println("added 1 hour: " + c.getTime());
+		
+		System.out.println("new hour: " + c.get(c.HOUR_OF_DAY));
+		
+		c.add(c.DATE, 35);		//adds 35 days to the date
+		
+		System.out.println("add 35 days: " + c.getTime());
+		
+		c.roll(c.DATE, 35);		//roll moves up 35 days but does NOT change the month
+		
+		System.out.println("roll 35 days: " + c.getTime());
+		
+		c.set(c.DATE, 1);		//sets the day to 1
+		
+		System.out.println("set day to 1: " + c.getTime());
+	}
+}
+\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\
 
 
 
