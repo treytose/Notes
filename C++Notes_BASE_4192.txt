@@ -87,7 +87,7 @@ word1.insert(0,"Hello "); //inserts the substring "Hello " starting at index 0
 word1.replace(0,5,"subString"); //replaces text in a string starting at index 0 and deleting 5 characters (including 0) and inserting the substring
 word1.clear(); //remove everything sets size to 0
 word1.resize(20);  //resizes the string to have 20 characters, if it increases the size the new characters are null('\0'), if a decrease in size then characters are erased.
-remove_if(word1.begin(), word1.end(), isspace); //removes chars if the bool is true
+
 
 
 if("bob" > "Bob") //returns true because the b char number > B char number
@@ -97,7 +97,6 @@ if("bob" > "bobbie") //returns false because b == b and bobbie is longer
 ----------------------C-Style Strings----------------------------------------------------
 //C-strings are an array of characters with a \0 character at the end (a null character)
 //the last char in a cStyle string is a newline '\n'????
-NOTE: when passing a char var[] into a method it is AUTOMATICALLY passed as a pointer* so the real object is changed!!!
 char word1[] = "Hello"; //cStyle string basically a string but an array of chars. Limited amount of space
 char myMessage[20] = "Hi there"; //automagically puts \0 at the end
 char word2[] = "abc" //note the size is 4 NOT 3
@@ -140,8 +139,8 @@ inventory.size(); //returns size of the vector
 inventory[0] = "battleAxe"; //sets the first value to battleaxe
 inventory[0].size(); //gives the size of the string in the vector "battleAxe" = 9
 inventory.pop_back(); //removes the last element from the vector
-inventory.back(); //returns last element
-inventory.clear(); //removes everything	
+invrnyoty.back(); //returns last element
+inventory.clear(); //removes everything
 inventory.empty(); //returns boolean
 iventory.insert(inventory.begin(), "crossbow"); //inserts crossbow at the beginning
 inventory.erase(inventory.begin() + 2); //removes element at inventory[2] and shifts everything down
@@ -177,8 +176,6 @@ myIterator = score.find(score.begin(), score.end(), 3);//uses the find algorithm
 srand(time(0)); //first seed the random algorithm
 random_shuffle(score.begin(), score.end());//randomizes
 sort(score.begin(),score.end()); //sorts in ascending order
-remove_if(str.begin(), str.end(), isspace); //removes characters in string str if its a space but doesnt erase them it puts them at the end
-
 
 -----------------------inlining functions-------------
 //inlining a function makes a copy of the function everywhere its called
@@ -374,7 +371,6 @@ fabs(double, double) //fabs compares two floating points numbers
 do NOT compare floating point numbers with ==  instead use if(fabs(x-4.32) < 0.0001); //this compares the difference of two floating points to the given accuracy
 
 -------------------------<cstring> library---------------------------
-NOTE: must #include<cstring>
 NOTE: do NOT copy a string to a string of only a few chars like if char[5] var; and you copy "remember" to it. THATS AN ERROR
 strcpy(destStr, sourceStr);  //copies the string
 //Must append a null character below
@@ -382,8 +378,6 @@ strcpy(destStr, sourceStr, numChars);//copies up to numChars, so deletes and rep
 strcat(destStr, sourceStr); //adds sourceStr to the end of destStr
 strCat(destStr, sourceStr, numChars); //adds the first numChars characters to the end of destStr
 strchr(sourceStr, searchChar) // returns null if searchChar doesn't exist in sourceStr else returns address NOT INDEX of first occurence
-
-//also note for strlen() that it returns the amount of real chars in the array ex: char var[50] = "Hi"; would return 2
 strlen(sourceStr); //returns the length of the str..make sure the string checked has a null char. doesnt include null char in length
 strcmp(str1, str2); //returns 0 if str1 and str2 are equals else returns non-zero
 isalpha(str[0]); //returns true if the char is a letters
@@ -397,25 +391,5 @@ ispunct(c); //returns true if c is a punctuation mark !@#$%^&*()etc
 isprint(c); //returns true if c is a printable character
 iscntrl(c); //returns true if c is not a printable character
 
-toupper(str[0]); //returns the uppercase version of str[0] even if its already uppercase
-tolower(str[0]); //you can guess what this does
----------------------------------------------------------------------------------------------------
-another way to init variables with constructors
-class ClassExample{
-	public:
-		ClassExample();
-	private:
-	int x;
-	int y;
-}
-ClassExample::ClassExample : x(20), y(50){ 		//this inits x = 20 and y = 50
-	
-}
-//OR
-ClassExample::ClassExample(int x, int y)
-{
-	this->x = x;
-	this->y = y;					//'this' is a pointer so you must use -> NOT a '.'
-}
-
-
+toUpper(str[0]); //returns the uppercase version of str[0] even if its already uppercase
+toLower(str[0]); //you can guess what this does

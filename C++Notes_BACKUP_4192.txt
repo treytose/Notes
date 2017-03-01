@@ -397,8 +397,12 @@ ispunct(c); //returns true if c is a punctuation mark !@#$%^&*()etc
 isprint(c); //returns true if c is a printable character
 iscntrl(c); //returns true if c is not a printable character
 
+<<<<<<< HEAD
 toupper(str[0]); //returns the uppercase version of str[0] even if its already uppercase
 tolower(str[0]); //you can guess what this does
+=======
+toUpper(str[0]); //returns the uppercase version of str[0] even if its already uppercase
+toLower(str[0]); //you can guess what this does
 ---------------------------------------------------------------------------------------------------
 another way to init variables with constructors
 class ClassExample{
@@ -419,3 +423,4 @@ ClassExample::ClassExample(int x, int y)
 }
 
 
+>>>>>>> fd1f67587544028582be91700833df636abadd7a
