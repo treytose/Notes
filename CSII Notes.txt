@@ -145,9 +145,23 @@ JFrame subclass
 --------------------------------TIMERS AND ANIMATION------------------------------------
 Timer time = new Timer(100,actionHandler); 
 
+--------------Streams--------------------------Streams--------------------------
+--useful io streams--
+FileReader, FileWriter: text files
+BufferedReader, BufferedWriter: Anything text oriented that isn't a file
+PrintWriter: write strings and data as strings
+PrintStream: hybrid, writes Strings and bytes, catches errors internally
+DataInputStream, DataOutputStream: Binary primitives
+BufferedINputStream, BufferedOutputStream: raw byte arrays
+ObjectInputStream: serialized objects
+Scanner
 
+System.in		//this is an InputStream
 
-
+//this reads the inputStream, converts bytes to ints representing chars
+InputStreamReader isr = new InputStreamReader(System.in);
+//BufferedReader takes the InputStreamReader ints converts to a String
+BufferedReader br = new BufferedReader(isr); 
 
 
 
