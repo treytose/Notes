@@ -31,7 +31,7 @@ int main()
 	cout << volume(); //no paramaters given so uses default values
 }
 
-int volume(int l, int h, int w){ //do NOT reinitialize
+int volume(int l, int h, int w){ //do NOT reinitialize default arguments!
 	return l * w * h;
 }
 ==============Unary Scope Resolution Operator=================
@@ -56,13 +56,14 @@ unsigned int; //an always positive int
     difficulty Difficult = SUPER_HARD;
 
     cout << Difficult << endl; //prints 4
+	cout << EASY << endl; 	   //prints 0
 /------------------------READING INPUT------------------------------------------------------
 cin << text; // this will not read any whitespace and will stop reading once a whitespace is reached
 //so if a user typed h ello, text would only be set to "h";
 getline(cin,<variable>); //this readds in the entire line unline just regular cin << <variable>
 
 ----------------------------Conditional Statements-----------------------
-y = (x > 50) ? 10 : 5;  //If x > 50 then y is set to 10 else y is set to 50
+y = (x > 50) ? 10 : 5;  //If x > 50 then y is set to 10 else y is set to 5
 
 ----------------------------Strings---------------------------------------
 3 ways to create a string
@@ -71,7 +72,7 @@ string word2("Hello World!");
 string word3(3,'!'); //3 '!' characters
 
 word1[0]; //use [] to get characters of the string	 NOTE: using word1[50] would NOT generate an error but using word1.at(50) would generate an error thus words1.at(50) is safer!
-word1.at(0); //does the same thing ^
+word1.at(0); //does the same thing ^ but generates an error if out of index
 word1.size(); //returns string length
 word1.length(); //does the same thing
 word1.find("World"); //returns index of where World begins
@@ -96,7 +97,7 @@ if("bob" > "bobbie") //returns false because b == b and bobbie is longer
 
 ----------------------C-Style Strings----------------------------------------------------
 //C-strings are an array of characters with a \0 character at the end (a null character)
-//the last char in a cStyle string is a newline '\n'????
+//the last char in a cStyle string is a newline '\0'	
 NOTE: when passing a char var[] into a method it is AUTOMATICALLY passed as a pointer* so the real object is changed!!!
 char word1[] = "Hello"; //cStyle string basically a string but an array of chars. Limited amount of space
 char myMessage[20] = "Hi there"; //automagically puts \0 at the end
@@ -178,7 +179,8 @@ srand(time(0)); //first seed the random algorithm
 random_shuffle(score.begin(), score.end());//randomizes
 sort(score.begin(),score.end()); //sorts in ascending order
 remove_if(str.begin(), str.end(), isspace); //removes characters in string str if its a space but doesnt erase them it puts them at the end
-
+count(board.begin(), board.end(), 'B'); //this would check a vector called board made up of char's and will return how many 'B's are in the vector
+	
 
 -----------------------inlining functions-------------
 //inlining a function makes a copy of the function everywhere its called
@@ -225,8 +227,7 @@ string& function(string& a){
 	return a;
 }
 //Do not return a local variable if you are referencing
---------------------------------More algorithms--------------------
-count(board.being(), board.end(), 'B'); //this would check a vector called board made up of char's and will return how many 'B's are in the vector
+
 ----------------------------------POINTERS--------------------------------------------
 //pointers are variables that can contain a memory address.
 //They give you the ability to work directly and efficiently with computer memory
@@ -241,6 +242,7 @@ int* pScore = null; //another way to initialize
 //Pointers hold memory addresses of the type they were declare. In this case the memory address of an int
 int score = 500;
 int* pScore = &score; //&score returns the memory address of score
+//NOT TO BE CONFUSED WITH string& score!!!!!!!!!! way of passing score as a not-copy
 
 //you can dereference a pointer (point to the thing the pointer is referring to and not the pointer itself) by using *pScore
 
@@ -254,6 +256,14 @@ string* pBob = &bob;
 (*pBob).size(); //returns the size of bob since it references that object. Be sure to include the parenthesis
 pBob->size() //just like iterators this does the same thing as above just another way to write it!
 
+summary:
+		string var2 = "hello";
+		&var2;		//returns memory location of var2
+		string* var = &var2; //var points to a memory location of var2
+		*var //dereference var2 returning the normal string
+		
+		*&var2; //returns "hello" because you reference to memory location then dereference to normal
+		
 ----------------------------Constant Pointers=======================================================
 //constant pointers are only allowed to points to the object they were initialized to. They CANNOT be changed unlike regular pointers
 
@@ -331,8 +341,8 @@ public:
 };
 Critter::Critter(int healthh)  //This is the Critter Constructor
 {
-	health = healthh;
-}
+	this->health = healthh;
+}	
 
 void Critter::greeting()
 {
