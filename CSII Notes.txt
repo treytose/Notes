@@ -163,6 +163,33 @@ InputStreamReader isr = new InputStreamReader(System.in);
 //BufferedReader takes the InputStreamReader ints converts to a String
 BufferedReader br = new BufferedReader(isr); 
 
+------------------------Test Review------------------------
+allowed 1 page of notes front and back
+
+JVM- Java Virtual Machine -- fake machine translating byte code to machine code-
+primitive types-variables of value int,long,etc
+instance variable- data of a particular instance of a class
+public private-encapsulation so inner working of classes isnt accessible
+pass by reference, value- reference = objects are passed by reference, primitive = passed by value
+things passed by reference actually manipulate the data
+pass by value is just a copy that doesnt effect any outside data
+javadoc - written with your code, effort to make documentation easier
+assertion - run program with assertions enables to test program
+debugger - lets you examine your code and execute 1 at a time
+Unit test - test a method to see if the output is correct
+Recursion - objects that contain objects of the same type or methods that call themselves
+recursion pattern - have a base case then have a case that calls the method again until the base case is satisfied
+
+static methods and variables - does not belong to any instance 
+overloading - create methods with the same name and return type but have diff num of arguments
+overriding - replaces a method from a parent class 
+final variables - constant variables that cannot be changed once initialized
+casting - change the variables type or reference type for objects
+abstract class - cannot be instantiated, contains abstract methods. methods that arent defined meant for subclasses to defined
+Interface - like an abstract class but all methods are abstract, classes must implement all methods
+Timer - used to call an actionEvent every given amount of ms
+
+
 
 
 
