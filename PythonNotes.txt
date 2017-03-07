@@ -1,0 +1,477 @@
+--------------------General------------General-----------------4:43 lauren response time
+print(5, "Hello")		//to print different data types together
+
+---------------------Math && operators--------------------------
+
+18//4 			//returns the integer version of the division
+5 ** 3			//same as 5^3 , 5 * 5 * 5
+chicken = 5		//creates a vars
+
+------------------------strings----------------strings------------strings----------------strings------------
+print('"Hello"') 		//prints out "Hello"	you can use ' or "
+print("'Hello'")		//prints out 'Hello'
+print('I don\'t know') 	//use \ to print the ' in between ' '
+print(r'C:\Trey\Desktop\Notes') 	//use r to print the raw string and ignore \n or other commands
+firstName = "Trey"
+print(firstName * 5)	//multiply strings to print them multiple times
+
+firstName[0] 			//returns 'T'
+firstName[-1]			//returns 'y'	goes backwards
+firstName[-2] 			//returns 'e'
+
+firstName[0:2]			//returns chars between index 0 and 2, "tr"
+firstName[2:3]			//returns 'e'
+firstName[:4]			//assumes starting at 0
+firstName[2:]			//goes from 2 to the end
+
+len(firstName)			//returns length of a string
+
+word = word.replace('a','b')		//replace all occurences of 'a' with 'b'
+word.lower() 						//returns lower case version
+
+---------------------list----------------list---------------list-----------------list--------------------
+players = [24, 42, 55, 61]	//creates a list
+players[0]					//returns 24
+players[0] = 42				//changes players[0]
+players + [1,2,3]			*//TEMPORARILY gives a new list does NOT change players PERMANATELY
+players.append(420)			//appends 420	,only takes 1 value
+players[:2]					//returns 24 42	,just like strings does NOT include index 2
+players[:2] = [0,0]			//replace multiple items,  replaces the first two items with 0, 0
+players[:2] = []			//delete the first two items
+players[:] = []				//clears the list
+
+x = 5
+if x in players:			//returns true if x is in players list
+
+--------------------------------if_else-------------if_else----------------------------------
+if x < 5:					//type a colon after if, don't need parenthesis
+if name is "Trey":			//compare strings
+elif x > 3:					//else-if
+else:						//else:
+if x is 5 and y is 3		//
+if x is 5 or y is 3
+
+
+-------------------------------for loop-----------------for loop--------------------------
+foods = ['shrimp', 'tacos', 'waffles', 'chicken']		//create a list of strings
+
+for f in foods:					//like an enhanced for loop in Java
+	print(f)					//this automatically goes through foods and prints each item 
+	print(len(f))				//must be indented to be included in the loop. prints the length of the strings
+	
+for f in foods[:2]:				//to print parts of the list (the first two items)
+	print(f)				
+	
+for x in range(10):				//run through the loop 10 times, prints 0-9
+	print(x)
+for x in range(5, 12):			//run through 5-12, prints 5-11
+	print(x)		
+for x in range(5, 12, 2):		//(begin,end,increments) increments by 2
+	print(x)
+	
+------------------------------while------------while---------------------
+buttcrack = 5
+
+while buttcrack < 10:			//infinite loop
+	print(buttcrack)	
+	
+while buttcrack < 10:			
+	print(buttcrack)
+	buttcrack += 1
+while True:						//notice: True must be capitalized!
+	print("hi")
+	break			
+----------------------------function--------function----------------function---------------
+def beef():						//defining a function
+	print("stuff")
+	print(" more stuff")
+
+beef()							//calls the function beef
+
+def count(cnt):					//pass parameters
+	print(cnt)		
+
+def allowed_dating_age(myAge):	//return data, 
+	girls_age = my_age / 2 + 7	//you don't have to declare that you will be returning.
+	return girls_age
+
+----default values
+ex:
+	def get_gender(sex = 'Unkown', age = 20):
+		if sex is 'm' 
+			sex = "Male"
+		elif sex is 'f'
+			sex = "Female"
+		print(sex)
+----overwrite default values
+ex:
+	get_gender(age = 10)	//you can change arguments in ANY order by referencing the variable name
+	get_gender('m',15)		//overwrite both	
+	get_gender('m')			//overwrite sex
+	
+----flexible num of arguments
+ex:
+	def add_numbers(*args):			//use * to indicate a flexible argument, common practice to name args
+		total = 0					//using this you can call add_numbers with many or few arguments!!
+		for a in args:
+			total += a
+		return a
+----unpacking arguments
+you can pass an entire list into a function by using *listName
+ex:
+	def add_numbers(x, y):
+		return x + y
+	data = [10,15]
+	data2 = [15,55,24]
+	print(add_numbers(*data))		//this WILL WORK. it passes 10 for x and 15 for yield
+'''	print(add_numbers(*data2))		//will NOT WORK. data2 has too many members and add_numbers only takes 2!'''
+
+---------------------Dictionary--------------Dictionary-------------Dictionary--------------------like a hashmap in java
+classmates = {'Tom': 'cool', 'Emma': 'pretty', 'bilbo', 'old'}	//defines a dictionary with keys and values
+
+classmates['Tom']	//returns cool
+
+for k, v in classmates.items():		//key and value, prints the keys and values
+	print(k + v)					
+
+---------------------Modules--------------Modules----------------Modules------------------------
+basically a function in another file
+ex:
+	(main.py)				//main file
+	import second			//must import the file!
+	second.spy()			//must define that it is from second.py
+	
+	(second.py)				//second file
+	def spy()
+		print("I see you!")
+------------------Random numbers----------------Random numbers------------Random numbers-----------------
+import random
+
+x = random.randrange(1,1000)	//returns a random number between 1 and 1000 (NOT including 1000, but including 1)
+
+
+-----------------Download image from the web------------Download image from the web----------------------
+import random								//simply for naming a random file
+import urllib.request						//needed to the url download method
+def download_web_image(url):				
+    name = random.randrange(1, 1000)
+    full_name = str(name) + ".jpg"
+    urllib.request.urlretrieve(url, full_name)	//downloads the url image into the file full_name, 	(stringURL,stringFileName)
+
+download_web_image('http://laurengrigg.com/wp-content/uploads/2016/11/Lauren-Second-Shooting.jpg')
+
+------------Files--------------Files---------------Files---------------Files------------Files--------------Files---------------Files---------------Files------------Fi
+fw = open('sample.txt', 'w')		//creates a file called sample.txt and sets the mode to 'write'
+fw.write('File text goes here')		//adds this text to the file
+fw.close()							//REMEMBER to close the file
+
+fr = open('sample.txt','r')			//'r' sets it to Read mode
+text = fr.read()					//use fr.read() and set the text to a string
+print(text)			
+fr.close()							//remember to always close it when you're done
+
+-----------Reading csv Files from URL-----------------Reading csv Files from URL-------------------------
+from urllib import request			//import only the request module from urllib
+
+goog_url = "http://chart.finance.yahoo.com/table.csv?s=GOOGL&a=1&b=2&c=2017&d=2&e=2&f=2017&g=d&ignore=.csv"
+
+def download_stock_data(cvs_url):			//takes a cvs (file) url
+    response = request.urlopen(cvs_url)		//opens the url given
+    csv = response.read()					//turns the text into data with .read()...note sure what data?
+    csv_str = str(csv)						//turn csv into a string (one long single line string)
+    lines = csv_str.split("\\n")			//split the string, there are "\n" in csv files
+    dest_url = r'goog.csv'					//create destination folder location
+    fx = open(dest_url, "w")				//open a filer writer
+    for line in lines:			
+        fx.write(line + "\n")				//write the lines to the file
+    fx.close()								//close the file writer
+
+download_stock_data(goog_url)				//call the method
+
+-------------------Beautiful soup, web strafing---------------------------------------------------------------
+import requests					//this package must be installed first, used to retrieve html files from urls
+from bs4 import BeautifulSoup	//the module used to filter through the html data
+
+url = 'https://stillwater.craigslist.org/search/mca'	//example url
+source_code = requests.get(url)							//retrieves the html data associated with the URL
+text = source_code.text									//source_code returns a response.? using.text turns it into string data
+soup = BeautifulSoup(text,'html.parser')				//turns text into a BeautifulSoup object for filtering
+
+now you can start using the BeautifulSoup object
+soup.find_all('a')										//returns all HTML strings with the 'a' tag
+
+for tag in soup.find_all(re.compile("t"):				//finds all the tags that CONTAIN the letter 't'
+	print(tag.name)
+	
+soup.find_all(["a","b"])								//pass in a list to find multiple tags
+
+for link in soup.find_all('a'):							//prints the tags with a and href
+	print(link.get('href')
+
+	
+--------------Input-----------------Input------------------Input------------------Input--------------------------------
+userInput = input("What's your favorite number?")	//prints out the string then retrieves a line of user input
+userInput = int(input("fav num?"))					//cast the input to an integer
+
+------------Exceptions--------------Exceptions-----------Exceptions-------------Exceptions---------------------
+try:
+	number = int(input("enter a number"))
+	break
+except ValueError:							//valueError is a type of exception that is caught
+	print("Not a number!")
+ex:
+	while True:
+    try:
+        userInput = int(input("Enter a number:"))	
+        print(10/userInput)
+    except ValueError:							
+        print("That's not a number dude wtf")
+    except ZeroDivisionError:						//catch multiple exceptions
+        print("Do not divide by 0!")
+    finally:										//finally runs where an exception was thrown or not it ALWAYS runs
+        print("This finally happened. I can't believe it.")
+
+
+------------------------------Class---------------------Class-------------------Class-----------------------------------------
+ex:	
+	class Vehicle:
+		model = "Toyota"
+		miles = 135302
+
+		def drive(self):
+			print("Vrooom!")
+			self.miles += 50000
+
+		def checkLife(self):
+			if self.miles > 200000:
+				print("Dead vehicle!")
+			else:
+				print(200000-self.miles, " left")
+
+	car1 = Vehicle()			//create an object
+	
+	car1.drive()				//call the object functions
+	car1.checkLife()
+
+--------Constructor---------
+
+class Animal:
+	def __init__(self):				//also try __init__(self, x),to pass more variables
+		print("Object made!")
+
+dog = Animal()						//__init__ constructor is called automatically
+
+
+--------class variable vs instance variable--------
+class Girl:
+
+    gender = 'female'	//class variable ALL GIRLS ARE FEMALE
+
+    def __init__(self, name):	//name = instance variable, every girl gets their own name!
+        self.name = name
+		
+--------inheritance----------
+ex:
+	class Parent():						//parent class
+
+		def print_last_name(self):
+			print('Holthe')
+		def print_name(self):
+			print("sup")
+
+	class Child(Parent):				//pass Parent class into Child class
+
+		def print_name(self):			//override the function by using the same name and parameters
+			print("hello")
+
+
+	trey = Child()						//Child class inherits Parent's functions and variables
+	trey.print_last_name()
+
+--------multiple inheritance----------
+class Mario():
+    health = 100
+
+    def move(self):
+        print("I am moving around")
+
+class Shroom():
+
+    def eat_shroom(self):
+        print("Now I am big")
+
+
+class BigMario(Mario, Shroom):	//BigMario inherits from Mario AND Shroom class
+    pass					//write pass to avoid syntax error of an empty class (pass is a line that does nothing)
+
+mario1 = BigMario()			//BigMario has methods/variables of Mario and Shroom!
+
+mario1.eat_shroom()
+mario1.move()
+
+-------------------Threading-------------Threading-------------Threading----------------Threading---------------------
+import threading						//must import threading so a class may inherit from it
+
+class Messenger(threading.Thread):		//inherit threading.thread from the threading import
+
+    def run(self):						//run is called when function .start() is called 
+        for _ in range(1000):
+            print(threading.current_thread().getName())
+
+x = Messenger(name = 'Send out messages')
+y = Messenger(name = 'Recieve messages')
+x.start()								//calls run(self):	for x instance
+y.start()								//runs at the same time as x since they are seperate threads
+
+-------------------Sorting------------------Sorting--------------Sorting--------------Sorting------------------------
+import operator					//needed for the sorting module
+
+list = ['bob','bib','bob','steve','emma','steve','bob','steve']
+for item in sorted(list):			//sorts list in alphabetical order
+    print(item)
+	
+----word counter
+ex:
+	def word_counter(word_list):		//take a list as a parameter
+    word_count = {}						//create an empty dictionary
+	for word in word_list:				//loop through the word_list
+        if word in word_count:			//if the word is in the dictionary:
+            word_count[word]+=1			//	increment the value of the key by 1
+        else:							//else if the word is NOT in the dictionary
+            word_count[word] = 1		//add the word to the dictionary as value and set its key as 1
+
+//word_count now contains keys containing words and values containing how often they occured in word_list
+
+-----Sorting a dictionary
+//NOTE: must import operator
+ex:											//itemgetter(0) sorts by key, itemgetter(1) sorts by value
+   
+   for key, value in sorted(word_count.items(), key=operator.itemgetter(0)):	//word_count is the dict from above
+        print(key, value)
+
+---------------------------------Unpacking list--------------------unpacking list-------------------unpacking list--------------
+//set items in list to seperate variables
+
+date, item, age = ['March 4, 2017', 'Gatorade', 20]		//sets the variables accordingly
+														//note: if num of vars != num of items in list an error is thrown!
+ex:
+	grade = [22,10,20,10,20,75]
+
+	first, *middle, last = grade	//first = first item, middle = all items in between, last = last item
+
+	print(first)
+	print(middle)					//middle is a list of the items between
+	print(last)
+
+	print(sum(middle) / len(middle))	//sum() functions adds all the items in the list
+	
+-----------------------zip--------zip-------------zip---------------zip-----------------zip--------------------------------------
+ex:
+	first = ['Trey', 'Tom', 'Taylor']
+	last = ['Holthe', 'Hanks', 'Swift']
+								
+								//names is a zip Object
+	names = zip(first,last)		//combines the two list in this format:
+								//(('Trey','Holthe'),('Tom','Hanks'),('Taylor','Swift'))
+	for a, b in names:
+		print(a,b)
+-------------zipping dictionaries and finding min/max keys or values
+	stocks = {
+		'GOOG': 520.54,
+		'FB': 76.54,
+		'YHOO': 39.28,
+		'APPL':359.23
+	}
+	//max will find the max VALUE since VALUE is placed for KEYS
+	//zip combines the KEY and the VALUE 
+	//list returns (359.23, 'APPL') in this case
+	
+	list = max(zip(stocks.values(),stocks.keys()))
+	
+	//for ex: this returns the minimum of the KEYS which are strings in this case so probably goes based on ASCII values
+	
+	list = min(zip(stocks.keys(),stocks.values()))
+
+	//zips the dictionary, sorts the zip by VALUES in this case
+	
+	list = sorted(zip(stocks.values(), stocks.keys())) 
+
+-------------------------------UNpacking byte data-------------------------------------unpacking byte data--------------------------------------------------------------------------
+from struct import *
+
+# Store as bytes data
+packed_data = pack('iif',6,19,4.35) #integer, integer, float, use pack() to convert to bytes, pack('iif',1,1,5.3)
+															# use unpack() to convert back,  unpack('iif',pack('iif',1,1,5.3))) 
+
+print(packed_data)
+
+print(calcsize('i'))        #4 bytes each to store
+print(calcsize('iif'))      #12 bytes, 4 bytes each
+
+#convert bytes to readable form
+original_data = unpack('iif',packed_data)		
+print(original_data)
+
+print(unpack('iif', b'\x06\x00\x00\x00\x13\x00\x00\x0033\x8b@'))    #byte format, prints same as above
+	
+	
+	
+------------------------Maps------------------------Maps--------------------------Maps------------------------Maps---------------------Maps-------------------Maps--------------------
+income = [10, 30, 75]
+
+def double_money(dollars):
+    return dollars * 2
+
+#map takes an iterable and runs it through a function for each item and returns the results as a list
+#basically a more efficient way of creating a for loop and running all the data through the function
+
+#map takes a function and an iterable, such as a list
+
+#map is an object. Convert it to a list to make it readable
+new_income = list(map(double_money,income))
+
+print(new_income)       #prints [20,60,150]
+	
+	
+	
+----------------------heapq-----------heapq------------heapq------------heapq-----------heapq--------------heapq--------heapq-----------heapq------------heapq------------heapq-----------heapq--------------heapq--------he
+
+ex:	
+	import heapq
+
+	grade = [34,62,78,247,828,8,53,838,27]
+
+	print(heapq.nlargest(3, grade))			//returns the 3 largest grades in grade
+
+	stocks = [
+		{'ticker': 'APPL', 'price': 201},
+		{'ticker': 'GOOG', 'price': 800},
+		{'ticker': 'MSFT', 'price': 68}
+	]
+
+	#finds the smallest 'price' value in stocks 
+	#								takes a function 
+	print(heapq.nsmallest(1,stocks, key=lambda stock: stock['price']))
+
+		
+---------------------------dictionary calculations-------------------dictionary calculations----------------------------
+	
+ex:		
+	prices = {'salad': 50, 'chicken': 22, 'oranges': 16}	//dictionary example
+
+	print(min(prices.values()))								//this returns 16, only the value
+	
+	print(min(zip(prices.values(),prices.keys())))			//this returns (16, 'oranges'), the value and the key		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

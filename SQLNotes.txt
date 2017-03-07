@@ -1,0 +1,13 @@
+SHOW DATABASES  //shows databases
+SHOW TABLES 	//shows tables
+SHOW COLUMNS FROM customers	//shows the columns from customers table
+SELECT id FROM customers; //shows id's from customers table
+SELECT city,id FROM customers; //shows| city | id |from customers table
+
+SELECT * FROM cutomers //gets all the data BUT DO NOT USE THIS UNLESS ABSOLUTELY NECESSARY
+IT IS VERY IMPORTANT IT CAN CAUSE SLOW WEBSITES FOR CUSTOMERS AND YOU WILL GET FIRED DONT DO IT
+
+SELECT DISTINCT state FROM customers; 		//Does NOT show duplicates this way. No state will be listed TWICE!
+
+SELECT id, name FROM customers LIMIT 5; 		//only shows the first 5
+SELECT id, name FROM customers LIMIT 5, 10; 	//shows data from 6 to 15,  (LIMIT startPoint, length)
