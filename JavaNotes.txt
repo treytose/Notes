@@ -150,7 +150,7 @@ public void actionPerformed(ActionEvent e) //method must be implemented if imple
 //NOTE:
 instead of adding a panel to the JFrame you can also set the contentPane of the jframe to a panel
 frame.setContentPane(panel);
-BorderLayout();
+BorderLayout();			//NOTE: BorderLayout is in java.awt.BorderLayout !!!!!!!!
 panel.add(BorderLayout.SOUTH, button); //SOUTH, NORTH, CENTER, ETC
 panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); //set a boxlayout where components stack on top of eachother
 panel.setLayout(new FlowLayout()); //default layout for JPanel
@@ -207,6 +207,66 @@ rand.nextInt(50) + 1; //returns int with max including 50 and min 1
 setSeed(int seed); 
 
 \*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/CODING EXAMPLES\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/
+\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/
+--------------------Serializing objects example----------------
+import java.io.*;
+public class Hexa //implements Comparator <Hexa>
+{
+	public static void main(String[] args)
+	{
+		Scanner scan = new Scanner(System.in);
+		Hero h1 = new Hero(100);
+		int x = 0;
+		while(true)
+		{
+			System.out.println("0: getStrength, 1: decStr, 2: save Hero, 3: read Hero");
+			x = scan.nextInt();
+			if(x == 0)
+			{
+				System.out.println("Strength = " + h1.getStrength());
+			}
+			if(x == 1){
+				h1.setStrength(-10);
+			}
+			else if(x == 2){
+				try{
+					ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("Hero.ser"));
+					os.writeObject(h1);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+			else if(x == 3)
+			{
+				try{
+					FileInputStream fileStream = new FileInputStream("Hero.ser");
+					ObjectInputStream is = new ObjectInputStream(fileStream);
+					h1 = (Hero)is.readObject();
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+}
+
+class Hero implements Serializable
+{
+	private int strength;
+	
+	Hero(int strength)
+	{
+		this.strength = strength;
+	}
+	
+	public void setStrength(int str){
+		strength += str;
+	}
+	public int getStrength()
+	{
+		return strength;
+	}
+}
 \*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/
 -------------Throwing exceptions example-----------------
 
@@ -304,8 +364,100 @@ public class Dates
 	}
 }
 \*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\
+--------------------Serializable objects--------------------------Serializable objects------------------------------
+To serialize an object: make sure to implement Serializable
+	
+	1. Make a FileOutputStream:	
+			FileOutputStream fileStream = new FileOutputStream("sample.ser"); //FileOutputStreams know how to write to files
+	
+	2. Chain an ObjectOutputStream to the FileOutputStream:
+			ObjectOutputStream os = new ObjectOutputStream(fileStream);
+			
+	3. Write the object to the file:
+			os.writeObject(objectExample);
+			
+	4. Close the ObjectOutputStream:
+			os.close();
+			
+To read a serialized object:
+
+	1. Make a FileInputStream:
+			FileInputStream fileStream = new FileInputStream(sample.ser);
+	
+	2. Make an ObjectInputStream:
+			ObjectInputStream is = new ObjectInputStream(fileStream);
+		
+	3. Read the objects:
+			Animal restoreAnim1 = (Animal)is.readObject();		//Animal is just an example in this case
+			
+	4. Close the ObjectInputStream:
+			is.close();											//important for some reason
+			
+			
+Note: 	To mark an object variable to NOT be serialized use the 'transient' keyword, ex: transient String name = "Bilbo";
+		Serialized Objects must be casted when read back in
+		Static-variables are NOT serialized
+		Streams are either connection streams or chain streams:
+			connection streams can connect to an outside source such as a file, network socket, or console.
+			FileOutputStream, FileInputStream's are examples of Connection Streams
+			
+			chain streams cannot connect to a source or destination and must be chained to a connection(or other) stream.
+			ObjectInputStream, ObjectOutputStream's are an example of chain streams
+			
+
+-----------------File class--------------------File class----------------File class---------------------------
+File f = new File("Example.txt");				//represents a file, File objects don't read or write
+File f = new File("C://Home/");					//file pointing to a directory
+f.mkdir();										//creates a directory
+
+if(f.isDirectory()){							//if f points to a directory
+	String[] dirContents = f.list();			//f.list() returns fileNames within it's directory
+}
+
+f.getAbsolutePath();							//returns the path of the file
+
+f.delete();										//deletes the file and returns true if succesful
+
+----Other File methods----
+f.canExecute()	//returns true if executable
+file.canRead()	//if readable
+canWrite();		//if writable
+compareTo(File pathname);	//compare lexicographically?
+createNewFile();			//creates a new empty file, returns a boolean
+deleteOnExit();				//deletes the File when the JVM terminates
+getCanonicalPath();			//
+getName();
+getParent();				//returns pathname of parent or null if no parent exist
+getParentFile();			//returns a File object of the parent File
+isFile();					//boolean
+isDirectory();				//boolean
+isHidden();					//boolean
+//see API for full list 
+--------------Ports and internets and sockets----------------------------------Ports and internets and sockets------------------------------------------------------------------
+import java.net.*;
+NOTE:	use IP 127.0.0.1 for "local host" aka your own machine for testing
 
 
+---Read data from a socket
+Socket nameSocket = new Socket("127.0.0.1", 5000); //creates a socket for connecting to the IP given in port 5000
+
+InputStreamReader stream = new InputStreamReader(nameSocket.getInputStream());	//ask the socket for an inputstream to chain to our inputstreamreader
+//InputStreamReader is a bridge between a byte stream and a normal char stream
+
+BufferedReader reader = new BufferedReader(stream);	//chain the input stream to a buffered read which turns it into readable things
+String message = reader.readLine();
+
+how it works:
+				Server -> bytes 	  -> chars             -> buffered Chars -> Client
+				Data   -> InputStream -> InputStreamReader -> BufferedReader -> Strings
+				
+
+---write data to a socket
+
+Socket chatSocket = new Socket("127.0.0.1", 5000);	//connect to the server
+
+PrintWriter pw = new PrintWriter(chatSocket.getOutputStream()); //pass the sockets OUTPUT stream to the printwriter
+pw.println("message to send");
 
 
 

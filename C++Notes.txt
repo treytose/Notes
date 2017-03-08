@@ -378,6 +378,21 @@ static int s_critters; //declares a static int in the header of a class
  //you can also access them through an object of the class
  Critter critter1;
  critter1.s_critters;
+ 
+ static int getValue();	//example of a static function in header
+ NOTE: DO NOT PUT STATIC KEYWORD WHEN DEFINING THE FUNCTIONS------------------------------------------
+ int getValue(){}; //define it like any other method!!!!!!!!!!!!!!!!!
+ 
+ to initialize a private static member:
+	class Animal{
+		private:
+			static int x;
+	}
+	int Animal::x = 0; 	//Remember to type int
+	NOTE:
+		const static members may be declared within the header like so:
+			const static int x = 0;
+	
 
 \/\/\/\/\/\\/\/\/\/\*_*_*_*_*_*_*_*_*_*_*_*_GENERAL NOTES_*_*_*_*_*_*_*_*_*_*_*_*_*_*_/\\/\/\/\/\/\/\/\/\/\/
 fabs(double, double) //fabs compares two floating points numbers	
@@ -427,10 +442,21 @@ ClassExample::ClassExample(int x, int y)
 	this->x = x;
 	this->y = y;					//'this' is a pointer so you must use -> NOT a '.'
 }
-//OR	
-ClassExample::ClassExample(int x = 5, int y = 10){	//sets as default values if no arguments given
-	this->x = x;
-	this->y = y;
-}
-
+----------------------------overloading operators-------------------------------------
+add two objects together to create a new object like so:
+	Animal a(10); 	//10 is the age of the animal
+	Animal b(5);
+	Animal c;
+	
+if Animal has a method:
+	Animal Animal::operator+(Animal a){
+		Animal anim;
+		anim = a.getAge() + age;
+		return anim;
+	}
+continuing from main:
+	//the + now automatically calls the operator+ method
+	c = a + b;	//this will set Animal c age equal to 15 therefore succesfuly adding two objects together
+NOTE: Another way to do this is to simply create a method and then use: c = a.add(b);
+-------------------------------------------------------------------------------------------
 
