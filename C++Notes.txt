@@ -446,7 +446,7 @@ ClassExample::ClassExample(int x, int y)
 add two objects together to create a new object like so:
 	Animal a(10); 	//10 is the age of the animal
 	Animal b(5);
-	Animal c;
+	Animal c;		
 	
 if Animal has a method:
 	Animal Animal::operator+(Animal a){
@@ -458,5 +458,18 @@ continuing from main:
 	//the + now automatically calls the operator+ method
 	c = a + b;	//this will set Animal c age equal to 15 therefore succesfuly adding two objects together
 NOTE: Another way to do this is to simply create a method and then use: c = a.add(b);
+
+Overloading input(>>) / output(<<) streams 
+NOTE: do NOT define these functions inside the class!
+NOTE: it knows to automatically call this function even though its not in the class
+
+the function input:
+	istream& operator>>(istream& s, ClassName& cn){
+		s >> cn.x >> cn.y;
+		return s;
+	}
+the call:
+	ClassName cl;
+	cin >> cl;	//this will call the above operator and set values for x & y
 -------------------------------------------------------------------------------------------
 

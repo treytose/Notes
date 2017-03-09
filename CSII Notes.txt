@@ -186,9 +186,32 @@ overriding - replaces a method from a parent class
 final variables - constant variables that cannot be changed once initialized
 casting - change the variables type or reference type for objects
 abstract class - cannot be instantiated, contains abstract methods. methods that arent defined meant for subclasses to defined
-Interface - like an abstract class but all methods are abstract, classes must implement all methods
+Interface - like an abstract class but all methods are abstract, classes must implement all methods, used mostly for polymorphism
 Timer - used to call an actionEvent every given amount of ms
+layout - organizes your panel or jcomponent
+event - something that happens that event loop catches 
+listeners - mouse listener, action listeners etc.
+inner class - listeners are often inner classes, have access to the data of the class its in
+exception - for handling errors that are caused by the outside world, not neccessarily the programmers errors
+Stream - communicating between two entities, ordered sequence of bytes,
+Readers & Writers - implement text processing, read bytes convert to chars, write to files, etc
+File object - an object that can represent a file in the pc
+Garbage collector - scans and finds useless memory then deletes it 
 
+encapsulation - protecting data in classes from outside use so others don't have to think about how it works
+
+inheritance - OOP allows classes to inherit from other classes 
+	used for code reusability
+	subclasses have access to parent classes public/protected data and methods
+
+event handling - eventloop runs over and over waiting for something to set it off like user input
+	-
+	
+MVC - Model - Data and program logic
+	- View 	- Widgets and Panels (Components and Panels)
+	- Controller - contains handlers. To tell the view and model how to behave
+	
+	
 
 
 
