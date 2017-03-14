@@ -206,7 +206,7 @@ inheritance - OOP allows classes to inherit from other classes
 
 event handling - eventloop runs over and over waiting for something to set it off like user input
 	-
-	
+		
 MVC - Model - Data and program logic
 	- View 	- Widgets and Panels (Components and Panels)
 	- Controller - contains handlers. To tell the view and model how to behave

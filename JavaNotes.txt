@@ -361,6 +361,11 @@ public class Dates
 		c.set(c.DATE, 1);		//sets the day to 1
 		
 		System.out.println("set day to 1: " + c.getTime());
+		
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");	
+		Calendar cal = Calendar.getInstance();
+		System.out.println(dateFormat.format(cal)); //2016/11/16 12:08:43
 	}
 }
 \*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\
