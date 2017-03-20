@@ -1,0 +1,254 @@
+----------CSS--------------
+h1, h2, h3 {
+			font-family: Arial;
+			color: yellow
+		}
+		
+h1,h2,h3 			- The selectors indicate which element the rules apply to
+font-family, color 	- properties of which to change of the elements
+Arial, Yellow		- value of which to change the properties 
+
+-------Where to put css styles------------
+-To store in a seperate file.
+--href = the file location
+--type = the type of the file being linked to. Should be "text/css"
+--rel  = relationship between HTML and the file. Should be "stylesheet" when linking to CSS file
+<head>
+	<title> Using External CSS</title>
+	<link href="css/styles.cc" type="text/css"
+	 rel = "stylesheet" />
+</head>
+
+-To store within HTML file
+
+<head>
+	<title>Using Internal</title>
+	<style type="text/css">
+		body {						//css
+			font-family: arial;		
+			background-color: rgb(185,179,175);
+		}
+	</style>
+</head>
+
+
+-----------------CSS SELECTORS---------------------------------------------
+<selector>{ styles... }
+
+
+* 				//univeral selector, select all elements on the page
+h1,h2,h3		//type select, select all elements of given type
+.note			//class select, select all elements with class="note"
+p.note			//class select, select all <p> elements with class="note"
+#introduction	//id selector, select element with the ID id="introduction"
+li>a			//child selector, targets THE FIRST <a> element within an <li> element
+p a 			//descendant selector, selects ALL <a> elements within a <p> element
+h1+p			//adjacent sibling selector, targets the first <p> element after an <h1> element
+h1~p			//selects all siblings that are <p> of <h1>
+	
+---------------------------Prescedence-----------------------------
+Last selection has prescedence 
+ex:
+	i{color: green;}
+	i{color: blue;}	//this one is applied because it came after the first one
+
+More specific selector have prescedence
+ex:
+	p {color: red}
+	p#into{color: blue}	//takes prescedence
+
+add the !important after a property value to add prescedence
+ex:
+	p b{color: blue !important;}
+	
+---------------------Inheritance-------------------------
+Most elements inherit from their parent elements
+to force inheritance use:
+	<propertyToInhertic> inherit;
+
+------------------------------------------------------
+Property------------Value-------------	
+------------------------------------------------------
+opacity: .5;							//set 50% opacity
+background-color: hsl(0,0%,78%);		//angle, saturation, lightness
+background-color: hsla(0,100%,100%,0.5);//angle, saturation, lightness, alpha (alpha=transparency)
+	
+-------------------------Text--------------------------Text--------------------------Text--------------------------Text--------------------------Te
+font-family: Georgia, Times, serif;}	//include multiple fonts and a generic font(serif) in case the browser doesnt have the font
+font-size: 20px;		//set font size, can use px, em or words
+font-weight: bold;		//try normal, bold, etc.
+font-style: normal;		//try italic, oblique..
+text-transform: uppercase;	//try lowercase, capitalize(every word is capitalized)
+text-decoration: underline;	//try none, overline, line-through, blink
+line-height: 1.4em;			//create spacing between lines
+letter-spacing: 0.2em;		//create spacing between words
+text-align:	left;			//try right, center, justify
+vertical-align: text-top;	//try baseline, text-bottom (usually used with images)
+text-indent: 20px;			//indent text
+text-shadow: 1px 1px 0px #0000000;	//
+	(how far left or right the shadow falls),(top bottom fall),(optional blur amt),(color)
+
+p.intro:first-letter{	//select element<p> class="intro" (the first letter)
+	font-size: 200%;	
+}
+p.intro:first-line{		//select the first line
+	font-weight: bold;	
+}
+
+a:link{					//selects all links that have not been visited
+	color: deeppink;	
+	text-decoration: none;
+}
+	
+a:visited{				//select links that have been visited
+	color: black;
+	text-decoration: underline;
+}
+
+input.submit:hover{		//input element, class="submit", hover = when the user is hovering
+	background-color: #665544;
+}
+
+input.submit:active{	//when the user clicks the submit button this activates
+	background-color: chocolate;	
+}
+input.text:focus{		//activates when the given element has user focus
+	color: blue;
+}
+----------------Attribute Selectors--------------------
+p[class]	//targets any <p> element with any attribute called class
+p[class="dog"]	//targets any <p> elements with the class whose value is dog
+p[class~="dog"]	//targets <p> with a class value of seperated words like: d o g
+p[attr^"d"]		//targets any <p> element with an attribute value that starts with "d"
+p[attr*"do"]	//targets if any attribute value CONTAINS "do"
+p[attr$"g"]		//any attribute value that ends with "g"
+
+--------------Boxes----------------Boxes------------Boxes----------------Boxes------------B
+div{
+	height: 300px;				//set width, height of the contents of the div
+	width: 400px;
+	background-color: blue;
+}
+p{
+	height: 75%;			//75% of the webpage size, this will resize when resizing
+	width: 50%;
+}
+min-width: 450px			//set min/max size of a box
+max-width: 650px
+min-height:	450px
+max-height: 650px
+
+NOTE: if the box isn't big enough the content will overflow and look terrible
+
+overflow: hidden;			//hides the content that doesn't fit in the box
+overflow: scroll;			//adds a scrollbar to the box
+
+-----Border, Margin, Padding-------
+Border- Surrounds the box
+Margin- Surrounds the border, space between two boxes
+Padding- space between the border and content
+
+border-width: 2px;	//change thickness of the border
+	//also try thick, (1px, 4px, 12px, 4px;) <-each side of the border starting at top
+
+border-style: solid;	//change border style
+	try: solid, dotted, dashed, double, groove, ridge, inset, outset, hidden/none
+	try: border-top-style, border-left-style, etc.
+
+border-color: red;		//also try multiple color values to change all sides of the border to diff colors
+
+border: 3px dotted red;	//set the border: width, style, color
+
+---Padding-
+padding: 10px; 			//seperate the content from the border
+
+margin: 20px;			//seperate different boxes
+	
+margin: 10px auto 10px auto;	//center box on the page using auto
+
+display: inline			//make a block element act like an inline element
+display: block			//make inline element act like a block
+display: inline-block	//block act like an inline but retain block features
+display: none			//hides the element, like it isnt on the page at all
+
+visibility: hidden;		//hides the element but leaves a blank spot where it would be
+visiblility: visible; 	//shows the element
+
+border-image:			//look it up
+
+box-shadow:	5px 5px 5px 5px red;
+	horiz offset, vert offset, blur, spread, color
+	
+border-radius: 10px		//set rounded borders
+	//use 4 numbers to set a diff border radius
+	//also try: border-top-right-radius, etc.
+
+------List, forms, etc-------------------------------List, forms,etc-------------------------------List
+list-style-type: lower-roman;	//the bullet point style
+	try: decimal, lower-alpha, upper-alpha, upper-roman, etc.
+
+list-style-image: url("<imageLocation>"); //set an image as the bulletpoints
+	
+list-style-position: outside;	//how the text wraps around the bullet points
+	try: inside, outside
+
+list-style: inside circle;		//set multiple styles in 1 line
+	//in any order
+
+	
+------------------------TABLES--------------------TABLES--------------------T
+width			//set width of the table
+
+padding			//set space between border and content
+
+text-transform	//convert content of the table to uppercase or something
+
+letter-spacing	//change spacing of letters
+
+font-size;		//change font size
+
+background-color;	
+
+:hover			//highlight table row when hovered
+	
+empty-cells: show;	//shows empty cells
+	try:hide, inherit(for child cells, inherits parent style)
+
+border-spacing: 5px 15px	//horizontal and veritcal spacing between cells
+
+border-collapase: collapse; //cell borders touch
+	try: separate(cells detach)
+	
+---------------------Styling text input---------------Styling text input-----------------------
+
+	
+	
+-------------Cursor style------------
+a{
+	cursor: move;		//sets cursor to move on a elements
+}
+	try: auto, crosshair, default, pointer, move, text, wait, help, url("cursor.gif")
+
+	
+----------------------Positioning---------------------------------Positioning---------------------------------P
+position: static;	//this is the default position style
+	//blocks sit on top of eachother
+	
+position: relative;		//
+
+position absolute;		//takes the block out of normal flow, other elements act like it isnt there
+
+position: fixed;			//makes it in position so that its always in the same spot on the browser window even when scrolled down
+
+z-index: 10;				//control which block shows over which, higher z index takes prescedence
+
+float: right;				//move an element as far to the left, right as possible in the containg element
+
+clear: left;					//no elements should touch any other elements in the same container on the left
+	try: right both none;
+
+	
+	
+	
+	
+	

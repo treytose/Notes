@@ -472,6 +472,34 @@ the call:
 	ClassName cl;
 	cin >> cl;	//this will call the above operator and set values for x & y
 -------------------------------------------------------------------------------------------
+linkedList---------
+--linkedList are like vectors but they are not sorted in memory which allows for quick and easy
+insertions and deletions, but slower to find values using .at(index);
+
+CLARIFICATION CLARIFICATION CLARIFICATION CLARIFICATION CLARIFICATION CLARIFICATION
+
+int* myPtr; 	//THIS CREATES A POINTER VARIABLE. IT POINTS TO A MEMORY ADDRESS OF ANOTHER VARIABLE
+*myPtr;			/THIS DEREFERENCES THE POINTER. SO IT RETURNS THE REAL VALUE NOT THE ADDRESSS
+&myVar;	//RETURNS THE MEMORY ADDRESS OF myVar
+function(int& var);		//PASS BY REFERENCE, CHANGES THE ACTUAL VALUE
+
+-----------------------------------------
+new 		//operator that allocates location in memory
+a->printNums();		//same as (*a).printNums();
+delete	//deletes memory 
+
+ex:
+	Fruit* orange = 0; 			//create a pointer "orange" that points to an object of type Fruit, init to 0
+	orange = new Fruit;		//allocates appropriate amount of memory
+	orange->removeSeeds();	//calls the function same as, (*orange).removeSeeds();
+	delete orange;				//removes the allocated memory orange takes up
+	
+	
+-----------A few <cstring> functions-------------
+//Note: sourceStr is a char*  , not sure if a normal String literal would work?
+strchr(sourceStr, charToFind); 	//returns 0 if char not found, else returns a pointer to the FIRST occurence
+strrchr(sourceStr, charToFind);	//same as above but returns pointer to the LAST occurence 
+strstr(str1, str2);				//returns a char* to the first occurence of str2 in str1, if not found returns 0
 
 
 

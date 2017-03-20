@@ -366,6 +366,9 @@ public class Dates
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");	
 		Calendar cal = Calendar.getInstance();
 		System.out.println(dateFormat.format(cal)); //2016/11/16 12:08:43
+		
+		DateFormat df = new SimpleDateFormat("MM/dd/yy");
+		System.out.println(df.format(new Date()));							//prints out 04/06/96  for example
 	}
 }
 \*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\*/\
