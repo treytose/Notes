@@ -57,6 +57,13 @@ public static int sum(int sumTo)
 
 -object, person, student, undergrad
 ^ inheritance
+
+
+
+
+
+assignment 4----------
+
 an undergrad is a student,person,and an object
 a student is a person, object. etc.
 ^polymorphism*
@@ -211,13 +218,29 @@ MVC - Model - Data and program logic
 	- View 	- Widgets and Panels (Components and Panels)
 	- Controller - contains handlers. To tell the view and model how to behave
 	
+-------------------------How the Internet Works---------------------------
+
+transport protocol: In charge of transporting bytes in proper order
+	TCP: reliable, not as fast, makes sure to recieve all data, has error correction if bytes are missing it asks for them again
+	UDP:	recieves packets of data, if some are missing it just drops it and continues, good for video streaming
+application protocol: structure of the data
+	HTTP: For webservers
+
+
+socket:	
+	setSoTimeout(int timeout); 	//set how long to wait on response before giving up
+
+InetAddress:
+	getLocalHost();
+	getByName();				//InetAddress.getByName("cs.okstate.edu");
+	getByAddress();
+	isReachable(int timeout);
+
+ServerSockets:
+	accept();			//waits for a connection to be made, code stops at this until someone connects
 	
-
-
-
-
-
-
+			
+	
 
 
 

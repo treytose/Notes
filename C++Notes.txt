@@ -479,6 +479,7 @@ insertions and deletions, but slower to find values using .at(index);
 CLARIFICATION CLARIFICATION CLARIFICATION CLARIFICATION CLARIFICATION CLARIFICATION
 
 int* myPtr; 	//THIS CREATES A POINTER VARIABLE. IT POINTS TO A MEMORY ADDRESS OF ANOTHER VARIABLE
+int *myPtr; 	//SAME AS ABOVE
 *myPtr;			/THIS DEREFERENCES THE POINTER. SO IT RETURNS THE REAL VALUE NOT THE ADDRESSS
 &myVar;	//RETURNS THE MEMORY ADDRESS OF myVar
 function(int& var);		//PASS BY REFERENCE, CHANGES THE ACTUAL VALUE
@@ -501,6 +502,42 @@ strchr(sourceStr, charToFind); 	//returns 0 if char not found, else returns a po
 strrchr(sourceStr, charToFind);	//same as above but returns pointer to the LAST occurence 
 strstr(str1, str2);				//returns a char* to the first occurence of str2 in str1, if not found returns 0
 
+-------------------------------------------Linked List-----------------------------------Linked List-----------------------------------Linked List-----------------------------------Linked
+[1]->[2]->[3]->[4]				//Linked Lists are list that each node points to the next node in the list
 
-
-
+--Create a Linked List--
+ex:
+	struct{
+		int data;
+		node* next;
+	}
+	node* n;			//regular node pointer
+	node* temp;		//temporary node pointer
+	node* head;		//head node  pointer
+	
+	n = new node;	//allocates memory for n, n now points to a new node
+	n->data = 1;		//access the data of the node using ->
+	temp = n;
+	head = n;
+	
+	n = new node;	//n points to a new node
+	n->data = 2;		//Note: they are not linked yet!
+	temp->next = n;		//this tells the node that t was pointing to which node to point to next [1]-->[2]
+	temp = temp->next;		//now move t to the n node so that it can tell that node what to point to next[1]-->[2]-->?
+								//NOTE: you could also type temp = n;
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
