@@ -239,12 +239,44 @@ InetAddress:
 ServerSockets:
 	accept();			//waits for a connection to be made, code stops at this until someone connects
 	
+Thread--------------------------------------------------------------------
+Thread.setPriority(int newPriority);	//number from 1 to 10, higher numbers run more often
+Thread.yield();		//tells java that this Thread can wait for others now
+
+--------------------------------------Generics--------------------------------------------------------------
+Integer a = 3000;
+Integer b = 3000;
+if(a == b){				//returns false because you are comparing two objects, which compares memory addresses
+
+}
+
+ArrayList list = new ArrayList();
+list.add(5);									//automatically converts to an Integer object and adds it to the list
+list.get(0);									//this returns an Object object does NOT automatically convert to an Integer object
+note: you could do ((Integer)list.get(0)) but no thanks
+
+ArrayList<Integer> list = new ArrayList<Integer>();
+list.add(5);
+list.get(0);			//now it knows that its returning an Integer object 
+
+
+order of growth-----------------
+O(1)		constant
+O(log n)		sublinear
+O(n)			linear
+O(n log n)	
+O(n^2)		quadratic			//double input equals quadrupal amount of work
+O(n^k)		polynomial
+O(2^n)		Exponential
+O(n!)			Factorial
+
+O(1)		size of the input has no influence
+
+O(log n)	Algorithm doesnt have to look at every data element
+			Recursion makes problem smaller through division
 			
-	
-
-
-
-
+			
+-------------------------------------------------Sorting-----------------------------------------Sorting-----------------------------------------Socket
 
 
 

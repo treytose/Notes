@@ -526,10 +526,47 @@ ex:
 	temp = temp->next;		//now move t to the n node so that it can tell that node what to point to next[1]-->[2]-->?
 								//NOTE: you could also type temp = n;
 		
+------------------------------Pointers and Memory---------------------------------------------
+string* classList;			
+classList = new string[5];			//remember arrays are also pointers so this is valid
+
+*delete classList;						//THIS IS AN ERROR WILL NOT WORK,***
+delete[] classList;					//this works!
+
+dynamic arrays-------------------------------------------
+1. dynamic arrays are created during the program. this means a dynamic array can be a variable size.
+2. a normal array if given size x, if x is undefined will have a compile error
+3. A dynamic array, unlike a static array, is in the heap.
+4. A dynamic array can be deallocated to reopen memory, unlike static arrays which always have a place in memory.
+create a dynamic array:
+	double *d;							//double can be any type
+	d = new double[10];			//new is only used for dynamic objects
 	
+	note: access the array just like a normal array:
+	ex:	double x = d[2];
+
+deleting a dynamic array:
+	delete[] d;							//only way to delete dynamic array
+	d = NULL;							//always assign the pointer to NULL after you delete it!
 	
+----create multidimentional dynamic array
+int* pointer = new int[5];
+for(int i = 0; i < 5; i++)
+{
+	int[i] = new int[5];
+}
+
+Record* p;
+p = new Record;
+
+p->number = 400;
+(*p).number = 400;		//same as above, access data member in class Record
+
 	
-	
+---------------Rule of 3--------------
+1. Overloaded assignment operator
+2. Copy constructor
+3. Destructor
 	
 	
 	

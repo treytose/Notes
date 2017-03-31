@@ -249,6 +249,3 @@ clear: left;					//no elements should touch any other elements in the same conta
 
 	
 	
-	
-	
-	
