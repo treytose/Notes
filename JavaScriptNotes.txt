@@ -1,0 +1,235 @@
+var x = 10;
+var y = "Hello World";		//declare variables
+
+document.write();				//writes to the document in html
+alert("alert");								//sends an alert popup with the text 
+
+function fun(x,y){			//create the function
+	return x + y;				//return does not have to be declared
+}			
+<input type="button" value="buttonName" onclick="fun"/>		//html button that calls the javascript function  onclick
+
+<script src="name.js">	</script>		//import javascript into html
+
+Number.MAX_VALUE;			//returns max value
+Number.MIN_VALUE;
+Math.E									//Math class like java
+Math.PI	
+Math.ceil(1,2);
+Math.floor(1,2);
+Math.round(1,2);
+Math.min(1,2)
+Math.pow(1,2)
+Math.sqrt(4)
+
+Math.floor((Math.random() * 10 + 1)); 	//returns a random number between 1 and 10 (including 10)
+															//math.floor is making is an integer
+															
+parseInt("5");										//convert strings to ints/floats
+parseFloat("3.14");	
+
+String methods------------------------------
+var s = "Hello";
+
+s.length;
+s.indexOf("ell");				
+s.slice(3,4);						//(starting index, ending index);
+s.slice(4);							//from 4 to the end
+s.substr(3,1);					//(starting index, length)
+s.charAt(2);						//just like java
+s.split(" ");						//splits the string at any spaces
+s.trim();							//removes extra whiteSpace
+s.toUpperCase();				//also try toLowerCase()
+
+//you can style javascript strings for your html page
+s.big();
+s.bold();
+s.fontcolor("blue");
+s.fontsize("7em");
+s.italics();
+s.link("http://google.com");
+s.small();
+s.strike();
+s.sub();
+s.sup();	
+//--------------------
+var customer = {name : "Bob Thomas", address: "123 Main", balance : 50.50};
+for(k in customer){
+	document.write(customer[k]);		//prints Bob Thomas, 123 Main, 50.50
+}
+
+--------------------------------------arrays--------------------------------------Arrays---------------------------------Arrays---------------------------
+var tomSmith = ["Tom Smith", "123 Main", 120.50];
+tomSmith.splice(2,1, "Pittsburgh", "PA");		//start at index 2 and override 1 thing, adds the following
+tomSmith.valueOf();
+tomSmith.toString();	//same as above converts the array to a string
+tomSmith.join(", "); //adds a comma and space when printing as a string
+delete tomSmith[3];
+tomSmith.sort();		//sort in descending order by numbers value
+ numbers.sort(function(x,y){	//sort in ascending order
+	 return x - y;
+ });
+ 
+ numbers.concat(tomSmith);		//combine two arrays, returns an array
+ tomSmith.pop();	 //removes the last item
+ 
+tomSmith.push("55-353"); 			//adds to the end of the array
+tomSmith.shift(); 							//deletes the first item
+tomSmith.unshift("Tom Smith");	//add an item at the beginning
+tomSmith.length; 							//length of the array
+
+---------------------Function-----------------------------Function-----------------------------Function-----------------------------Function-----------------------------Fu
+function inArray(arrayToCheck, value){						//example of a function that checks if a value is contained in an array
+	for(i = 0; i < arrayToCheck.length; i++){
+		if(arrayToCheck[i] === value)
+			return true;
+	}
+	return false;
+}
+
+----------variable number of arguments-------
+
+function getSum()					//takes zero perameters
+{
+	var sum = 0; 
+	for(int i = 0; i < arguments.length; i++){
+		sum += arguments[i];
+	}
+	return sum;
+}
+getSum(3,5,2,7,2,8); 	//works for any number of arguments
+
+
+html events------------------
+function openAlert(saying){
+	alert(saying);
+}
+<a href="JavaScript:void(0)" onclick="openAlert('Hello');">Say Hello </a>		//href="JavaScript:void(0)" prevent the page from having to reload 
+																														//onclick means the function will be called when the link is clicked
+also try																														
+onclick
+onmouseover
+onmouseout
+ondblclick
+onmousedown
+onmouseup
+onChange
+
+ex:
+<input type="text" id="randInput" onChange="var dataEntered=document.getElementById('randInput').value; alert('User typed ' + dataEntered')"/>
+
+--------------------------example of getting a char pressed event from an input box then writing it to a <p> element
+
+function getChar(event){
+	if(event.which == null){									//this is for internet explorer..even.which returns the key pressed
+		return String.fromCharCode(event.keyCode);			//event.keyCode is the ascii value
+	}																					//String.fromCharCode() converts it into a string
+	else if (even.which != 0 && event.charCode != 0){	//for all other browsers
+		return String.fromCharCode(event.which);
+	}
+	else						//if the key pressed doesnt have an ascii number
+		return null;
+}
+
+document.getElementById('charInput').onkeypress = function(event){
+	var char = getChar(event || window.event)												//window.event is for older internet explorer
+	if(!char) 
+		return false;
+	document.getElementById('keyData').innerHTML = char + " was clicked";
+	return true;
+}
+
+
+----:Generic Way to Add action Listeners to Elements in the website----
+ex:
+	document.getElementById('idName').onclick = function(event){
+		document.getElementById('idHere').style.backgroundColor = "red";
+	}
+	
+----targetting
+document.write("Current URL: ", window.location.href, "<br />");
+document.write("Current HOST : ", window.location.pathname, "<br />");
+document.getElementById('goToGoogle').onclick = function(event){
+	window.location.href = "http://google.com";
+}
+
+
+history.go(-2); 							//go back 2 pages
+window.location.reload(true); //reload the page
+
+	--target multiple tags put them into an array variable
+var pElements = document.getElementsByTagName('p');
+pElements[1].style.backgroundColor = 'red';
+
+
+sampDiv2.childNodes[0].style.backgroundColor = 'red'; 			//sampDiv2 is a div, selects its child elements
+
+-------check attributes of an element---------
+var logo = document.getElementById('logo1');
+
+logo.hasAttribute("alt");			//returns a boolean
+logo.setAttribute("alt", "<br />");	//change the attribute value
+logo.getAttribute("alt");					//get the value of the alt attribute
+
+var attribList = document.getElementById('logo1').attributes;			//returns an array of all the attributes
+
+
+var paragraph3 = document.createElement("p");	//create a <p> element
+paragraph3.setAttribute("id", "paragraph3"); 		//set ID
+paragraph3.innerHTML = "Text goes here";			//add Text to the <p> element
+
+sampDiv2.appendChild(paragraph3);						//puts the <p> element at the end of the div element
+sampDiv2.insertBefore(paragraph3, sampDiv2.childNodes[0]);	//insert the <p> element 
+
+-------------------OOP JavaScript---------------------------------------OOP JavaScript---------------------------------------OOP JavaScript---------------------------------------OOP
+var cust1 = {										//create an object called cust1 which holds data just like a class
+	name: "John Smith",
+	street: "123 Main",
+	city: "OKC"
+	balance: 120.50,
+	payDownBal: function(amtPaid){
+		this.balance -= amtPaid;
+	}
+};
+document.write("Customer Name: ", cust1.name);		//access the objects variables
+--------------------------------------------------Creating a class----------------------------------------------------
+function Customer(name, street, city, balance){
+	this.name = name;
+	this.street = street;
+	this.city = city;
+	this.balance = balance;
+	this.payDownBal = function(amtPaid){
+		this.balance -= amtPaid;
+	}
+}
+var cust2 = new Customer("Bob", "345 Main", "Pittsburgh", 500);
+cust2.payDownBal(300);
+
+Customer.prototype.isCreditAvail = true;			//shared value for all customers, add variables and functions to a class...
+Customer.prototype.toString = function(){
+	return this.name;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

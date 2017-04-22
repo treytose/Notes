@@ -1,3 +1,43 @@
+1. To access mysql via the command prompt navigate to xampp/mysql/bin and then enter: mysql -u root				//make sure mysql is turned on the xampp control panel
+2.
+
+Sample Steps:
+1.	CREATE DATABASE publications					//creates a new database called publications
+2. USE publications 										//set publications databases as the current working database
+3.	CREATE TABLE classics (								//creates a table in the current database called classics
+	author VARCHAR(128)
+	title VARCHAR(128)
+	type VARCHAR(128)
+	year CHAR(4)) ENGINE MyISAM;
+
+4. DESCRIBE classics										//print out information about the table 
+
+
+Command List:
+	1. ALTER					-Alter a database or table
+	2. BACKUP				-Back up a table
+	3. \c							-Cancel input
+	4. CREATE				-Create a database
+	5. DELETE					- Delete a row from a table
+	6. DESCRIBE				- Describe a table's columns
+	7. DROP					- Delete a database or table
+	8. EXIT (CTRL-C)		- Exit 
+	9. GRANT					- Change user privileges
+	10. HELP					-Display help
+	11. INSERT				-Insert data
+	12. LOCK					-Lock table(s)
+	13. QUIT					-Same as EXIT 
+	14. RENAME				-Rename a table
+	15. SHOW				-List details about an object
+	16. SOURCE				-Execute a file
+	17. STATUS				-Display current status
+	18. TRUNCATE			-empty a table
+	19. UNLOCK 			-Unlock table(s)
+	20. UPDATE				-Update an existing record
+	21. USE						-Use a database 
+
+
+
 SHOW DATABASES  //shows databases
 SHOW TABLES 	//shows tables
 SHOW COLUMNS FROM customers	//shows the columns from customers table
@@ -11,3 +51,14 @@ SELECT DISTINCT state FROM customers; 		//Does NOT show duplicates this way. No 
 
 SELECT id, name FROM customers LIMIT 5; 		//only shows the first 5
 SELECT id, name FROM customers LIMIT 5, 10; 	//shows data from 6 to 15,  (LIMIT startPoint, length)
+
+
+----------------------Creating Users-----------------------
+GRANT PRIVILEGES ON database.object TO 'username' @ 'hostname' IDENTIFIED BY 'password';
+GRANT ALL ON publications.* TO 'treyquit' @ 'localhost' IDENTIFIED BY 'redriver';
+
+ON .							//allows the user access to all databases and all their objects
+ON database.* 			//allows the user access to the database called database and all of its objects
+ON database.object 	//allows access the database, database, and the object, object within the database
+
+
