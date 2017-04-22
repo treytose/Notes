@@ -261,11 +261,11 @@ list.get(0);			//now it knows that its returning an Integer object
 
 
 order of growth-----------------
-O(1)		constant
+O(1)			constant
 O(log n)		sublinear
 O(n)			linear
 O(n log n)	
-O(n^2)		quadratic			//double input equals quadrupal amount of work
+O(n^2)		quadratic			//double input equals quadrupal amount of work, nested loops 
 O(n^k)		polynomial
 O(2^n)		Exponential
 O(n!)			Factorial
@@ -274,9 +274,132 @@ O(1)		size of the input has no influence
 
 O(log n)	Algorithm doesnt have to look at every data element
 			Recursion makes problem smaller through division
+			divide the size of the problem every loop
+
+O(n)		Going through a loop once and doing an operation at each increment 
+			no nested loops
+			recursion makes problem smaller through subtraction
+			subtract from size of problem every loop
+			
+O(n log n)
+
+
+
+O(n^k)
+
+
+
+O(n^2):
+	double for loops	
+	
+O(2^n):
+	
+
+
 			
 			
 -------------------------------------------------Sorting-----------------------------------------Sorting-----------------------------------------Socket
+1. sorting is an O(nlog(n)) order of growth
+
+selection sort:
+	
+Bubble sort:
+	run through the array and swap if they are out of order
+	good for list that are already almost sorted
+	O(n^2)
+	
+insertion sort:
+	O(n^2)
+	stable
+	O(n) on nearly sorted list
+	better than bubble sort
+
+Merge sort:
+	recursive sort
+	take a list divide it by 2
+	look at first element of both list
+		put the smaller element in a new array
+		increment index of the array with the smaller element
+		repeat
+	O(n) sort or nlog(n) because youre dividing 
+
+Quick sort:
+	choose a random index and put it at the start
+	find the first number less than the pivot point
+	move that number to the right of the pivot point
+	swap the pivot with the element two to the right?
+
+Heapsort:
+
+linear time sort:
+
+
+-------------------------------------------Data structures---------------------------------Data structures---------------------------------Data
+
+Linked list:
+
+
+bucket sort:
+	like counting sort but using a single digit
+	
+radix sort:  O(n) * k where k is the number of digits
+	use bucket sort on last digit
+	create new list sorted by last digits
+	bucket sort on second to last digit
+	create new list sorted by second to last digits
+	repeat to first digit
+	
+radix sort only works for integers but you can use hashcodes to represent anything
+everything in code is ultimately just binary 0's and 1's which can be represented as a number
+
+hashcode() returns a number between 2billionish to -2billionish
+
+idea: a binary tree but with 4 children by comparing the key into 4ths
+1/4 go downleft 1/2 go up left 3/4 up right etc.
+
+
+
+
+assignment 6--------------------------------------------------------------------------------------------------------------
+2's compiment
+00000001	= 1
+11111110	= -2
+
+00000000  = 0
+11111111  = -1
+
+bit shifting----------
+<< left shifting
+
+			1 << 2 = 4
+00000001 << 2 = 00000100
+
+>> rightshifting
+	-fills in 1's
+	
+>>> rightShifting
+	fills in with 0's
+	
+bitwise &:
+	30 & 105 == 8
+	if both are 1 set bit to 1 
+	00011110 & 01101001 == 00010000
+
+bitwise |:
+	if either are 1 then set to 1
+	
+setting i'th bit to 1:
+	- a = a | (1 << i);
+	
+huffman codes--------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
 

@@ -465,7 +465,7 @@ NOTE: it knows to automatically call this function even though its not in the cl
 
 the function input:
 	istream& operator>>(istream& s, ClassName& cn){
-		s >> cn.x >> cn.y;
+		s >> cn.x >> cn.y;gf
 		return s;
 	}
 the call:
@@ -567,10 +567,82 @@ p->number = 400;
 1. Overloaded assignment operator
 2. Copy constructor
 3. Destructor
+
+
+
+Copy Constructor:
+	1. A constructor that takes a referenced class as a parameter
+	2. Automatically called when a class object is passed by value (not passed by &objectName)
+	3. Also automatically called when initializing like: MyClass obj1 = obj2;
+	4. Also automatically called when initializing like: obj1Ptr = new MyClass(classObj2);
+	
+	
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+Streams--------------------------------------------------
+------istringstream
+istringstream	//read input from a string instead of the console
+required: #include<sstream>, in namespace std;
+example use:
+	string userInfo = "Otto Holthe 21";
+	istringstream iss(userInfo);
+	string firstName; string  lastName; int age;		//just defining some variables for reading in data
+	
+	iss >> firstName;	iss >> lastName; iss >> age; 	//reads in data from the string, works just like cin
+
+istringstream methods:
+	istringstream iss;
+	iss.str(lineString);		//sets the stream's buffer to the string lineString
+	iss.clear(); 					//resets the stream to start from the beginning
+	
+------ostringstream
+ostringstream oss;		//ostringstreams take input data and then give it to strings
+
+example:
+	ostringstream oss;
+	string firstName = "Bilbo";
+	string lastName = "Baggins";
+	string fullName;					//string we are going to use ostringstream on
+	
+	oss << firstName << ", " << lastName;		//places these strings into oss's buffer
+	fullName = oss.str();								//reads from oss's buffer and places it into fullName
+	//fullName now = Bilbo, Baggins
+
+Note: this also works for reading in integers and then converting it into a string
+
+------------Reading from a file-------------
+required: #include<fstream>
+ifstream inFs;						//a file input stream used for reading data from a file
+example file data myfile.txt:
+	5
+	10
+	
+example using ifstream:
+	ifstream inFs;						//defines an input file stream for reading from a file
+	inFs.open("myfile.txt");		//uses .open() method to attempt to open the file of the given path
+
+	if(!inFs.is_open()){				//if the file did not open succesfully
+		cout << "File not found!" << endl;	//output an error message
+		return(1);						//returning 1 indicates there was an error
+	}
+	int number1, number2;
+	//use it like an input stream, because it is an input stream
+	inFs >> number1;
+	inFs >> number2;
+	//now close the file *important
+	inFs.close();
+	
+methods:
+	inFs.eof(); //returns true if end of file is reached
+	inFs.good();	//returns true if the last thing used on it didnt cause problems
+
+
 	
 	
 	
 	
+	
+	
+
 	
 	
 	

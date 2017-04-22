@@ -468,6 +468,10 @@ PrintWriter pw = new PrintWriter(chatSocket.getOutputStream()); //pass the socke
 pw.println("message to send");
 
 
+-----------------------------------------------Collections---------------------------------------Collections----------------------------------------
+
+
+
 
 
 
