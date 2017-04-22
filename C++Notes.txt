@@ -446,7 +446,7 @@ ClassExample::ClassExample(int x, int y)
 add two objects together to create a new object like so:
 	Animal a(10); 	//10 is the age of the animal
 	Animal b(5);
-	Animal c;
+	Animal c;		
 	
 if Animal has a method:
 	Animal Animal::operator+(Animal a){
@@ -458,5 +458,123 @@ continuing from main:
 	//the + now automatically calls the operator+ method
 	c = a + b;	//this will set Animal c age equal to 15 therefore succesfuly adding two objects together
 NOTE: Another way to do this is to simply create a method and then use: c = a.add(b);
--------------------------------------------------------------------------------------------
 
+Overloading input(>>) / output(<<) streams 
+NOTE: do NOT define these functions inside the class!
+NOTE: it knows to automatically call this function even though its not in the class
+
+the function input:
+	istream& operator>>(istream& s, ClassName& cn){
+		s >> cn.x >> cn.y;
+		return s;
+	}
+the call:
+	ClassName cl;
+	cin >> cl;	//this will call the above operator and set values for x & y
+-------------------------------------------------------------------------------------------
+linkedList---------
+--linkedList are like vectors but they are not sorted in memory which allows for quick and easy
+insertions and deletions, but slower to find values using .at(index);
+
+CLARIFICATION CLARIFICATION CLARIFICATION CLARIFICATION CLARIFICATION CLARIFICATION
+
+int* myPtr; 	//THIS CREATES A POINTER VARIABLE. IT POINTS TO A MEMORY ADDRESS OF ANOTHER VARIABLE
+int *myPtr; 	//SAME AS ABOVE
+*myPtr;			/THIS DEREFERENCES THE POINTER. SO IT RETURNS THE REAL VALUE NOT THE ADDRESSS
+&myVar;	//RETURNS THE MEMORY ADDRESS OF myVar
+function(int& var);		//PASS BY REFERENCE, CHANGES THE ACTUAL VALUE
+
+-----------------------------------------
+new 		//operator that allocates location in memory
+a->printNums();		//same as (*a).printNums();
+delete	//deletes memory 
+
+ex:
+	Fruit* orange = 0; 			//create a pointer "orange" that points to an object of type Fruit, init to 0
+	orange = new Fruit;		//allocates appropriate amount of memory
+	orange->removeSeeds();	//calls the function same as, (*orange).removeSeeds();
+	delete orange;				//removes the allocated memory orange takes up
+	
+	
+-----------A few <cstring> functions-------------
+//Note: sourceStr is a char*  , not sure if a normal String literal would work?
+strchr(sourceStr, charToFind); 	//returns 0 if char not found, else returns a pointer to the FIRST occurence
+strrchr(sourceStr, charToFind);	//same as above but returns pointer to the LAST occurence 
+strstr(str1, str2);				//returns a char* to the first occurence of str2 in str1, if not found returns 0
+
+-------------------------------------------Linked List-----------------------------------Linked List-----------------------------------Linked List-----------------------------------Linked
+[1]->[2]->[3]->[4]				//Linked Lists are list that each node points to the next node in the list
+
+--Create a Linked List--
+ex:
+	struct{
+		int data;
+		node* next;
+	}
+	node* n;			//regular node pointer
+	node* temp;		//temporary node pointer
+	node* head;		//head node  pointer
+	
+	n = new node;	//allocates memory for n, n now points to a new node
+	n->data = 1;		//access the data of the node using ->
+	temp = n;
+	head = n;
+	
+	n = new node;	//n points to a new node
+	n->data = 2;		//Note: they are not linked yet!
+	temp->next = n;		//this tells the node that t was pointing to which node to point to next [1]-->[2]
+	temp = temp->next;		//now move t to the n node so that it can tell that node what to point to next[1]-->[2]-->?
+								//NOTE: you could also type temp = n;
+		
+------------------------------Pointers and Memory---------------------------------------------
+string* classList;			
+classList = new string[5];			//remember arrays are also pointers so this is valid
+
+*delete classList;						//THIS IS AN ERROR WILL NOT WORK,***
+delete[] classList;					//this works!
+
+dynamic arrays-------------------------------------------
+1. dynamic arrays are created during the program. this means a dynamic array can be a variable size.
+2. a normal array if given size x, if x is undefined will have a compile error
+3. A dynamic array, unlike a static array, is in the heap.
+4. A dynamic array can be deallocated to reopen memory, unlike static arrays which always have a place in memory.
+create a dynamic array:
+	double *d;							//double can be any type
+	d = new double[10];			//new is only used for dynamic objects
+	
+	note: access the array just like a normal array:
+	ex:	double x = d[2];
+
+deleting a dynamic array:
+	delete[] d;							//only way to delete dynamic array
+	d = NULL;							//always assign the pointer to NULL after you delete it!
+	
+----create multidimentional dynamic array
+int* pointer = new int[5];
+for(int i = 0; i < 5; i++)
+{
+	int[i] = new int[5];
+}
+
+Record* p;
+p = new Record;
+
+p->number = 400;
+(*p).number = 400;		//same as above, access data member in class Record
+
+	
+---------------Rule of 3--------------
+1. Overloaded assignment operator
+2. Copy constructor
+3. Destructor
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

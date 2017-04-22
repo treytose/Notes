@@ -1,0 +1,63 @@
+<html> </html>		//begin end html code
+<head> </head>		//header of html 
+<title></title>		//create a title in <head> shows in tab
+<body> </body>		//start base of html page
+<h1> </h1>			//create headers/titles h1-h6, h1 being the largest
+<p>	</p>			//paragraph open/close
+<b> </b>			//bold text
+<i> </i>			//italics
+<sup> </sup>		//superscript
+<sub> </sub> 		//subscript
+<br />				//break line, start new line
+<hr />				//horizontal rule, creates a line, and breaks
+<strong> </strong> 	//tells browser text is important, usually bolds
+<em> </em>			//tells browser to emphasize text, usually italics
+
+
+<blockquote cite = "randomwebsite.com">
+cite is for reference purposes
+blockquote creates a blockquote...
+</blockquote>
+
+<ol>				//start ordered list, numbers each item in list 1,2,3,etc.
+	<li>			//list text
+	<li>
+</ol>
+
+<ul>				//unordered list
+	<li>text here	//shows dots followed by text
+</ul>	
+
+<dl>				//definition list
+	<dt> </dt>		//definition title
+	<dd> </dd>		//definition define
+</dl>
+
+--create a link--
+<a href = "http://www.randomwebsite.com">
+word to click here
+</a>
+
+--link to another page--
+<a href = secondPage.html>
+	name of secondPage in current directory
+</a>
+
+--create an id--
+<p id = "bottom">
+</p>
+
+link to html page at given #id
+<a href = mainPage.html#bottom>
+</a>
+
+
+
+
+
+
+
+
+
+
+
