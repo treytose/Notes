@@ -1,3 +1,9 @@
+**mistakes**
+{
+	input("userinput") //this returns a string use int(input("userinput")) to convert it to an integer
+
+
+}
 --------------------General------------General-----------------4:43 lauren response time
 print(5, "Hello")		//to print different data types together
 
@@ -134,6 +140,7 @@ classmates['Tom']	//returns cool
 for k, v in classmates.items():		//key and value, prints the keys and values
 	print(k + v)					
 
+classmates['Gandalf'] = 504			//adds gandalf to the end of the dictionary with key = 'Gandalf' value = 504
 ---------------------Modules--------------Modules----------------Modules------------------------
 basically a function in another file
 ex:
@@ -324,7 +331,7 @@ x.start()								//calls run(self):	for x instance
 y.start()								//runs at the same time as x since they are seperate threads
 
 -------------------Sorting------------------Sorting--------------Sorting--------------Sorting------------------------
-import operator					//needed for the sorting module
+import operator					//needed for the sorting module..for dictionary sorting
 
 list = ['bob','bib','bob','steve','emma','steve','bob','steve']
 for item in sorted(list):			//sorts list in alphabetical order
@@ -348,6 +355,11 @@ ex:											//itemgetter(0) sorts by key, itemgetter(1) sorts by value
    
    for key, value in sorted(word_count.items(), key=operator.itemgetter(0)):	//word_count is the dict from above
         print(key, value)
+		
+-----Another way to sort a dictionary
+for l in sorted(dictList.keys()):
+    print(l,dictList[l])
+
 
 ---------------------------------Unpacking list--------------------unpacking list-------------------unpacking list--------------
 //set items in list to seperate variables
@@ -372,7 +384,7 @@ ex:
 								
 								//names is a zip Object
 	names = zip(first,last)		//combines the two list in this format:
-								//(('Trey','Holthe'),('Tom','Hanks'),('Taylor','Swift'))
+								//(('Trey','Holthe'),('Tom','Hanks'),('Taylor','Swift'))  //called a touplet or something
 	for a, b in names:
 		print(a,b)
 -------------zipping dictionaries and finding min/max keys or values

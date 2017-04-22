@@ -51,13 +51,241 @@ link to html page at given #id
 <a href = mainPage.html#bottom>
 </a>
 
+<a href = "mailto:treyholthe@gmail.com"> Email Trey </a>
+
+----opening links in a new window-----
+-To open a link in a new window set the target="_blank"
+<a href="http://www.imdb.com" target="_blank"> Internet Movie Database</a>
 
 
+-------------------Images------------------Images--------------------Images----------------------Images-----------------------Images--------------------Images-----------------Images------------------Images--------------------Images----------------------Images-----------------------Images--------------------Images-----------------Im
+
+To add an image use <img> tag.
+src= The location of the image in your directory
+alt= a description of the image for blind people
+title=Text shown when mouse hovered
+width = width in pixels
+height = height in pixels   note: width, height is usually specified with CSS
+<img src="images/beaver.jpg" alt="A beaver", title="This is a beaver" width="650" height="400"/>
+
+JPEG - use for many colors
+GIF, PNG - use for images with not many colors
+
+*save images at same width and height that they will be used on the page
+<figure> 		//used so the creator can add a caption to an image
+<figcaption> 	//adds a caption
+ex:	
+	<figure> <img src="blahblah"/> <figcaption> This is an image caption </figcaption> </figure>
 
 
+----------------Tables------------------Tables-------------------Tables--------------------Tables------------------Tables-------------------Tables--------------------Tables------------------Tables-------------------Tables--------------------Tables------------------Tables-------------------Tables--------------------Tabl
+<table> </trable> 			//indicates the start of a table
+<tr> </tr> 					//table row indicates start of each row
+<td> 						//table data,
+<th> </th> 					//table heading
+<th scope="col">			//use scope="col" to indicate the <th> is a column header
+<td colspan="2">			//use attribute colspan to indicate how many columns the <td> or <th> should take up
+<th rowspan="3">			//use attribute rowspan to indicate how many rows    the <td> or <th> should take up
+use <th> or <td> to represent empty cells
 
 
+----------LONG TABLES-----------
+<thead>  represents column headings, ex: <thead> <tr> <th> Date </th> </tr> </thead>
+<tbody>	 contains body of data 		 ex: <tbody> <tr> <td> Monday </td> </tr> </tbody>
+<tfoot>	 just like the head but at the bottom
+
+-------------------Forms--------------------Forms--------------------Forms--------------------Forms--------------------Forms--------------------Forms--------------------Forms--------------------Forms--------------------Forms--------------------Forms--------------------Forms--------------------Forms--------------------Forms--------------------Forms--------------------Forms--------------------Forms--------------------Form
+<form>					//start of a form
+<form action="link.php">	//action attribute is the URL for the page of the server that will recieve information when form is submitted
+<form action="link.php" method="get">	//there are two methods form can have "get" or "post"
+<form action="link.php method="post">
+
+//"get" with get the data is added to the end of the URL specified in the action attribute
+//"get" should be used for short forms or when you ARE NOT SENDING INFORMATION THAT SHOULD BE ADDED/DELETED FROM A SERVER****
+
+**$*$*$*$*$*$*$*//"post" method is sent in HTTP headers*$*$*$*$*$**$$*
+
+**//use "post" method when: users upload files, is very long, contains sensitive data like passwords, ADDS INFO or DELETES INFO FROM A DATABASE***
+
+<input> element used to create several different form controls
+<input type="text" name="username" maxlength="30"/>	//type is what will be entered, name is what php or w/e will use to identify the data, maxlength limits the allowed num of chars to be entered
+
+ <input type="password" name="password" maxlength="30" /> //just like text but chars are blocked outline
+$ side note:  do not send sensitive data like credit card info with these. You need to use Secure Socket Layer(SSL) for that...look it up
+ 
+
+ --------------------------Text Area------------------------------
+ <form action="link.php">
+	<textarea name="comments" cols="20" rows="4"> Enter your comments...</textarea>	
+</form>
+
+--------------------------RadioButton-----------------------------
+<form action="link.php>
+<p>
+	<input type="radio" name="buttons" value="button1" checked="checked" />		//NAME AND VALUE ARE USED FOR THE SERVER
+	button1																													//NAME SHOULD ALL BE THE SAME!!!
+	<input type="radio" name="buttons" value="button2/>
+	button2
+</p>
+</form>
+
+-------------------------Checkbox----------------------------------
+<form action="link.php" />
+	<p>
+		<input type="checkbox" name="dragons" value="blue" checked="checked"/>
+		Blue dragons
+		<input type="checkbox" name="dragons" value="red" />
+		Red dragons
+	</p>
+</form>
+	
+----------------Drop down list box-------------------
+<form action="link.php">
+<p> What device do you listen to music on?</p>
+<select name="devices">
+	<option value="ipod">iPod</option>
+	<option value="phone">phone</option>
+	<option value="computer">computer</option>
+</select>
+</form>
+
+---------------Multiple Select Boxes------------------
+//basically like dropdown list but showing a given amount at a time and you can select multiple 
+in <select> attribute size is how many are displayed, multiple="multiple" allows multiple to be selected!
+<form action="link.php">
+	<p>Do you play any of these instruments?</p>
+	<select name="instruments" size="3" multiple="multiple">
+		<option value="guitar">guitar</option>
+		<option value="piano" selected="selected">piano</option>
+	</select>
+</form>
+	
+--------------File input Box-------------------
+<form action="link.php" method="post"> //remember to use post method for long forms or forms sent to a database
+	<p>Upload your song in MP3 format:</p>
+	<input type="file" name="user-song" /><br/>
+	<input type="submit" value="upload" />
+</form>
+	
+	
+------------Submit button---------------
+<form action="link.php" method="post">
+	<p>Subscribe to our email list:</p>
+	<input type="text" name="email" />
+	<input type="submit" name="subscribe" value="Subscribe" /> //the button will show value the text
+</form>
+	
+-------------Image button---------------
+<form action="example.org/sub.php">
+	<p>Subscribe to our email list:</p>
+	<input type="text" name="email" />
+	<input type="image" src="images/beaver.jpg" width="100" height="20"> //one way to make an image button
+</form>
+	
+-------------Button & Hidden Controls--------------
+<form action="link.htp">
+	<button> <img="images/beaver.jpg" alt="add" 	//add an image in between <button> to make an image button
+		width="30" height="20" /> Add </button>
+	<input type="hidden" name="bookmark" value="lyrics" /> //hidden inputs allow you to add values and not show it to the user
+</form>																					  //such as page the user was on when submitted or something
+		
+
+		
+-----------labels-------------
+each form control should have a label for blind people.
+There are two ways to implement it, shown below.
+
+<label>Age:  <input type="text" name="age" /> </label>	
+<br/>
+-----------------------------------------------------------------------
+Gender:
+<input id="female" type="radio" name="gender" value="f"/>
+<label for="female">Female</label>			//the for matches the id saying this label belongs to that element with that id
+
+------Grouping Form Elements---------
+<fieldset>
+	<legend>Contact details</legend>
+	<label>Email:<br/>
+	<input type="text" name="email" /> </label><br/>
+	<label>Mobile:<br/>
+	<input type="text" name="telephone" /></label>
+</fieldset>
+
+-------Form validation-----------
+	
+<form action="link.php" mode="post">
+	<input type="text" name="email" required="required" />	//when user clicks submit since required="required" text <input> must be filled
+	<input type="submit" value="submit" />
+</form>
+
+-------Date input----------
+<form action="link.php" method="post" >
+	<label for="depart">Departure date:</label>
+	<input type="date" name="depart" />
+	<input type="submit" value="Submit" />
+</form>
+
+------Email and URL input----------
+<form action="link.php" method="post">		//type="email" checks for format of email address
+	<p>Enter an email address: </p>
+		<input type="email" name="email" />
+		<input type="submit" value = "Submit"/>
+</form>
+	
+<form action="link.php" method="post">		//type="url"
+	<p> Enter a web address: </p>
+		<input type="url" name="website"/>
+		<input type="submit" value="Submit"/>
+</form>
+	
+-------Search Input--------
+<form action="link.htp" >
+	<p> Search: </p>
+	<input type="search" name="search" />
+	<input type="submit" value="Search"/>
+</form>
+	
+-----------------------Form review-----------------------------
+Forms are used to collect info from visitors
+Information from a form is sent in name/value pairs.
+
+Each form control is given a name, and the text the user
+ types in or the values of the ooptions they select are sent to the server.
+ 
+ HTML5 introduces new form elements which make it easier for visitors to fill in forms
+	
+------------------IFrames-------------------------------------------------Iframes-----------------------
+	
+<iframe width="450" height="350" src="googlemapslink.co"> </iframe>
+attribue seamless="seamless" make scrollbars not appear
+
+---------------------Meta----------------------Meta------------------------
+<meta>
+-lives in the <head> element
+-tells search engines about your page
+-can set a time limit to be on the page
+-who created the page
+<meta name="description" content="A description of the page"/>	//description of the page
+<meta name="keywords" content="Tutorial, tags, examples"/>		//used for search engines
+<meta name="robots" content="nofollow"/>									//tells search enginers where to add this page
+																											//"noindex" if it shouldn't be added, "nofollow" if links on the page shouldnt be added
+<meta http-equiv="author" content="John Doe"/>			//tells name of author
+<meta http-equiv="pragma" content="no-cache"/> 		//prevents people from storing the page locally to load it quickly
+<meta http-equiv="expires" content="Fri, 04 Apr 2017 23:59:59"/>	//tells when the page should expire, must be in that format
 
 
+-----------Summary---------------------Summary---------------------Summary---------------------Summary---------------------Summary---------------------Summary---------------------Summary---------------------Summary---------------------Summ
+<id> used to identify individual elements mostly for css
+<class> used to identify a group of elements mostly for cc
+<div> group block-level elements together
+<span> group inline elements together	//inline elements are like <a> <b> <i>, they don't create a new line or anything
+<iframes> make windows into your web pages that other webpages are displayed in
+<meta> used to supply all kinds of info about your page
 
-
+	
+	
+	
+	
+	
+	
+	

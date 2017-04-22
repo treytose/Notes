@@ -1,0 +1,364 @@
+String functions-------------------------------------------------------------------------
+strrev("string");				//reverse the string
+str_repeat("string", 2);		//repeat the string twice
+strtoupper("hooray");		//returns HOORAY
+ucfirst("hooray");				//returns Hooray
+strtolower("HOORAY");		//returns hooray
+-------------------------------------------------------------------------------------------------------------
+printf() reference------------------------------------------------------------------------printf() reference 
+%b 		//binary
+%c 		//char
+%d       //integer
+%e		//scientific notation
+%f		//float, flouble
+%o		//octal integer?	
+%s		//string
+%u		//unsigned decimal
+%x		//lowercase hexadecimal
+%X		//uppercase hexadecimal
+
+also use sprintf() to assign a formatted string to a $variable		//like java's String.format()
+--------------------------------------------------------------------------------------------------------------
+date and time-----------------------------------------------------------------------------------------------date and time
+echo time() 	//returns the current time in seconds since 1970
+to add 7 days ex:
+	time() + 7 * 24 * 60 * 60;	//adds 7 days to the current time 
+mktime(0, 0, 0, 1, 1, 2000);		//second, minute, hour, day, month, year?
+
+date($format, $timestamp);		//used to print the date in a variet of formats
+$format is a string  containing format specifiers
+$timestamp should be a Unix timestamp
+ex:
+	echo date("l F jS, Y - g:ia", time());
+	
+lookup the giant list of format specifiers **
+
+date contstants---
+date(DATE_RSS); 	//returns the current date in the valid format for an RSS feed
+DATE_ATOM;			//format for atom feeds
+DATE_COOKIE;			//format for cookies on web server or javascript
+DATE_W3C;				//format for the world wide web consortium
+
+checkdate($month, $day, $year);		//checks whether the date is valid
+ex:
+	checkdate(2,30,2010);	//returns FALSE because february 30th does not exist, (not 0 based)
+
+-------------------------------------------------------------------------------------------
+File Handling------------------------------------------------------------------------------File Handling
+file_exists("testfile.txt");		//returns a boolean whether the file exist
+
+example of writing a file:
+<?php
+	$fh = fopen("testfile.txt", 'w') or die("Failed to create file");
+	//note: there must be NO SPACE after <<<_END, but for some reason notepad++ is complaing if there isnt a space 
+		$text = <<<_END 
+	Line 1
+	Line 2
+	Line 2
+	_END;
+
+	fwrite($fh, $text) or die("Could not write to file");
+	fclose($fh);
+?>
+
+1. Open the file using fopen()
+2. do stuff to the file like, fread(), fwrite(), fgets()
+3. close the file with fclose()
+
+fgets() reads in 1 line of text from the file.
+	ex:
+		$line = fgets($fh);		//reads in 1 line from the file
+
+freads($fh, 3);						//this reads in 3 characters, usually used with binary data
+
+
+fopen($path, $action);
+actions list:
+	r				//read
+	r+			//read and write 
+	w				//writing
+	w+			//write from start, truncate file, and allow reading
+	a				//append to file
+	a+			//append to file end and allow reading
+	
+----copying files
+	copy('textfile.txt', 'testfile2.txt');
+
+----moving a file/to move a file rename it
+	rename('testfile.txt', 'testfile2.txt');
+
+----deleting a file
+	unlink('testfile.txt');
+	
+----moving the file pointers
+fseek($fh, 0, SEEK_END);				//in this case the pointer move to the end of the file then moves back 0 spaces
+fseek($fh, 18, SEEK_SET);			//sets the pointer at location 18 starting from the start of the file
+fseek($fh, 5, SEEK_CUR);				//sets the pointer 5 positions ahead of its current position
+
+-----to prevent from multiple people editing the file at the same time use flock()
+note: to have the best response time for users, lock the file right before editing and unlock as soon as your'e done
+note: flock is not available for all systems so it is wise to try it in an if statement or error handling code
+note: flock has numerous issues read more about it on page 153-154, but be careful with it.
+ex:
+	flock($fh, LOCK_EX);			//sets it to where no other processes may read or write from the file
+	//...do stuff to the file
+	flock($fh, LOCK_UN);
+
+----reading the whole file
+file_get_contents("sample.txt");	//reads the whole file
+file_get_contents("http://oreilly.com");	//requests the html from the website 
+
+----uploading a file
+	(SEE CLASS EXAMPLES BELOW);
+	
+----Executing Operator commands
+	exec(escapeshellcmd($cmd), $output, $status);	//cmd is the command to give ex: $cmd = "dir" for windows
+		//escapeshellcmd sanitizes the command string preventing execution of arbitrary commands, good practice esepcially if cmds take user input	
+//$output is is an array of the output it returns		//$status is the status of the call
+
+	to print the returned status use:
+		foreach($output as $line){
+			echo htmlspecialchars("line\n");			//htmlspecialchars converts any system unreadable chars and converts them into readable chars
+			echo "</pre>";
+		}
+----------------------------------------------------------------------------------------------------------
+1. Create a file in xampp/htdocs
+2. Name the file something.php
+3. Edit the file with Notepad++
+4. Open the file in your browser with localhost/fileName.php
+------------------------------------------------------------------------------------------
+Tips:
+	1. Always upload php with a hosting service. It's very sensitive data. Be careful
+	2.	Not all errors will always be shown. Check the php.ini file under error_reporting. More described there
+------------------------------------------------------------------------------------------
+General:
+	1. phpinfo();											//display lots of information, make sure it's secure
+	2. php.ini												//location(xampp/php/php.ini
+		restart apache in order to apply changes made in php.ini
+	3.Embed PHP within HTML:
+		(in PHP): $text = 'Hello World';
+		(in HTML) <input type="text" value="<?php $text; ?>" />		//sets the value in the textfield to 'Hello World' as defined in the php block
+	4. Use double quotes to print variables.
+	5. Use . to concatanate strings ex: 'Hello'.'World';
+	6. Use .= to add strings together. (don't use +=) ex: $text .= $text2;
+	7.	xor	is a logical operator that returns false if either boolean is false but ALSO returns FALSE if BOTH booleans are TRUE
+	8. Use: echo <<<_END
+				Text goes here.		//NOTE: no comments allowed on the above line after <<<_END or any whitespace or anything
+				_END;						//Used to print things like "" but you don't have to escape \", also new lines are created by pressing enter
+		//also note: _END can be named anything like SECTION1 or _SECTION
+ >9.  PHP automatically converts Strings to numbers and vice versa when appropriate!
+  10. 100 / 33 will return 3.33 because it automatically converts them into floats but if you want it to return an integer just cast it using (int)(100 / 33)
+  11. Include files with include "library.php"
+  12. use include_once "library.php" to prevent from including the same file twice 
+  13.use require, require_once if the file MUST be included, include will run even if the file isn't found
++  14. class member variables are by default public, make sure to encapsulate it with private 
+------------------------------------------------------------------------------------------
+Command List:
+	1. echo 'Hello World';							//double quotes or single quotes 
+			:echo '<strong> Hello World </strong>';		//you can use html within echo
+	2. substr($var, 3, 1);			//return starting at index 3 for length 1, works for number types too
+	3. define("ROOT_LOCATION", "usr/local/www/");	//creates a CONSTANT with name ROOT_LOCATION and value usr/local/www/
+	4. __LINE__			//current line number of the file
+	5. __FILE__ 			//fullpath and filename of the file
+	6. __DIR__			//the directory of the file
+	7. __FUNCTION__	//the function name
+	8.__CLASS__		//the class name
+	9.__METHOD__	//the class method name
+	10.__NAMESPACE__ //the name of the current namespace
+	11. global $is_logged_in; 		//delcares a global variable that the whole program has access too
+	12. static $var = 10;				//creates a static variable (local) that will keep its value despite going out of scope
+	13. function_exists("array_combine"); //returns boolean telling whether or not the function exist
+	14. $object1 = clone $object2			//copies object 2 instead of making object1 point to the same memory
+	
+--------------------------------------------------------Book PHP---------------------------------------------------------------------------------------------------------
+<?php
+Arrays:
+	$team = array('Bill', 'Mary', 'Mike', 'Chris', 'Anne');			//declare and define an array
+	$team[3];																	//access the array
+	
+	$paper[] = "Copier";		//you do not have to assign a number $paper[0] BUT you CAN if you want to specify a weird order 
+	$paper[] = "Inkjet";
+	$paper[] = "Laser";
+	$paper[] = "Photo";
+	
+Associate Arrays:
+	$paper['copier'] = "Copier & Multipurpose";			//associate arrays are kinda like hashmaps. The key is 'copier' and the value is "Copier & Multipurpose"
+	$paper['inkjet'] = "Inkjet Printer";
+	$paper['laser'] = "Laser Printer";
+	
+	array('copier' => "Copier & Multipurpose",			//create an associative array using array().
+			 'inkjet'  => "Inkjet Printer");						//assign the values to the key using =>
+foreach as loops:
+	foreach($paper as $item)										//like an enhanced for loop in java
+	{
+		echo "$item, ";
+	}
+	
+2D Array:
+	$ticTacTo = array(array('x','x','x'),									//create a 2D array
+								array('o','o','o'),
+								array('x','x','x'));
+								
+Functions:
+	function longdate($timestamp){				//example of a function with a return statement
+		return date("l F jS Y", $timestamp);
+	}
+
+Superglobal variables:
+<?php
+		ACCESSIBLE ANYWHERE: BE VERY CAREFUL they can lead to security breaches
+		$GLOBALS 		//all the variables currently defined in the global scope of the script
+		$_SERVER		//Information such as headers, paths, and script locations, provided by the webserver
+			$came_from = htmlentities($_SERVER['HTTP_REFERER']);	//returns the URL that the user came to the current website from	
+				note: htmlentities is optional but you NEED it for security reasons and to convert things to html format like '>' becomes &gt    			
+		$_GET				//variables passed to the current script via the HTTP Get method
+		$_POST			//variables passed to the current script via the HTTP Post method
+		$_FILES			//items uploaded to the current script via the HTTP Post method.
+		$_COOKIE		//Variables passed to the current script via HTTP cookies.
+		$_REQUEST		//Contents of information passed from the browser; by default, $_GET, $_POST, and $_COOKIE
+		$_ENV				//Variables passed to the current script via the environment method
+		
+objects:
+	$object = new User;				//create an object called object
+	print_r($object);					//print_r prints human readable form of the object. kinda like toString in java
+	$object->name = "Bilbo";		//use -> to access the member variables
+	$object->save_user();			//also -> for calling functions
+	
+	note:
+		$object1 = $object2			//this will make object1 point to object2's memory location (objects are passed by referenced not value)
+		$object1 = clone $object2//this will just create a copy of object2 and assign its values to object1 making them 2 seperate objects!
+class1 example-------------------------------------------------------------------------------------------------------------------------------
+<?php
+	class User
+	{
+		public $name, $password;									//declare public instance variables 
+		const PI = 3.14;													//create a constant
+		public static $numUsers = 0;								//create a static variable
+		
+		function __construct($name, $age){					//create a constructor with __construct
+			$this->name = "Trey";										//use $this-> to access instance variables
+			$this->password = "bilbo59";
+			self::$numUsers++;
+		}
+		function __destructor()										//create a destructor
+		{
+		
+		}
+			
+		static function printSomething(){						//create a static function, works just like java 
+			echo self::PI;													//use self:: when accessing something static within the own class
+		}
+		function setPassword($pass)
+		{
+			$this->password = $pass;								//must use $this-> when accessing a member variable within the class 
+		}
+	}
+	echo User::$numUsers;											//access static variables with ClassName::$varName
+	echo User::PI;														//for constants don't use the '$'
+	echo User::printSomething();									//use ClassName::StaticMethod/Variable to access them,  like c++
+	
+	$u1 = new User();													//create an object
+	$u1->save_user();													//call a method, methods are the same as functions but within a class
+	
+?>
+//----------------End class 1 example-------------------------------------------------------------------------------------------------------------------------------
+//Class 2 Example--------------------------------------------------------------------------------------------------------------------------------------------------------------
+<?php
+
+class Subscriber extends User			//extend a class the same as java
+{
+	function __construct()
+	{
+		parent::__construct();			//calls the parent constructor first
+	}
+	
+	function callParentMethod(){		//use parent:: to call a parent method, similar to super in java
+		parent::methodName();		
+	}
+	
+	final function copyRight()			//final classes can't be overridden 
+	{
+		echo "final methods cannot be overridden by subclasses";
+	}
+}
+-------------------------------------------------------------------------------------------------------------------------------------------
+Class Example Uploading a file, retrieiving, and storing it with php----UNSECURE METHOD------------------------------------------------------------
+NOTE: THIS IS AN UNSECURE CLASS, check the class below this one to see a more secure method
+
+//$_FILES:
+	//an array stored on the system..
+	//$_FILES contains the file a user uploads
+	//if($_FILES);	//returns true when the user uploaded a file and its on there
+	//$_FILES is an array that storyes 5 things when a file is uploaded 
+	$_FILES['file']['name'];  	the name of the uploaded file(e.g. smiley.jpg);
+	$_FILES['file']['type'];		//the content type of the file (e.g. image/jpeg)
+	$_FILES['file']['size'];		//returns the file's size in bytes
+	$_FILES['file']['tmp_name'];	//the name of the temporary file stored on the server
+	$_FILES['file']['error'];		//the error code resulting from the file upload
+<?php 
+
+echo <<<_END
+<html>
+		<body>																												//method='post' submits data to be processed to a specified resource
+		<form method='post' action='Hexa.php' enctype='multipart/form-data'>				//method='get' would request data from a specified resource
+		Select File: <input type='file' name='filename' size='10'>										//action='Hexa.php' is the name of the php file thats handling it			
+		<input type='submit' value='upload'/>																	//enctype is some encoding stuff 
+		</form>
+
+_END;
+
+if($_FILES)
+{
+	$name = $_FILES['filename']['name'];
+	move_uploaded_file($_FILES['filename']['tmp_name'], $name);
+	echo "Uploaded image '$name' <br> <img src='$name'>";
+}
+	
+echo "</body></html>";
+
+?>	
+
+----------------------------------------------------------------------------------------------------------------------------------------
+More secure file uploading using VALIDATION--------------------------------------------------------------------------------------
+
+<?php
+echo <<<_END
+	<html><head><title>PHP Form Upload</title></head><body>
+	<form method='post' action='upload2.php' enctype='multipart/form-data'>
+	Select a JPG, GIF, PNG, or TIF File:
+	<input type='file' name='filename' size='10'>
+	<input type='submit' value='Upload'></form>
+_END;
+
+if($_FILES)
+{
+	$name = $_FILES['filename']['name'];
+	
+	switch($_FILES['filename']['type'])
+	{
+		case 'image/jpeg'  : $ext = 'jpg'; break;
+		case 'image/gif'	 : $ext = 'gif'; break;
+		case 'image/png'	 : $ext = 'png'; break;
+		case 'image/tiff'	 : $ext = 'tif'; break;
+		default:				   $ext = ''; 	break;		//make sure it's no space here so if($ext) returns false since it didnt match any of the accepted files
+	}
+	
+	if($ext)
+	{
+		$n = "image.$ext";
+		move_uploaded_file($_FILES['filename']['tmp_name'], $n);
+		echo "Uploaded image '$name' as '$n' : <br/>";
+	}
+	else
+		echo "'$name' is not an accepted image file";
+}
+else
+	echo "No image has been uploaded";
+echo "</body></html>";
+
+
+
+
+
+
+								
