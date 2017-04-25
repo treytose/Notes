@@ -5,10 +5,10 @@ Sample Steps:
 1.	CREATE DATABASE publications					//creates a new database called publications
 2. USE publications 										//set publications databases as the current working database
 3.	CREATE TABLE classics (								//creates a table in the current database called classics
-	author VARCHAR(128)
-	title VARCHAR(128)
-	type VARCHAR(128)
-	year CHAR(4)) ENGINE MyISAM;
+	author VARCHAR(128),
+	title VARCHAR(128),
+	type VARCHAR(128),
+	year CHAR(4)) ENGINE MyISAM;		//ENGINE MyISAM tells MySQL what type of database engine to use for the table
 
 4. DESCRIBE classics										//print out information about the table 
 
@@ -52,6 +52,24 @@ SELECT DISTINCT state FROM customers; 		//Does NOT show duplicates this way. No 
 SELECT id, name FROM customers LIMIT 5; 		//only shows the first 5
 SELECT id, name FROM customers LIMIT 5, 10; 	//shows data from 6 to 15,  (LIMIT startPoint, length)
 
+----------------------Creating Tables----------------------
+CREATE TABLE tablename (fieldname datatype());
+CREATE TABLE tablename (
+	(fieldname INT UNSIGNED),	//create a table with a column "fieldname" that holds unsigned data of type INT
+	(fieldname INT(4) ZEROFILL),//width of 4, filled with 0's, ex: 0000
+	(fieldname VARCHAR(128), //VARIABLE length CHARACTER up to 128 in size, not padded
+	(fieldname CHAR(4)),		//holds a char with exactly 4 characters, padded to size 4
+	
+ALTER TABLE classics ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY;
+-ALTER TABLE classics 	//says we want to change this table
+-ADD id INT UNSIGNED //says we are adding a column that hold an unsigned int (more than 4 billion records)
+-NOT NULL 				//this column cannot be set to null and always has a value
+-AUTO_INCREMENT		//MySQL automatically creates a unique value for every row, can't control this
+-KEY							//AUTO_INCREMENT columns are useful as keys because they are all unique
+
+add data to your table:
+INSERT INTO classics(author, title,type, year)
+	VALUES('Mark Twain','The Adventures of Tom Sawyer','Fiction','1876');
 
 ----------------------Creating Users-----------------------
 GRANT PRIVILEGES ON database.object TO 'username' @ 'hostname' IDENTIFIED BY 'password';
@@ -62,3 +80,22 @@ ON database.* 			//allows the user access to the database called database and al
 ON database.object 	//allows access the database, database, and the object, object within the database
 
 
+TABLES:------------------------------------------------
+
+Numeric Data Types
+	Data Type			Bytes			minValue			maxValue
+	1. TINYINT			1				-128					127
+	2. SMALLINT		2				-32768				32767
+	3. MEDIUMINT	3				-8.38e+6			8.38e+6
+	4.	INT				4				-3.40e+38			3.4e+38
+	5. BIGINT			8				-9.22e+18			9.22e+18
+	6. FLOAT			4 				-3.40e+38			3.40e+38
+	7.DOUBLE			8				-1.80e+308		1.80e+308
+
+Date and Time:
+	Data Type			Time/date format
+	DATETIME			'0000-00-00 00:00:00'
+	DATE 				'0000-00-00'
+	TIMESTAMP		'0000-00-00 00:00:00'
+	TIME					'00:00:00'
+	YEAR					0000(Only years 0000 and 1901-2155)
