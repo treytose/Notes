@@ -2,7 +2,7 @@
 Go onto your Github account and create a new repository. 
 Initialize it with a READ_ME
 Copy the URL for the repository
-On the command prompt naviagate to the location you want to save the repository
+On the git shell, naviagate to the location you want to save the repository
 git clone <URL> 			--creates the repository in the current directory
 git status    				--Shows you what is different between the Github repos and your own files
 git add <file name>			--adds any changes or new files
@@ -21,6 +21,15 @@ git pull 					--pulls the files from the github repos..only works if in the corr
 git add -A 					--adds all your files
 
 esc :wq  enter     				--if you accidently commit without a -m "message"
+
+--------Creating an existing directory into a git repository----------
+simply navigate to the directory via the git shell and type:
+	git init
+
+
+---Deleting a repository---
+1. manually enter the URL: github.com/username/repositoryName/settings
+2. under danger zone click delete repository
 
 ------------------------------------Branching, Merging, Pull Request----------------------------------------------
 git branch 				--shows you all the branches in the repository and which branch you are on 

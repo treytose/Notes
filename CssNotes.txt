@@ -248,4 +248,11 @@ clear: left;					//no elements should touch any other elements in the same conta
 	try: right both none;
 
 	
+----------------------------Responsivness------------------------------------------------
+To make a website change based on a screen or window size:
+	@media only screen and (min-width: 150px) and (max-width: 600px)
+	{
+		//put all your css here, it should be mostly the same 
+		
+	}
 	

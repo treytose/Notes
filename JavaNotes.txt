@@ -503,24 +503,22 @@ Merge Sort:
 	
 		
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
->>>>>>> 2150b1006becdecb8cc933e90cb553431111d67b
+--------------------------------------------------------------Physics for games----------------------------------------------------------------------------
+moving from one point to another at a constant speed:
+	xSpeed = (controller.getX() - x) / travelTime;		//set travelTime to a speed like 10.0F to set how long it takes to travel
+		ySpeed = (targetY - currentY) / travelTime;
+			x += xSpeed;
+			y += ySpeed;
 
-
+			
+------------------------------------JAR INFO--------------------------------------------
+create a file called source
+create a file called classes
+navigate to source folder via cmdprompt
+javac -u ../classes *.java
+navigate to classes directory
+create a textfile named manifest.txt
+in manifest.txt type:
+	Main-Class: MainFileName
+	(return)
+jar -cvmf manifest.txt name.jar *.class

@@ -1,0 +1,127 @@
+__INFO__
+- to quickly navigate through the notes press ctrl + f to open the find dialog
+- All note headers are all caps and surrounded by underscores e.g. __TITLE__ 
+
+List of Topics:
+1. __CONSTANT__
+2. __OPERATOR OVERLOADING__
+3. __ENUMERATIONS__
+4. __MAP__
+
+
+--------------__CONST__-------__CONSTANT__--------------------------------------------
+__CONST OBJECTS__
+1. If an object is constant ALL functions must also be constant.
+2. A non-constant object can call either const functions or non-const functions!
+ex:
+	const Animal a1;
+	
+	void Animal::printInfo(){}					//this normal function will NOT WORK with a const a1
+	void Animal::constantInfo() const{}	//Delcare a const function for a const variable
+
+__PRECOMPILER CONSTANT__
+constexpr PI = 3.14;		//this creates the constant during compile time
+
+
+-----------------------------------__OPERATOR OVERLOADING__-------------------__STREAM OVERLOADING__-------------------
+class Animal
+{
+	public:
+	//input stream operator overloading
+		friend istream& operator>>(istream& is, Animal& a){		//must be declare friend. You can also define outside of the class
+			is >> a.name;
+			return is;
+		}
+	//output stream operator overloading
+	friend ostream& operator<<(ostream& os, const Animal& a){
+		os << a.name;
+		return os;
+	}
+	//arithmetic operator overloading
+	friend Animal operator+(const Animal& a, const Animal& b){
+		Animal animal;
+		animal.health = a.health + b.health;
+		return animal;
+	}
+	
+	private:
+		string name;
+		int health;
+};
+
+--------------------------__ENUMERATIONS__--------------__ENUMS__-----------------------------------------------------------
+Used to store names for multiple values.
+Values increment by 1 starting from 0.
+Enums cannot share names. 
+Use the unary scope operation :: to print the values
+
+enum Names{
+	Not_OK,		//Not_OK = 0 by default
+	OK				//OK = 1
+}
+
+enum Dates{
+	//OK			cannot declare OK here because OK is global, OK has no scope
+}
+
+cout << Names::OK << endl;		//prints out 1
+
+--------------------__STRONGLY TYPED ENUMERATIONS__-----------------__ENUM CLASSES__----------------------------------
+
+Enum class can share names.
+Enum class cannot be compared as an int!
+An enum class is used to check things such as status, here is an example:
+
+	enum class Name{
+		NOT_OK,
+		OK
+	}
+	Name checkName = Name::OK;
+	if(checkName == Name::OK){
+		cout << "Name is OK!" << endl;
+	}
+
+
+
+-----------------__MAP__-------------------__HASHMAP__------------------------------------
+
+map are just like HashMaps in Java.
+must:
+	#include <map>
+for unreal:
+	#define TMap std::map //see __UNREAL__ for more info on TMap
+
+
+std::map <key_type, value_type> mapName;		//general map
+
+example:
+	int main()
+	{
+		map<string, int> grades;
+		grades["Trey"] = 100;			//assign values to the map
+		cout << grades["Trey"]; 		//returns 100
+	}
+
+
+
+-------------------------__UNREAL__--------__UNREAL ENGINE__-----------------------------------------------------------------
+
+in unreal we change the name of std::string
+e.g. 
+	using FText = std::string;
+	using FString = std::string;
+	
+FText is used for user interaction/output
+FString is used for normal stringstream
+
+
+
+
+
+
+
+
+
+
+
+

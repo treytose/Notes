@@ -52,7 +52,12 @@ link to html page at given #id
 </a>
 
 
-
+to upload files to yourwebsite:
+	open filezilla
+		host: website name, username: , password, port 21
+	click quick connect
+	in remote site navigate to public_html directory
+	drag your .html over
 
 
 

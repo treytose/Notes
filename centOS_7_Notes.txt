@@ -1,0 +1,7 @@
+# INFO #
+1. Topics wil be marked by # TOPIC #
+	e.g. # INFO #
+2. use ctrl+f to find the topics easily
+3. These notes were taken through the Udemy course for centOS 7
+
+# INDEX #

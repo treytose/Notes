@@ -19,7 +19,7 @@ Command List:
 	3. \c							-Cancel input
 	4. CREATE				-Create a database
 	5. DELETE					- Delete a row from a table
-	6. DESCRIBE				- Describe a table's columns
+	6. DESCRIBE				- Describe a tables columns
 	7. DROP					- Delete a database or table
 	8. EXIT (CTRL-C)		- Exit 
 	9. GRANT					- Change user privileges
@@ -35,13 +35,16 @@ Command List:
 	19. UNLOCK 			-Unlock table(s)
 	20. UPDATE				-Update an existing record
 	21. USE						-Use a database 
-
+	
+	
 
 
 SHOW DATABASES  //shows databases
 SHOW TABLES 	//shows tables
 SHOW COLUMNS FROM customers	//shows the columns from customers table
-SELECT id FROM customers; //shows id's from customers table
+
+--------------------------------------------SELECTING DATA------------------------------SELECTING DATA-----------------------------------------------------------
+SELECT id FROM customers; //shows ids from customers table
 SELECT city,id FROM customers; //shows| city | id |from customers table
 
 SELECT * FROM cutomers //gets all the data BUT DO NOT USE THIS UNLESS ABSOLUTELY NECESSARY
@@ -50,28 +53,128 @@ IT IS VERY IMPORTANT IT CAN CAUSE SLOW WEBSITES FOR CUSTOMERS AND YOU WILL GET F
 SELECT DISTINCT state FROM customers; 		//Does NOT show duplicates this way. No state will be listed TWICE!
 
 SELECT id, name FROM customers LIMIT 5; 		//only shows the first 5
-SELECT id, name FROM customers LIMIT 5, 10; 	//shows data from 6 to 15,  (LIMIT startPoint, length)
+SELECT id, name FROM customers LIMIT 5, 10; 	//shows data from 6 to 15,  (LIMIT startPoint, length)	note: 0 indexed LIMIT 5 starts at row 6
 
-----------------------Creating Tables----------------------
+SELECT author FROM classics WHERE author = 'Mark Twain';			//selects all rows with author='Mark Twain'
+
+SELECT author FROM classics WHERE author LIKE "Charles%";		//The "%" at the end means it must start at the begginning of the string
+	LIKE "%Species";		//returns if "Species" occurs at the end of the String
+	LIKE "%and%";		//returns if 'and' is anywhere in the string
+	
+MATCH...AGAINST:	 used for searching data with FULLTEXT indexes
+
+SELECT author,title FROM classics WHERE MATCH(author,title) AGAINST('tom sawyer');	//returns any rows that have author or title containing 'tom sawyer' 
+
+IN BOOLEAN MODE:	a special mode for searching with MATCH...AGAINST	
+	+ means this word MUST be present
+	- means this word must NOT be present
+	""	means the EXACT phrase must be contained
+	SELECT author,title FROM classics WHERE MATCH(author, title) AGAINST('+charles -species' IN BOOLEAN MODE);
+
+UPDATE...SET: allows you to update the contents of a field
+	UPDATE classics SET author='Mark Twain' WHERE author='mark blain';	//this will change all rows with author='mark blain' and change the author to 'Mark Twain';	
+	
+ORDER BY: order results
+	SELECT author,title FROM classics ORDER BY author;
+	SELECT author,title,year FROM classics ORDER BY author ASC, year DESC;		//orders by author ascending, then year descending (for same author)
+	
+GROUP BY: good for grouping
+	SELECT category,COUNT(author) FROM classics GROUP BY category;		//this returns all the different category and the number of authors that have them
+	
+	
+--------------------------------------------------------------------------------------------Creating Tables---------------------------------------------------------------------------------------------------
 CREATE TABLE tablename (fieldname datatype());
 CREATE TABLE tablename (
 	(fieldname INT UNSIGNED),	//create a table with a column "fieldname" that holds unsigned data of type INT
-	(fieldname INT(4) ZEROFILL),//width of 4, filled with 0's, ex: 0000
+	(fieldname INT(4) ZEROFILL),//width of 4, filled with 0s, ex: 0000
 	(fieldname VARCHAR(128), //VARIABLE length CHARACTER up to 128 in size, not padded
 	(fieldname CHAR(4)),		//holds a char with exactly 4 characters, padded to size 4
-	
+
+-------Altering a Table---------
+
 ALTER TABLE classics ADD id INT UNSIGNED NOT NULL AUTO_INCREMENT KEY;
 -ALTER TABLE classics 	//says we want to change this table
 -ADD id INT UNSIGNED //says we are adding a column that hold an unsigned int (more than 4 billion records)
 -NOT NULL 				//this column cannot be set to null and always has a value
--AUTO_INCREMENT		//MySQL automatically creates a unique value for every row, can't control this
+-AUTO_INCREMENT		//MySQL automatically creates a unique value for every row, cant control this
 -KEY							//AUTO_INCREMENT columns are useful as keys because they are all unique
 
-add data to your table:
+-----Joing Tables Together------
+SELECT name,author,title FROM customers,classics WHERE customers.isbn = classics.isbn;	//returns the info from customers and classics table where they have the same isbn
+
+---NATURAL JOIN---
+SELECT name,author,title FROM customers NATURAL JOIN classics;		//does the same as above, but easier and automatic
+
+---JOIN...ON---
+SELECT name,author,title FROM customers JOIN classics ON customers.isbn=classics.isbn;
+
+---AS---
+SELECT name,author,title FROM customers AS cust, classics AS class WHERE cust.isbn=class.isbn;
+-----------------------------ROWS---------------------------
+--add a new row:
 INSERT INTO classics(author, title,type, year)
 	VALUES('Mark Twain','The Adventures of Tom Sawyer','Fiction','1876');
 
-----------------------Creating Users-----------------------
+--Delete a row:
+	DELETE FROM classics WHERE title='Little Dorrit';		//theres a column in classics named title, this will delete all rows where the title = 'Little Dorrit'
+	
+---------------------------Table-------------------------------
+--Rename your table:
+	ALTER TABLE classics RENAME pre1900;
+
+--delete a table
+	DROP TABLE disposable;		//deletes the table named disposable
+	
+--------------------------Columns--------------------------------
+--Rename a column:
+	ALTER TABLE classics CHANGE type category VARCHAR(16);		//changes the name of the column 'type' to 'category' and sets its data type to VARCHAR(16)
+
+--Change data type of a column
+	ALTER TABLE classics MODIFY year SMALLINT;
+
+--Adding a new column
+	ALTER TABLE classics ADD pages SMALLINT UNSIGNED;		//adds a new column, pages, with data type SMALLINT UNSIGNED 
+	
+--Removing a column:
+	ALTER TABLE classics DROP pages;		//WARNING: be careful with drop because it is IRREVERSIBLE and can delete entire tables or databases
+	
+
+	
+----------------------Creating Indexs-----------------------
+-increases the speed of the database.
+ALTER TABLE classics ADD INDEX(author(20));	//this adds an index to the author column for the first 20 characters. 'The Adventures of Tom Sawyer' indexes as 'The Adventures of To'
+CREATE INDEX author ON classics (author(20));	//does the exact same thing as above
+
+**Creating indexes after creating a table can be time consuming, try creating them when you are creating the table:
+--Creating a table with indexes:
+	CREATE TABLE classics(
+	 author VARCHAR(128),
+	 year SMALLINT,
+	 INDEX(author(20)),
+	 INDEX(year)) ENGINE MyISAM;
+	 
+---------------------FULLTEXT indexes---------------------
+**allows super fast searches of entire columns because it indexes every word 	//except common words like 'the','as','if', etc.
+**Can only be created for CHAR, VARCHAR, and TEXT columns
+**For large data sets, it is much faster to load your data into a table that has no FULLTEXT index and then create the index than to load data into a table that has an exisiting FULLTEXT index.
+--Create a FULLTEXT index:
+	ALTER TABLE classics ADD FULLTEXT(author, title);
+
+**Used for searching with MATCH...AGAINST 
+------------------=--Primary Keys--------------------------
+**A common primary key is an ISBN which has 13 characters 
+Adding a Primary Key to an empty table:
+	CREATE TABLE classics(
+	author VARCHAR(128),
+	isbn CHAR(13),
+	PRIMARY KEY (isbn)) ENGINE MyISAM;
+
+Adding a Primary Key to an exisiting table:
+ALTER TABLE classics ADD isbn CHAR(13);									//adds a new column for the ISBN
+UPDATE classics SET isbn='93293023923' WHERE year='1876';	//set values for every ISBN row, make them unique.
+ALTER TABLE classics ADD PRIMARY KEY(isbn);							//sets isbn as the primary key
+
+----------------------Creating Users------------------------
 GRANT PRIVILEGES ON database.object TO 'username' @ 'hostname' IDENTIFIED BY 'password';
 GRANT ALL ON publications.* TO 'treyquit' @ 'localhost' IDENTIFIED BY 'redriver';
 
@@ -79,23 +182,49 @@ ON .							//allows the user access to all databases and all their objects
 ON database.* 			//allows the user access to the database called database and all of its objects
 ON database.object 	//allows access the database, database, and the object, object within the database
 
+---------------------Normilization--------------------------
+Normilization is the process of seperating your data into tables and creating primary keys
+First Normal Form:
+	1. There should be no repeating columns containing the same kind of data
+	2. All columns should contain a single value
+	3. There should be a primary key to uniquely identify each row
 
-TABLES:------------------------------------------------
+Second Normal Form:
+	1. Second normal form requires the data to already be in first normal form
+	2. Second normal form removes duplicate data within rows by creating another table
+
+
+-------------------Relationships----------------------------
+MySQL is a relational database system because its tables store data AND relationships among the data
+
+-3 categories of relationships-
+1. one-to-one:
+		one-to-one is like a State to its abbreviation. There is only one state for each abreviation
+2. one-to-many:
+		one-to-many is when one row in a table is linked to many other rows in another table
+3. many-to-many:
+		manys rows in one table are linked to many rows in another table
+		
+-----------------Transactions-------------------------------
+transactions are important to get right. There are special tools in MySQL for transactions
+use the InnoDB engine when creating a table handling transactions
+
+TABLES:----------------------------------------------------
 
 Numeric Data Types
-	Data Type			Bytes			minValue			maxValue
+	Data Type			Bytes		minValue			maxValue
 	1. TINYINT			1				-128					127
 	2. SMALLINT		2				-32768				32767
-	3. MEDIUMINT	3				-8.38e+6			8.38e+6
-	4.	INT				4				-3.40e+38			3.4e+38
+	3. MEDIUMINT		3				-8.38e+6			8.38e+6
+	4.	INT					4				-3.40e+38			3.4e+38
 	5. BIGINT			8				-9.22e+18			9.22e+18
-	6. FLOAT			4 				-3.40e+38			3.40e+38
+	6. FLOAT				4 				-3.40e+38			3.40e+38
 	7.DOUBLE			8				-1.80e+308		1.80e+308
 
 Date and Time:
 	Data Type			Time/date format
 	DATETIME			'0000-00-00 00:00:00'
-	DATE 				'0000-00-00'
-	TIMESTAMP		'0000-00-00 00:00:00'
+	DATE 					'0000-00-00'
+	TIMESTAMP			'0000-00-00 00:00:00'
 	TIME					'00:00:00'
 	YEAR					0000(Only years 0000 and 1901-2155)
