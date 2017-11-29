@@ -1,0 +1,116 @@
+-----Interface and common settings-----
+Open Interface Settings:
+  File -> User preferences -> Interface
+  contains many options such as:
+    -Rotate Around Selection
+    -
+
+
+
+-----Controls-----
+In 3D view mode:
+  Basic Controls:
+    Middle Mouse Hold --------- Rotate Around the object
+    Shift + Middle Mouse ------ Pan left and right
+    Scroll Wheel -------------- Zoom in and out
+    shift + f ----------------- Fly Mode
+
+  ShortCuts:
+    numpad 1 ------------------ Front View
+    ctrl + numpad 1 ----------- Back View
+    numpad 3 ------------------ Right view
+    ctrl + numpad 3 ----------- left view
+    numpad 5 ------------------ View Perspective/Orthographic
+    numpad 7 ------------------ Top view
+    ctrl + numpad 7 ----------- Bottom View
+
+    shift + s ----------------- Snap Menu
+    shift + a ----------------- Add Menu
+
+    Tab ----------------------- Toggle Edit Mode
+    Ctrl + Tab ---------------- Menu for edge/vertice/face select
+
+    S ------------------------- Scale
+    G ------------------------- Translate (Grab)
+    R ------------------------- Rotate
+
+    Z ------------------------- Wireframe mode toggle
+    E ------------------------- Extrude
+    I ------------------------- Inset
+
+    alt + right click --------- Loop Select, hold towards edge to loop around, towards bottom to loop up and down
+    Ctrl + R ------------------ Loop Cut Select
+
+
+----Exporting----
+
+
+----Scaling, Resizing, Extruding, etc----
+You can restrict these changes to either the x,y,z axis by pressing x y or z while scaling/etc.
+  OR click shift + x/y/z to EXCLUDE an axis.
+You can also select a change amount by press a number while changing it,
+e.g. pressing 0 while scaling will create a point.
+
+
+-----Pivot Points-----
+Used to determine what point your selected objects scale/rotate/edit around.
+
+Button Located on the bottom toolbar two to the right of 'Edit Mode' selection
+
+
+
+-----Duplicating and Merging-----
+(Out of edit mode)
+
+__Duplicating__
+Located on the bottom toolbar > Object > Duplicate Linked/Object
+
+Duplicate Linked - Will duplicate the object and set them as linked meaning they
+  will both edit if you just edit one.
+Duplicate Object - Duplicates as two seperate objects
+
+__Merging__
+(In Edit Mode)
+
+On the Left Toolbar > Tools Tab > Remove Doubles
+Select point placed on top of eachother and press "Remove Doubles", then select
+  the merge distance determining how far apart vertices should be before Blender merges them.
+
+You can also select all with "A" then use "Remove Doubles" setting the appropriate merge distance.
+
+It also helps to go to wireframe mode, located to the right of "Edit Mode" selection on the bottom toolbar.
+
+
+
+----Normals-----
+Normals determine what side of an object will be rendered.
+
+To find normals go: right hand panel -> scroll down -> Normals: Display normals as lines -> set size
+
+To see them more easily, scroll up on the right panel -> under shading -> backface culling and ambient occlusion, turn them on.
+
+EASY WAY: Select All with "A" -> (in edit mode) bottom toolbar -> Mesh -> Normals -> Recalculate outside
+
+
+
+-----Extruding------
+In Edit Mode -> Bottom Toolbar -> Mesh -> Extrude
+Keyboard Shortcut -- E
+
+Select an Edge/Face/Vertice and press E to "extrude" it in the direction of your mouse.
+
+
+-----Inset-----
+Inset is like the oposite of extruding.
+Keyboard Shortcut -- I
+
+
+-----Edge Loops and Loop cut/slide-----
+In edit mode -> edge select selected -> alt + right click, selects all edges in a loop
+
+Ctrl + R in edit mode will show a purple cut line to where you can loop cut your model.
+Once you confrim your loop cut you can slide it from value -1 to 1 where 0 is the middle.
+
+
+----Snapping Tool-----
+Shift + Tab or little Magnet on the bottom toolbar

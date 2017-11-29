@@ -1,0 +1,17 @@
+How to server flask apps with UWSGI and NGINX
+
+1. yum install gcc nginx
+2. pip3.6 install uwsgi
+3. In the same dir as your app:
+  a. create a file named "wsgi.py"
+  b. In it write the following:
+    from app import app as application
+
+    if __name__ == '__main__':
+      application.run()
+
+4.  Test to make sure UWSGI can serve the app:
+  a. uwsgi --socket 0.0.0.0:80 --protocol=http -w wsgi
+  b. Test that it is working by going to 192.168.x.x
+
+5. 

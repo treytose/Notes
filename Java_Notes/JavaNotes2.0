@@ -1,0 +1,4 @@
+______ARRAYS_______
+
+init an array:
+  String[] arr = new String[]{"Hello", "World"};

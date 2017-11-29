@@ -1,0 +1,25 @@
+Installation:
+  pip install flask_wtf, wtforms
+  (optional) flask_bootstrap  //used for bootstrap styling the wtf_forms
+
+
+The App:
+  imports:
+    from flask_bootstrap import Bootstrap //for styling the wtf_form
+    from flask_wtf import FlaskForm       //form class will inherit FlaskForm
+    from wtforms import StringField, PasswordField  //For declaring input types
+    from wtforms.validators import InputRequired, Length //For declaring input validation
+
+
+  creating a form in python:
+    class LoginForm(FlaskForm):   #inhert from FlaskForm
+      username = StringField('Username', validators=[InputRequired(), Length(min=4, max=15)])  #create input field
+
+
+  Setting up flask_bootstrap and the apps SECRET_KEY:
+    initialize flask_bootstrap with your app using: Bootstrap(app) #thats it
+
+    your app will need a SECRET_KEY for the CDRF token thing, init it with:
+      app.config['SECRET_KEY'] = 'secretKeyHERE'
+      
+  adding the form to the HTML:
