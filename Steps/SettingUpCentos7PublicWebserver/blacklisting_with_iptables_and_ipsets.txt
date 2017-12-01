@@ -1,0 +1,24 @@
+This guide will show you how to blacklist certain ip addresses from accessing your servers
+using iptables and ipsets.
+
+source = https://linux-audit.com/blocking-ip-addresses-in-linux-with-iptables/
+
+1) yum install ipset
+
+Create an ipset named blacklist
+2) ipset create blacklist hash:ip hashsize 4096
+
+Add the ipset to iptables
+3) iptables -I INPUT -m set --match-set blacklist src -j DROP
+   iptables -I FORWARD -m set --match-set blacklist src -j DROP
+
+Adding an IP address to the ipset named blacklist
+4) ipset add blacklist 192.168.1.100
+
+To check the ipset's list use:
+5) ipset list
+
+To delete an entry from an ipset
+6) ipset del blacklist 169.57.35.74
+
+For a full list of commmands visit: http://ipset.netfilter.org/ipset.man.html
