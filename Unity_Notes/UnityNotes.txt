@@ -1,0 +1,10 @@
+Creating custom classes:
+ -Used for creating dropdwon boxes in the inspector
+ ex:
+
+       [System.serializable]
+       public class Boundary{
+          public float xMin, xMax, zMin, zMax;
+       }
+
+--------------------------------------------------------------------------------

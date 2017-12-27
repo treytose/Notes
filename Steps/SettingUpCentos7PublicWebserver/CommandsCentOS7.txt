@@ -1,0 +1,17 @@
+
+- Kill a process
+  1. Find its PID (Process ID):
+    kill <PID>
+
+- List all processes
+  ps -e
+
+-gunicorn command:
+  gunicorn -w 4 -b 0.0.0.0:80 test:app
+
+-----------Firewall commands and ports-------------------
+list all open ports:
+  firewall-cmd --zone=public --list-all
+
+Find what is running on a given port (80 in this case):
+  lsof -i :80

@@ -1,0 +1,145 @@
+In this guide we will be setting up CentOS 7 as a webserver (on a virtual machine or normally)
+
+1) On the computer that you will be using as the webserver install VirtualBox (I will be using Ubuntu)
+  On Ubunutu (and some other linux distros) type "sudo apt-get install virtualbox" in the terminal
+
+2) Download the CentOS 7 ISO image file, I will be downloading the Minimal Installation.
+3) If setting up as virtual machine Open virtual box and click new, follow the steps and then select the CentOS 7 ISO when prompted
+4) Install centOS 7 on the virtual machine, setting date/time, root user, partitions as desired
+
+
+Setting up SSH, VIM, and net-tools for your virtual machine
+
+Quick Step: yum -y install openssh openssh-server openssh-clients openssl-libs
+
+5) We will now set up SSH so that we can work on this machine remotely on our LAN (local area network)
+  a. Download and install PuTTy on the computer you want to mainly be working on
+  b. on the centOS 7 virtual machine, install SSH using "yum install openssh openssh-server openssh-clients openssl-libs"
+  c. also on centOS 7 install net-tools with "yum install net-tools"
+  d. also while your at it install VIM with "yum install vim"
+  e. In virtualbox click settings -> network -> attached to: bridged adapter (This will make the virtual machine use a normal IP so you can SSH easier)
+  f. Back in centOS 7 type "ifconfig" and find your IP address (next to 'inet')
+  g. on your working machine open PuTTy and connect to the IP found above, port 22 (default port) and click open
+  h. you should now be able to connect to your remote system if you are on the same LAN
+  i. Log in as root user and you are good to go
+
+Preparing the system
+
+Quick Step: yum -y update && yum -y install yum-utils && yum -y groupinstall development
+
+6) We need to prepare our system with basic development tools and resources
+  a. first we need to update our system "yum -y update"
+  b. now we will add a lib of plugins and supplements for yum "yum -y install yum-utils"
+  c. Now we will install a package of basic development tools "yum -y groupinstall development"
+
+7) Installing Python3.6 and Pip3.6
+
+Quick Step: yum -y install https://centos7.iuscommunity.org/ius-release.rpm && yum -y install python36u && yum -y install python36u-pip python36u-devel
+
+  a. First we need to install this IUS (Inline Upstream Stable) which provides redhat machines
+    with newer versions of some software. "yum -y install https://centos7.iuscommunity.org/ius-release.rpm" (may take a while)
+  b. Now install python "yum -y install python36u"
+  c. Now install pip3.6 "yum -y install python36u-pip"
+  d. Now install basic python dev tools "yum -y install python36u-devel"
+
+8) Installing Flask and creating a test app
+
+  a. install flask with "pip3.6 install Flask"
+  b. now create a test directory 'testserver'
+  c. create a test flask app 'flasktest.py'
+  d. Open flasktest.py with VIM
+  e. add the following:
+
+    from flask import Flask
+
+    app = Flask(__name__)
+
+    @app.route('/')
+    def hello_world():
+      return 'Hello World!'
+
+    if __name__ == '__main__':
+      app.run(host='0.0.0.0')
+
+
+
+  f. Now we need to open up port 5000 in the firewall so we can connect to it.
+  g. for centOS 7 use the following commands to open the firewall port 5000:
+    firewall-cmd --permanent --add-port=5000/tcp
+    firewall-cmd --reload
+
+  h. Test it was successful with:
+    firewall-cmd --list-ports
+
+  i. port 5000 should be listed
+  j. now run your flask app with python3.6 flasktest.py
+  k. The flask app should now be running.
+  l. open up a browser on your main computer and visit the site <ip.of.server>:5000
+  m. 'Hello World' should pop up and that means your app has been setup successfully
+
+9). Setting up SFTP for remote editing
+  a. install the "remote-ftp" package in Atom
+  b. Create a directory on your local machine to hold what you want on the remote machine
+  c. copy the path of the directory you are gonna use on the remote machine
+  d. go to packages -> remote-sftp -> create config file
+  e. fill in the appropriate values, put the remote dir path under "remote", put "sha1" for the hosthash
+  f. You should now be good to go, it will automatically connect and when you save a file, or go to packages -> remote-sftp -> toggle
+    to connect and see the files on your remote directory.
+
+10). Setting up public access to the web server through public IP:
+  1) Open port 80 on your router to allow traffic. and set it to your server
+  2) Open port 80 on your server, on centOS 7 use (firewalll-cmd --permanent --add-port=80/tcp)
+
+  Note be sure to do the following!:
+    1) Try to access your server through your public IP
+    2) Do NOT use a computer on your LAN to test it, it doesn't work for some reason.
+
+  Things I tried (IDK if these did anything)
+  1) restorecon -r /var/www/html
+  2) setsebool -P ftpd_full_access on
+  3) set etc/hosts.allow, to contain "ALL: ALL" allowing all traffic... (confirmed NOT this)
+
+11). Setting UP a domain name:
+  1. you can buy a domain name for 1$ from godaddy.com
+  2. After you have purchased a domain name. You can edit the "A Record" to make it point to your public IP
+  3. Done
+
+
+12) Virtual Environments
+
+  1. pip3.6 install virtualenv
+  2. virtualenv venv --python=python3.6     (creates a directory called 'venv' that will have python3.6 installed)
+  3. source venv/bin/activate    (activates the virtual environment)
+
+13) See Flask Reference Servers for how to setup the backend of your web server.
+
+14) Setup SSH Keys with CentOS 7 (More secure because only certain computers can access it this way.)
+  1. Download PuttyGen
+  2. Open PuttyGen -> Click Generate -> Move mouse -> Add a passphrase (If someone steals your private key then they still wont have access)
+  3. Save the Private Key on your windows desktop.
+  4. Copy the public key thats in the panel box in puttygen. every bit of it.
+  5. Go to your centos 7 server.
+  6. In your ~ directory -> mkdir .ssh (if .ssh doesnt exists already)
+  7. cd to .ssh (Note: this dir will be hidden from ls)
+  8. vim authorized_keys
+  9. Paste in your public key
+  10. return to ~
+  11. chmod 700 .ssh (rwx for root only)
+  12. chmod 600 .ssh/authorized_keys (rw for root only)
+  13. Note: you can place this public key on as many servers as you want that you want to connect to.
+  14. On your windows machine open up PuTTy
+  15. Go to Connection -> SSH -> Auth -> Browse -> Select your private key file
+  16. Now when you connect to your server it will use the private key
+  17. NOTE: other people can login simply using the password. To remove password auth and require a private key do these steps:
+    a. on centos 7 server go to -> vim /etc/ssh/sshd_config
+    b. find password authentication option and change its value of 'yes' to 'no'
+    c. exit and then restart sshd with 'systemctl restart sshd'
+    d. Now the server will require that you have a private key.
+  18. NOTE: Be sure to save your session in putty after you add the private key file so it will use the private key everytime.
+
+  19. NOTE: Try looking up how to use Pageant so you only have to type your password one time per boot up.
+  20. NOTE for Atom Remote-FTP: edit your config file:
+    a. remove your password String
+    b. add the path to your private key to the "private key" variable. Remember to use double backslashes \\
+    c. Set your passphrase appropriately
+    d. and it should now work using your private key. 

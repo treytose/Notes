@@ -1,0 +1,43 @@
+___CREATE A DATABASE___
+In the terminal:
+  sqlite3 database_name.db
+
+
+___Enter your database___
+sqlite3 database_name.db
+
+
+___Create Tables___
+CREATE TABLE table_name(id INTEGER PRIMARY KEY, name TEXT, price REAL)
+
+(variable names followed by their types.)
+(PRIMARY KEY auto-increments per table entry)
+
+You can specify that a column must NOT be null:
+CREATE TABLE table_name(name TEXT NOT NULL)
+
+
+___SQLITE3 Variable Types___
+TEXT, INTEGER, NUMERIC, REAL (float value), NONE
+
+
+___See your table scheme___
+.SCHEMA table_name
+
+
+___Add items to the table___
+INSERT INTO table_name VALUES(NULL, 'Chair', 19.99)
+
+You can specify which columns to insert into:
+INSERT INTO table_name(col_name, col_name2) values(val1, val2)
+
+
+___Select rows from the table___
+SELECT col_name, col_name2 FROM table_name WHERE col_name='value';
+
+or select everything with:
+SELECT * FROM table_name;
+
+
+___UPDATE rows___
+UPDATE table_name SET col_name = 'val' WHERE col_name2 = 'val2'
