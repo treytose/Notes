@@ -1,0 +1,8 @@
+NOTE: Full guide on automate the boring stuff
+
+___ Installation ____
+pip install pyautogui
+
+
+___ import _____
+import pyautogui

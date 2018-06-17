@@ -1,0 +1,48 @@
+____ Lean Production Pipeline _____
+Basically, create an end product as fast as possible and then redo it better each time until its perfect.
+This way you can tell what works and what doesn't early on instead of wasting time trying to get a perfect model the first time just to find out you have to change something.
+
+
+____ Adding Reference Images _____
+Just drag an Image onto blender
+OR
+Open 'Properties Panel' (Hotkey N) -> Check background images -> expand Background Images -> Add Image
+
+To view the reference image: go to Orthographic camera view (hotkey numpad 5) -> view from a side angle (numpad 1 or other)
+
+TIP: If you are having trouble with the image check the Image options in the Properties Panel under Background Images ***
+
+____ Scaling appropriately ____
+Add in a cube and scale its radius appropriately. If your object is 10cm wide make the cubes radius 5cm
+Scale your image down to fit inside your cube
+
+____ Bezier Curves ____
+Step 1: Shift + a > curves > bezier curve
+Step 2: On the left toolbar select 'Align to View' this makes it so its not 3D and only curves the way your orthographic camera is set in the XZ axis
+Step 3: Reset bezier curve position > push forward or back your block in Y direction until the curve is visible
+Step 4: Press tab to enter edit mode > Select Globval on the properties pane under transform. This is so the Y position is not changed when moving the curve around
+Step 5: Right click an endpoint and drag to move it around
+Step 6: You can add more to the curve by selecting an endpoint then > ctrl + left click
+Step 7: Move the curve around your object only creating new vertex points at tangent slope = 0 points. and then move the red lines accordingly (should look like a tanget line)
+
+____ Creating the curve into a mesh object ____
+
+Ctrl + C > Create mesh from curve
+On left toolbar > Keep Original Checked (just incase)
+
+____ Rotational Curving ____
+Left side tab > Tools > Spin
+
+Probably looks weird. Mess with the Axis, Angle, and steps on the left toolbar. Center should probably all be 0
+
+
+____ Adding Materials ____
+Right Panel > Materials Tab (BMW looking Icon) > Plus sign (creates a slot for a new material on the selected object)
+> add new > select the color > go to edit mode > select the parts of the object you want to color > right panel > assign
+
+
+____ Smoothing the "Blocky look" _____
+NOT in edit mode > left tab tools > Shading: Smooth
+
+____ Exporting Models With Materials ____
+File > Save As > etc.

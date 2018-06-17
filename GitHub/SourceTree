@@ -1,0 +1,24 @@
+----- Using SourceTree with Git and Unreal Engine 4 ---------------
+1. Create your Unreal Project with structure:
+  - Project_Folder_Name
+    |- Actual Project Folder (Where game is stored)
+2. In SourceTree:
+    - Click Create
+    - Select the Top level folder you just created
+    - Make sure (Create on account) is deselected
+3. Create a GitIgnore in SourceTree:
+    # Unreal Generated Files #
+    */Intermediate
+    */Binaries
+    */DerivedDataCache
+    */Intermediate
+    */Saved
+    BuildingEscape/Content/StarterContent/
+
+    # VS Generated #
+    *.VC.db
+
+---- Commiting ------
+
+4. Stage the Files by clicking Stage
+5. Add the bottom type in your commit message and then commit.

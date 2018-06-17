@@ -1,4 +1,10 @@
-Creating custom classes:
+--------------------------------------------------------Scripting------------------------------------------------------------
+____ Useful Methods ____
+GameObject.FindObjectOfType<ObjectType>(); //searches the hierarchy and returns the object(s)
+
+
+
+____ Creating custom classes ____
  -Used for creating dropdwon boxes in the inspector
  ex:
 
@@ -7,4 +13,96 @@ Creating custom classes:
           public float xMin, xMax, zMin, zMax;
        }
 
---------------------------------------------------------------------------------
+
+____ Dependent Scripts ____
+If one script depends on an object also having another script place this above the class: 
+    [RequireComponent (typeof(DependentScript))]
+
+Now when you add this script, "DependentScript" will automatically be added as well.
+
+
+____ Euler Angles ____
+WARNING: tranform.rotation may not work as expected. Try using tranform.rotation.eulerAngels. Returns a Vector3 with x,y,z rotations.
+Recall: -358 may be the same as 2 rotation and may not work as expected. Try using Mathf.Abs()
+NOTE: EulerAngels MIGHT return a positive angle. So if the angle is -90 in game the EulerAngle might return 270
+
+
+____ Test Driven Development. Red > Green > Refactor ____
+This is simply a method of developing clean and testable code.
+First: Write a Test that will fail (Red)
+Second: Write the code that will cause the test to not fail (Green)
+Third: Go back over the code and make sure it's neat and not overly complicated/simplified. (Refactor)
+
+----------------------------------------------------- Unity Engine ------------------------------------------------------------
+____ Render Texture ____
+Used for a Camera's 'Target Texture' for what the camera should render into.
+-Canvas > Panel > RawImage: Texture. To render the camera view.
+
+May also do 'Screen Space - Camera' for the Canvas Render Mode
+
+
+
+____ Event Triggers _____
+Add Component > Events > Event Trigger
+
+Useful for detecting mouse clicks. Place on a UI > Panel
+
+
+--------------------------------------------------- C# (Unity Independent) ------------------------------------------------------
+____ Getters and Setters _____
+
+private int score;
+
+public int Score{ get; set; } //does not return and set 'score', creates a new variable named 'Score'
+public int Score{ get{ return score; } set{ score=value; } //gets and sets 'score'
+
+
+--------------------------------------------------- Animation --------------------------------------------------------------------
+WARNING: Any events at time: 0 will not be triggered!
+
+1. Add an 'Animator' to an object
+2. Create an 'Animator Controller' in the assets folder
+3. Add the 'Animator Controller' to the 'Animator'
+4. Create an 'Animation' in the assets folder
+5. Double click the 'Animator Controller' 
+6. Right click and click create state > empty
+7. In the inspector, select your 'Animation' under the Motion field
+9. In the 'Animator Controller' link the entry logically with right click > make transition
+10. In the 'Animation' tab (Window > Animation) with your object that has the 'Animator' selected, select your 'Animation' clip
+11. You can add a property to animate e.g. the tranform.position
+12. CLick the record button, select a time in the animation tab, switch to scene view, move it to the appropriate area, repeat.
+
+Call a method from an animation:
+    Open the clip motion in the 'animation' tab
+    Click the add event button (looks like a pencil with a + sign)
+    Move to a non-zero location
+    In the inspector select the method to be called. All methods in the object that the animator controller is in will be callable.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

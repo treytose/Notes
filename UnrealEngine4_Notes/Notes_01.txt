@@ -1,0 +1,20 @@
+*** Tasks to do when starting a new Project ***
+1. See GitHub/SourceTree.txt notes for creating version control with UE4
+2. Save your level
+3. Settings -> Project Settings -> Maps & Modes -> Set <New Map> as Default Editor & Game Startup
+
+********************************************************************************
+*** Basic Controls ***
+- Basic Movement by Holding Left Mouse, Right Mouse, or Both
+
+
+F ----------------------------- Focus Selected Object
+Hold Alt ---------------------- Camera Rotates based on object position
+
+Shift + L + Left Click -------- Creates a Temporary Work Light
+
+
+********************************************************************************
+*** Basic Tools ***
+
+- Snapping Tools in Top Right

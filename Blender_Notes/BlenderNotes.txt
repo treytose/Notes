@@ -16,6 +16,10 @@ In 3D view mode:
     shift + f ----------------- Fly Mode
 
   ShortCuts:
+    ***Extra Useful***
+    ** Shift + r --------------- Redo
+    ** Correct Normals --------- ctrl + n
+
     numpad 1 ------------------ Front View
     ctrl + numpad 1 ----------- Back View
     numpad 3 ------------------ Right view
@@ -29,6 +33,7 @@ In 3D view mode:
 
     Tab ----------------------- Toggle Edit Mode
     Ctrl + Tab ---------------- Menu for edge/vertice/face select
+    N ------------------------- Toggle Properties Panel
 
     S ------------------------- Scale
     G ------------------------- Translate (Grab)
@@ -37,14 +42,32 @@ In 3D view mode:
     Z ------------------------- Wireframe mode toggle
     E ------------------------- Extrude
     I ------------------------- Inset
+    P ------------------------- Seperate
+    Ctrl + B ------------------ Bevel Tool
+
+    Shift + D ----------------- Duplicate
+    Alt + D ------------------- Linked Duplicate
+
+
+    shift + alt + s ----------- To Sphere
 
     alt + right click --------- Loop Select, hold towards edge to loop around, towards bottom to loop up and down
+    alt + ctrl + right click -- Edge Ring Select
     Ctrl + R ------------------ Loop Cut Select
 
+    Ctrl + P ------------------ Set Parent Object
 
-----Exporting----
+
+************************************ Think to know that exists *****************************************
+------- Modifiers ---------
+**** Subdivision Surface Modifier (For quickly going from low poly to high poly) ****
+**** Boolean Modifier (Combines, Subtracts, Intersects two objects together) ****
+
+----- Merging Verticies -----
+Turn on snapping, select the auto merge verticies button (two arrows pointing to eachother) at the bottom toolbar, move the verticies to the same location.
 
 
+********************************************************************************************************
 ----Scaling, Resizing, Extruding, etc----
 You can restrict these changes to either the x,y,z axis by pressing x y or z while scaling/etc.
   OR click shift + x/y/z to EXCLUDE an axis.
@@ -85,7 +108,7 @@ It also helps to go to wireframe mode, located to the right of "Edit Mode" selec
 ----Normals-----
 Normals determine what side of an object will be rendered.
 
-To find normals go: right hand panel -> scroll down -> Normals: Display normals as lines -> set size
+To find normals go: right hand panel -> scroll down -> Mesh Display -> Normals: Display normals as lines -> set size
 
 To see them more easily, scroll up on the right panel -> under shading -> backface culling and ambient occlusion, turn them on.
 

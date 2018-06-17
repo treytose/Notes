@@ -1,0 +1,82 @@
+These steps will create a remote repository that you can upload to for Unity.
+
+- Create a repository on bitbucket
+- clone the repository to your projects folder:
+  BitBucket provides the command for you to copy: git clone <bitbucket url>
+- Create a new Unity Project within your newly created repository
+- Add your .gitignore file for unity to the main repo folder (not the new unity folder). You can add this with atom editor.
+- Add the text at the bottom of the document to the .gitignore file.
+- Do your first commit: git add -A, git commit, git push
+# =============== #
+# Unity generated #
+# =============== #
+[Tt]emp/
+[Oo]bj/
+[Bb]uild
+[Bb]uilds/
+[Ll]ibrary/
+sysinfo.txt
+*.stackdump
+Assets/AssetStoreTools*
+*.apk
+*.unitypackage
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+[Ee]xported[Oo]bj/
+.vs/
+/*.userprefs
+/*.csproj
+/*.pidb
+*.pidb.meta
+/*.suo
+/*.sln*
+/*.user
+/*.unityproj
+/*.booproj
+.consulo/
+/*.tmp
+/*.svd
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store*
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+[Tt]humbs.db
+[Dd]esktop.ini
+Corridor/Library/ShaderCache/
+Corridor/Library/metadata/
+
+
+TABLE EXAMPLE:
+
+CREATE TABLE Orders (
+    OrderID int NOT NULL,
+    OrderNumber int NOT NULL,
+    PersonID int,
+    PRIMARY KEY (OrderID),
+    FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+);
+
+################
+---- NEEDS FOREIGN KEY CONSTRAINT
+#### Item.StockID
+
+NOTE: MUST DROP TABLE THEN RECREATE ONCE PARENT TABLE IS CREATED !!!!
+//TEMP to delete:
+
+CREATE TABLE Employee (EmployeeID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, firstname VARCHAR(30) NOT NULL, lastname VARCHAR(30) NOT NULL, phone VARCHAR(10), salary DECIMAL(16, 4));
+
+ADDING FOREIGN KEY CONSTRAINT AFTER__
+ALTER TABLE Item
+    -> ADD CONSTRAINT Item_StockID_FK FOREIGN KEY (StockID) REFERENCES Stock(StockID);
+
+
+---- SETTING TO ALLOW NULL VALUE ----
+]> ALTER TABLE Store MODIFY COLUMN StockID int null;

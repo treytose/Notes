@@ -1,0 +1,37 @@
+*******************************************************************************
+**** Important ****
+
+To get autocompletion, add at the end of all the #includes:
+  #include "GameFramework\Actor.h"
+
+*******************************************************************************
+Things to Know About
+
+FVector
+FString
+
+
+
+*******************************************************************************
+**** Macros ****
+UPROPERTY(VisibleAnywhere)   //Changes the visiblity of an variable, numerous other options such as "EditAnywhere"
+
+
+
+*******************************************************************************
+**** Useful Functions ****
+
+// Print to the Console
+UE_LOG(LogTemp, Warning, TEXT("Message"));
+
+//Find components owner
+GetOwner()
+
+//Get object's name
+GetName()
+
+//Found from PlayerController, Gives the location and rotation of where the players eyes would be and are looking towards
+GetPlayerViewpoint()
+
+//Draws a visual raycast used for debugging
+DrawDebugLine()

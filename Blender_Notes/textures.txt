@@ -1,0 +1,15 @@
+---- Using an Image as a Texture ---- (brick texture on a cube)
+In a new Blender File.
+
+- Make sure the object already has a material
+- With the object selected, click the textures button on the right panel (next to materials)
+- Select a texture slot from the list
+- rename the texture
+- set the texture 'type' to 'Image or Movie'
+- (Optional) View the object in 'Rendered' view to see the texture already applied
+- (Possible) In the textures tab, under 'Mapping' select the 'Projection' type. Cube, Flat, Sphere, etc.
+
+
+
+--------- Precedural Textures ---------
+You can add alot of filters to the texture with the different 'types' mentioned above
