@@ -1,0 +1,13 @@
+install firewalld:
+    yum install firewalld
+ 
+ start firewalld:
+    systemctl start firewalld
+  
+  view active ports:
+      firewall-cmd --list-all
+    
+   Add an open port:
+      firewall-cmd --zone=public --add-port=80/tcp --permanent
+      firewall-cmd --reload
+      
