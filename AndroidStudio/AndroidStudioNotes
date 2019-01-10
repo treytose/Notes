@@ -1,0 +1,37 @@
+----- Recycler Views ------
+Recycler View Responsibilities:
+	1. Position rows within the view
+	2. Recycle rows on enter/exit
+
+
+Steps for basic Recycler View:
+	1. Drag on drop a Recycler View on
+	2. Add an ID in the attributes pain on the right
+	3. In the Project panel go to res -> right click 'layout' -> New -> Layout Resource File -> Name the File -> Choose a LinearLayout -> Click 'Ok'
+	4. Add a Text View
+	5. Create the Adapter class -> java -> <project folder> right click -> new -> Kotlin File -> Name the Recycle View Adapter and select type = Class
+	6. The following is an example with the contents of that file:
+
+class MyRecyclerViewAdapter(val items: ArrayList<String>, val context: Context): RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>(){
+
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewHolder {
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.state_row, p0, false))
+    }
+
+    // returns the number of items in the RecyclerView
+    override fun getItemCount(): Int {
+        return items.size
+    }
+
+    override fun onBindViewHolder(p0: ViewHolder, p1: Int) {
+        p0?.stateName?.text = items.get(p1)
+    }
+
+
+    // The ViewHolder of type RecyclerView.ViewHolder contains all the attributes that will be in a cell
+    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        val stateName = view.stateTV
+    }
+}
+
+
