@@ -3,6 +3,7 @@ NOTE: Some of the code snippets are from the Udacity android studio course.
 
 Topics in these notes will be indicated with a "#" symbol and are listed below.
 - #general
+- #Life_Cycle
 - #Toast
 - #Layout_Types
 - #HTTP_Requests
@@ -16,6 +17,16 @@ Topics in these notes will be indicated with a "#" symbol and are listed below.
 -------------------------------- General and Misc. ------------------------------
 - set multiple values to an xml attribute using the | symbol.
   e.g. android:layout_gravity="start|center_vertical" (Sets the view to be vertically centered and aligned with the start of the parent)
+--------------------------------- Life Cycle ------------------------------------
+#Life_Cycle
+The life cycle events are as follows and each method may be overriden within an AppCompatActivity class:
+onCreate() -> onStart() -> onResume() -> onPause() -> onStop() -> onRestart() | onDestroy()
+
+Note the following lifecycle events occur upon the rotation of the device:
+    onPause() -> onStop() -> onDestroy() -> onCreate() -> onStart() -> onResume()
+
+Save data between states using onSaveInstanceState():
+
 -------------------------------- Toast ------------------------------------------
 #Toast
 Toast toast = Toast.makeText(MainActivity.this, "message", Toast.LENGTH_LONG);
@@ -24,7 +35,7 @@ toast.cancel(); //does automatically after a time period
 
 
 
-----------------------------------------------------------------------------------
+
 #Layout_Types
 -------------------------------- UI Layout Types ---------------------------------
 - Linear Layout
