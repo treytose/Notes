@@ -1,0 +1,15 @@
+Setting up Realtime Database for Android App Tutorial:
+- Follow the assistant guide in Tools -> Firebase
+- Select the realtime database dropdown and follow the tutorial
+
+Trouble Shooting:
+    - try adjusting the version of: classpath 'com.google.gms:google-services:4.2.0'
+
+
+-------------------- Adding Authentication ---------------------
+1. Turn on email/password and Google authentication in the firebase console
+2. Add the correct dependencies to your gradle script:
+    At the time of this tutorial:
+    implementation 'com.google.firebase:firebase-auth:16.0.3'
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'  //For easy UI setup of login/signup
+3. 
