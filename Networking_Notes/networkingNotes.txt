@@ -1,0 +1,70 @@
+-------------- TCP v.s. UDP ----------------
+
+-------------- SNMP (Simple Network Management Protocol) --------------------
+Vocabulary:
+	SNMP - Protocol for communicating between SNMP enabled devices.
+	
+	SNMP Manager (NMS) - Software installed on a machine that polls the devices on your network.
+		Has credentials for accessing info on agents.
+		Compiles said info. into readable format used for diagnostics and troubleshooting
+		(Optional) May contain system for notifying of issues via email or text
+		When this software is combined with a machine it is called an NMS (Network Management System)
+		
+	SNMP Agents - A piece of software that is bundled with a network device.
+		Compiles and stores all the data given from the device into an MIB database.
+		
+	SNMP Port - The manager polls the devices via Port UDP 161.
+		SNMP traps are sent from the agent to the manager via Port UDP 162.
+		UDP is most common for SNMP but TCP may be used as well.
+	
+	Managed Network Device -  Includes routers, switches, wifi, servers, PCs, Printers, USPs etc.
+		Have SNMP enabled and properly configured to allowing polling by the NMS. 
+		
+	MIBs (Management Information Base) - Files containing a set of "questions" that the NMS can ask.
+		The agents collect data and store it as defined in the MIB. 
+		MIBs contain a set of values for statistics as well as for control of the device 
+		Example flow:
+			NMS asks agent a question -> Agent returns the answer 
+		
+	OIDs (Object Identifier) - A number created by the MIB of an agent. 
+		Each OID is unique to an agent. 
+		The OID is known by the NMS and is used to access an agent and it object of interest to retrieve info. 
+		2 Types of OIDs:
+			1. Scalar OID - Single Object Instance is like the vendor name of a device, there is only one.
+			2. Tabular OID - Has multiple results for its OID, like a quad core CPU has 4 different CPU values
+		Example OID: 1.3.6.1.2.1.1    .3        .0
+					 [  -- MIB -- ] [Object] [Instance]
+	SNMP Traps - When the device needs to alert the NMS of an event without being polled.
+		Managed Netword Devices have Trap MIBs which have pre-defined conditions built in. 
+		The NMS must have the Trap MIBs compiled so that it may recieve the Traps sent by the device.
+		
+	
+What does SNMP do?
+	- Monitors inbound and outbound traffic flow through a device 
+	- Early detection of faults within a network device via alert/notifications
+	- Analyze long term data to find bottle necks and performance issues 
+	- Ability to remotely configure compatible devices 
+	- Access and control devices via SNMP 
+	
+Versions of SNMP:
+	SNMPv1 	- Low security
+	SNMPv2c - Meh security, based on community strings 
+	SNMPv3 	- User based security 
+	
+--------------------------------------------------------------------------------------------------------
+**** SNMP Commands for Centos7 ****
+snmpwalk
+cat /etc/snmp/snmpd.conf    // Gives you the SNMP info for this device, enabled? version? etc. 
+snmpwalk 					// Get list of command options 
+
+snmpwalk -v <version> -c  <com_string> <host>	 
+	<version> - the SNMP version e.g. 2c
+	<com_string> - the community string password, found in snmp.conf 
+	<host> - The hostname for the device to do the walk on. e.g. "localhost" to snmp walk itself
+	
+snmpwalk <...> -O <options> <host>
+	options - Allows you to enter various options for the snmpwalk such as print only numbers etc. 
+	
+snmpwalk <...> <host> <OID>
+	<OID> - allows you to specify an OID to select a certain MIB, object, or instance 
+	
