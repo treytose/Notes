@@ -154,3 +154,266 @@ Converting Hexadecimal to Decimal
 		58
 
 ################################## Section 7 - IP Addressing #########################################
+#### Overview ####
+Address Classes:
+    * Class A
+        = Test case
+    * Class B
+    * Class C
+    * Class D
+    * Class E
+    * CIDR
+
+Special Addresses:
+    * Loopback address
+    * local broadcast address
+
+Network Masks:
+
+#### IPv4 Address ####
+A layer 3, network level, logical address assigned by an administrator~
+
+Used to identify specific devices on a network
+
+connectionless protocol:
+	* unlike TCP, a connection protocol, IPv4 does not need a connection to transmit packets
+
+packets treated independently:
+	* may take different paths due to routers load balancing, bandwidth, hopcount, etc.
+
+hierarchical addressing structure:
+	* network and host portion
+
+best effort delivery:
+	* packets may be lost
+	* no data recovery features
+	* relies on higher level protocols to implement data recovery (TCP)
+
+IPv4 Address Format:
+    * 192.168.254.37
+        = Binary Conversion: 11000000.10101000.11111110.00100101
+    * 32 bits total
+    * 4 segments, each segment is 8 bits (aka octets)
+    * Network Address Portion (Network ID):
+        = identifies a specific network
+
+Network V.S. Host portion:
+	* portion depends on the class of the address
+		= e.g. Class A address, the first octet is the network & the last 3 octets are the host 
+	* Network Address Portion (Network ID):
+		= identifies a specific network 
+		= routers maintain routing tables that contain the network 
+		= look at destination of IP address and match to network address 
+	* Host address portion (host ID):
+		= identifies a specific endpoint on a network 
+		= server, printers, PCs, IPhone, etc. 
+		
+#### Address Classes ####
+Address Classes Overview:
+Class A, B, C:
+	* Used for Unicast traffic
+	* Recall that Unicast is single direction traffic e.g. A -> B
+Class D
+	* Used for multicast traffic
+	* Recall multicast is for multiple direction traffic. e.g. A -> B,C
+Class E:
+	* Reserved for future experimental purposes
+IPv6 does NOT use address classes
+!IPv4 address classes have been replaced by CIDR!
+
+NOTE: Class A,B,C are used for Unicast traffic
+
+Class A:
+	* starts with a binary 0
+		= First octet range: 00000000 (0) to 01111111 (127)
+		= decimal range: 0.0.0.0 to 127.255.255.255
+	* Exceptions:
+		= IPs starting with 127 are reserved for loopback-addresses~
+		= 0.0.0.0 is reserved as the default network 
+		= cannot assign 127.0.0.1 or 0.0.0.0 as device IP
+	* Network & Host Portion:
+		= The first octet is the Network portion
+		= The last 3 octets are for the host 
+		= e.g. 104.168.254.37, 104.0.0.0 would be the network address & 104.168.254.37 would be the host address
+
+Class B:
+	* starts with a binary 10
+		= First octet range is from: 10000000 (128) to 10111111 (191)
+		= decimal range: 128.0.0.0 to 191.255.255.255
+	* Network & Host Portion:
+		= The first 2 octets are the network portion 
+		= The last 2 octets are the host portion
+		= e.g. 128.168.254.37, 128.168.0.0 would be the network address & 128.168.254.37 would be the host address
+	
+Class C:
+	* starts with binary 110
+		= First octet range: 11000000 (192) to 11011111 (223)
+		= decimal range: 192.0.0.0 to 223.255.255.255
+	* Network & Host Portion:
+		= First 3 octets are the Network portion 
+		= Last octet is the host portion 
+		= e.g. 192.168.254.37, 192.168.254.0 is the network address & 192.168.254.37 is the host address
+
+Recall: Unicast~ is when 1 device talks to 1 device, Multicast~ is when 1 device talks to multiple devices
+
+Class D:
+	* used for multicast 
+	* Starts with binary 1110:
+		= first octet range is from: 11100000 (224) to 11101111 (239)
+		= decimal range: 224.0.0.0 to 239.255.255.255
+	* Exceptions:
+		= OSPF routing protocol uses 224.0.0.5 & 224.0.0.6
+		= 224.0.0.X are Link-Local-Multicasts~
+
+Class E:
+	* starts with binary 1111
+		= first octet range is from: 11110000 (240) to 11111111 (255)
+		= decimal range: 240.0.0.0 to 255.255.255.255
+	* Class E is reserved for experimental purposes 
+
+NOTE: These address classes have been replaced with CIDR!
+
+#### Special Addresses ####
+Local Loopback Addresses:
+	* Address: 127.0.0.1
+		= NOTE: Any 127.X.X.X address is considered loopback addresses (seen as a mistake, 16million addresses wasted)
+	* used to let a system send a message to itself for testing 
+	* useful to make sure that TCP/IP stack is correctly installed on machine
+
+Local Broadcast Address:
+	* Communicates with all devices on local network
+	* entire address is binary 1s
+		= 11111111.11111111.11111111.11111111 or 255.255.255.255
+	* Example:
+		= host boots up and doesn't have an IP address, nor does it know the IP address of the DHCP server 
+		= host sends a local broadcast to request an IP address from the DHCP server 
+	* Broadcasts are ALWAYS dropped by routers
+		= UNLESS DHCP forwarding or DHCP relay is configured to forward the request to a DHCP server 
+
+Directed Broadcast Address:
+	* Host sends data to all devices on a specific network 
+	* Entire host portion is binary 1s
+	* e.g. if the Network is 172.31.0.0 (Class B Address)
+		= Directed Broadcast address is: 172.31.255.255
+	* Routers can be configured to route directed broadcast
+		= Disabled by default (due to DoS attacks)
+	* DoS attack:
+		= Hacker wants to DoS IP 172.16.0.1
+		= Hacker sends a ton of traffic to network 172.31.0.0 using a Directed Broadcast with source address being 172.16.0.1 (not the hackers actual IP)
+		= The directed broadcast would be 172.31.255.255, hence all hosts on 172.31.0.0 would receive the broadcast 
+		= All of the hosts would then reply to the source address, hence overwhelming the source address host creating a DoS attack 
+
+
+#### RFC - Private Addressess ####
+RFC (Request For Comments):
+	* Internet standards
+	* Newer RFCs may replace older RFCs
+
+RFC1918:
+	* Private IP Addresses
+	* non-routable networks on the internet
+		= 10.0.0.0 to 10.255.255.255 (1 Class A network)
+		= 172.16.0.0 to 172.31.255.255 (16 class B networks)
+		= 192.168.0.0 to 192.168.255.255 (256 Class C networks)
+	* implemented to increase the longevity of IPv4
+	* in order for your computer with host IP 192.168.X.X to traverse the internet your IP must use NAT~ (Network Address Translated) to convert to a public address
+		= NAT is done by your Router 
+
+#### RFC - Link Local Addresses ####
+- RFC3927:
+	* Automatic Private IP Address (APIPA)
+	* Used when a PC is configured for DHCP but no DHCP server is available
+		= PC automatically chooses an IP in range 169.254.0.0/16
+		= Allows two computers to communicate when no DHCP server is available
+		
+#### Network Masks ####
+Network Address:
+	* Used to determine network and host portion
+	* is a device remote or local?
+
+Network Masks:
+	* allows us to determine the host and network portion of an address 
+	* this lets us determine if the device we want to talk to is on:
+		= A remote host (different subnet): can be reached via default gateway 
+		= A local host (on the same subnet): can be reached without going through the default gateway
+	* devices are on the same subnet if they are using a /16 mask!
+	* devices are on different subnets if they are using a /24 mask!
+	
+Class A, B, and C networks have default masks AKA natural masks:
+	* Class A: 255.0.0.0
+	* Class B: 255.255.0.0
+	* Class C: 255.255.255.0
+
+Class A network that hasn't been subnetted:
+	* Address/Mask pair:
+		= 10.1.1.1 / 255.0.0.0
+	* 1 in the mask means network 
+	* 0 in the mask means host 
+	* hence, with the mask 255.0.0.0 which is binary 11111111.00000000.00000000.00000000 means the network address portion is 10 which means network 10.0.0.0
+
+Two Simple Rules!:
+	* Any address bits with corresponding mask bits set to 1 represent the network ID 
+	* Any address bits with corresponding mask bits set to 0 represent the host ID 
+	* Example:
+		= You have an IP of 10.1.1.1 (class A address) and a Network Mask of 255.0.0.0
+		= IP: 10.1.1.1 converts to 00001010.00000001.00000001.00000001
+		= Network Mask: 255.0.0.0 converts to 11111111.00000000.00000000.00000000
+		= NetID: 00001010 or 10 
+		= HostID: 00000001.00000001.00000001 or 1.1.1
+	* Example 2:
+		= You have an IP of 1.1.1.1 (Class A) and a Network Mask of 255.255.0.0
+		= NetID: 1.1
+		= HostID: .1.1
+		= NOTICE: This is a class A address yet the Network mask determine the network portion to be the first two octets 
+
+How to know if receiving device is Local or Remote?:
+	* To check if other host is local:
+		= Check network portion of address 
+		= Compare to the other host
+		= If they are the same network, the other device is local 
+		= If they are NOT the same network, the other device is remote 
+
+Discontiguous Network Mask:
+	* CISCO does NOT support discontiguous masks!
+	* Discontigous masks are network masks that have alternating 1s and 0s
+		= Example of discontiguous mask: 11110000.11111111.00000110.1100000000 (240.255.3.191)
+		= Example of contiguous mask: 11111111.11110000.00000000.00000000 (255.240.0.0)
+
+
+#### CIDR ####
+CIDR (Classless Inter-Domain Routing):
+	* Replaces classful IP Addressing 
+	* Variable Length subnet masks (VLSM)
+	* Changes network mask notation:
+		= Instead of using 10.0.0.0 255.0.0.0
+		= Use 10.0.0.0/8
+
+CIDR Notation:
+	* 10.0.0.0/8
+	* The /8 means that there are 8 binary 1s in the network mask 
+		= /8 would convert to 11111111.00000000.00000000.00000000 or 255.0.0.0 (old notation)
+		= This notation is possible since network masks are contiguous
+		= Hence, 10.0.0.0/8 would mean the network portion would be the first octet which would be 10, and the host portion is .0.0.0
+	* Another Example of CIDR notation:
+		= Network mask 255.255.255.0 can be written as /24 since 255.255.255.0 is equal to 11111111.11111111.11111111.00000000 which is 24 consecutive binary 1s
+		= So, 10.0.0.0/24 would have a network portion of 10.0.0 and a host portion of .0
+		
+CIDR Issues:
+	* Class A:
+		= supports 16,777,214 (or 2^24) host addresses 
+		= Has default mask of 255.0.0.0
+	* Class B:
+		= supports 65536 (or 2^16) host addresses 
+		= Has default mask of 255.255.0.0
+	* Class C:
+		= supports 254 (or 2^8) host addresses 
+		= Default mask of 255.255.255.0
+
+	* What if a company wants to support 3000 hosts?
+		= Class B would be wasting thousands of hosts
+		= Class C wouldn't be enough hosts 
+	* CIDR allows you to have variable length subnet masks
+		= e.g. with CIDR you can have a network mask of /11 or 255.224.0.0
+		= This solves the issue described above as we can come closer to the amount of hosts we need to support without wasting thousands of host addresses 
+
+######################################### Section 8 - Cisco IOS Software and Initial Device Configuration ############################################
