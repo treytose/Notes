@@ -1,3 +1,30 @@
+########################### Section 1 #########################
+Introduction & Welcome
+########################### Section 2 & 3 #########################
+Terminology:
+    * NIC (Network Interface Card) - Computer hardware that connects a computer to a network.
+        transforms computer data into a format that can be transported over a wire.
+    * Computer Network - Computers that are connected and capable of sharing information.
+    * Networking Protocols - Rules for directing internet traffic. Kind of like vehicle traffic has stop signs, traffic lights, etc.
+
+Home Network:
+    * Router    
+		= Moves information from one interface to another
+    	= Make decisions to determine best path for information to travel based on distance or route cost
+    * Switch     
+		= Connects multiple device together (PC, Printer, PC) -> Switch -> Router -> ...
+    * DNS (Domain Name System) 
+		= Converts names or domain names to an IP address
+    * Network Characteristics
+		= Similar to how computers have specs such as CPU, RAM, etc. Networks have Characteristics to determine things such as speed.
+
+Logical V.S. Physical Topology:
+	* Logical 
+		= Desribes the path of which data is transferred in a network. May be very different than physical topology.
+    	= May use VLANs (Virtual Local Area Networks) which can drastically change a network
+	* Physical
+		= The actual arrangment of a network. cables, network devices, endpoints, etc. Shows how the network appears.
+
 ######################## Section 4 OSI Model ########################
 OSI Model uses layers so that different machines are still compatible e.g. A HP windows machine can connect to a CentOS server with no issues 
 
@@ -120,46 +147,47 @@ Host Communication
 		  	= The ethernet data has a type field, the NIC reads the type field and informs other layers of the type of data (IPv4 or IPv6) 
 
 TCP/IP Model V.S. OSI Model 
-OSI Model what not designed for TCP/IP so there is a simplified version of the OSI model called the TCP/IP model 
+OSI Model was not designed for TCP/IP so there is a simplified version of the OSI model called the TCP/IP model 
 
 TCP/IP Model:
 	Layer 4 - Application 
 	Layer 3 - Transport 
 	Layer 2 - Internet 
 	Layer 1 - Network Access
-=========================================================================================
+
 ##################################### Section 6 - Hexadecimal #####################################
 Hexadecimal:
+	* Base 16
 	* 0-F, where F is equivalent to 15 in decimal
 
-Converting Decimal to Hexadecimal
-	1. convert the decimal number to binary
-	2. Split the binary number into segments of 4. This is because 4 binary numbers can be equal up to 15 which is the highest hexadecimal number
-	3. Convert to Hexadecimal
-	Example:
-		128
-		10000000
-		1000 | 0000  (equivalent to 8 | 0 in hexadecimal)
-		80
+Converting Decimal to Hexadecimal:
+	* convert the decimal number to binary
+	* Split the binary number into segments of 4. This is because 4 binary numbers can be equal up to 15 which is the highest hexadecimal number
+	* Convert to Hexadecimal
+	* Example:
+		= 128 (decimal)
+		= 10000000 (binary)
+		= 1000 | 0000  (equivalent to 8 | 0 in hexadecimal)
+		= 80 (hexadecimal representation of 128)
 
-		Hence, 120 in hexadecimal is 80
-
-Converting Hexadecimal to Decimal
-	1. Convert each digit of hexadecimal to 4 digits of binary
-	2. Convert the binary to decimal 
-	Example:
-		3A
-		0011 | 1010
-		00111010
-		58
+Converting Hexadecimal to Decimal:
+	* Convert each digit of hexadecimal to 4 digits of binary
+	* Convert the binary to decimal 
+	* Example:
+		= 3A (Hexadecimal)
+		= 0011 | 1010 (Binary, split)
+		= 00111010 (Binary)
+		= 58 (Decimal)
 
 ################################## Section 7 - IP Addressing #########################################
 #### Overview ####
 Address Classes:
     * Class A
-        = Test case
+		= 0.0.0.0 to 127.255.255.255
     * Class B
+		= 128.0.0.0 to 191.255.255.255
     * Class C
+		= 192.0.0.0 to 223.255.255.255
     * Class D
     * Class E
     * CIDR
@@ -320,7 +348,7 @@ RFC1918:
 		= NAT is done by your Router 
 
 #### RFC - Link Local Addresses ####
-- RFC3927:
+RFC3927:
 	* Automatic Private IP Address (APIPA)
 	* Used when a PC is configured for DHCP but no DHCP server is available
 		= PC automatically chooses an IP in range 169.254.0.0/16
@@ -417,3 +445,124 @@ CIDR Issues:
 		= This solves the issue described above as we can come closer to the amount of hosts we need to support without wasting thousands of host addresses 
 
 ######################################### Section 8 - Cisco IOS Software and Initial Device Configuration ############################################
+#### Overview ####
+How to connect to cisco router:
+How to boot up the router:
+Various Options: 
+Nexus Operating System:
+Basic IOS CLI: 
+CLI functions and operations:
+	* user mode 
+	* global config mode 
+	* privilege mode 
+	* interface mode 
+Embedded Help Options:
+	* Use ? for Help
+	* Use Tab for command completion 
+Manage Configurations:
+
+#### Cisco IOS Software ####
+CISCO IOS Software:
+	* The most common network operating system 
+	* There are other CISCO OSs such as Nexus OS. 
+	* Powers both small and large devices 
+	* Used for routers 
+	* Used for Local Area Network (LAN) Switches 
+	* Used on Wireless Access Points 
+
+	NOTE: may have slight differences on different devices 
+	Need to get very good at EXEC Interface!
+
+#### How to connect to a router or switch ####
+How to connect:
+	* May connect locally via console
+		= connect the router/switch to your PC via serial cable 
+		= 
+	* May connect remotely using telnet~ or ssh~
+
+
+#### Initial Setup ####
+Initial Setup:
+	* Cisco devices sometimes send out a localbroadcast searching for config files
+		= Recall: Local broadcast are sent on a special reserved IP address: 255.255.255.255
+		= Cisco broadcast message: tftp://255.255.255.255/network-confg 
+	* CISCO will ask you to enter "initial configuration dialog"
+		= typically network engineers will skip this part 
+		= if you say yes, the router/switch will ask various questions to help initially setup the device 
+		= Questions such as
+			@ Setup Router name 
+			@ Setup IP 
+			@ Setup SNMP 
+			@ etc. 
+
+#### CISCO IOS - Modes ####
+User Mode:
+	* default mode upon bootup 
+	* Has a limited number of monitoring basic commands 
+	* AKA view only mode 
+	* Shown by terminal prefix - hostname>
+
+
+Privilege Mode: 
+	* Accessed by enter the "enable"! command from user-mode 
+	* terminal prefix - hostname#
+	* Allowed to use many more show commands 
+	* Allows debugging 
+	* Required mode to config the device 
+	* AKA enable mode 
+
+Global Config Mode: 
+	* Accessed by entering "conf-t"! from privilege mode 
+	* terminal prefix - hostname(config)#
+
+Interface Mode: 
+	* terminal prefix - hostname(config-if)#
+	* used to change interface configurations 
+		= IP Address 
+		= enable/disable interfaces 
+
+Line Mode:
+	* config console port 
+	* config aux port 
+	* config vty (telnet)
+
+#### CISCO IOS - Basic Commands ####
+
+User Mode Commands: 
+	* enable 
+		= takes you into privilege mode 
+	
+Privilege Mode Commands:
+	* conf t 
+		= short for "configure terminal"
+		= takes you to global configuration mode 
+	
+Global Config. Mode Commands:
+	* ctrl+z
+		= takes you back out of global conf. mode 
+	* interface FastEthernet 0/1
+		= Enter config mode for FastEthernet port 1 on interface 0 
+	* hostname <hostname>
+		= Change the hostname of the router 
+	* line console 0
+		= go to line mode to configure the console port
+
+	
+Interface Config Mode Commands:
+	* ctrl+z
+		= takes you back to privilege/enable mode 
+	* ip address (Routers only)
+
+Line Modes:
+	* Line Console 0
+		= password cisco 
+			@ when connecting to device, must enter password "cisco"
+			@ NOTE: Will not be prompted for password if login isn't enabled (see below)
+		= login
+			@ enables login requirement
+
+#### Configuration of the Router ####
+Config Steps:
+	* On bootup of a factory reset device, skip the initial config dialog 
+	* You start of in User-Mode~, enter "enable"! to enter Privilege-Mode~
+

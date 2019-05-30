@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body style="background: gray;">
+    <div class="container">
+    <div class='well'><h1> Section 1 
+</h1><p style="">Introduction & Welcome</p></div><div class='well'><h1> Section 2 & 3 
+</h1><p style=""><h3> <u>Terminology:
+</u></h3><ul></p><p style=""><h4 style=''>-     NIC (Network Interface Card) - Computer hardware that connects a computer to a network.
+</h4><ul></p><p style="">        transforms computer data into a format that can be transported over a wire.</p><p style=""></ul><h4 style=''>-     Computer Network - Computers that are connected and capable of sharing information.
+</h4><ul></p><p style=""></ul><h4 style=''>-     Networking Protocols - Rules for directing internet traffic. Kind of like vehicle traffic has stop signs, traffic lights, etc.
+</h4><ul></p><p style=""></ul></ul><h3> <u>Home Network:
+</u></h3><ul></p><p style=""><h4 style=''>-     Router    
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Moves information from one interface to another
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-    	 Make decisions to determine best path for information to travel based on distance or route cost
+</p><ul></p><p style=""></ul></ul><h4 style=''>-     Switch     
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Connects multiple device together (PC, Printer, PC) <span class'glyphicon glyphicon-arrow-right'></span> Switch <span class'glyphicon glyphicon-arrow-right'></span> Router <span class'glyphicon glyphicon-arrow-right'></span> ...
+</p><ul></p><p style=""></ul></ul><h4 style=''>-     DNS (Domain Name System) 
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Converts names or domain names to an IP address
+</p><ul></p><p style=""></ul></ul><h4 style=''>-     Network Characteristics
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Similar to how computers have specs such as CPU, RAM, etc. Networks have Characteristics to determine things such as speed.
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Logical V.S. Physical Topology:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Logical 
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Desribes the path of which data is transferred in a network. May be very different than physical topology.
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-    	 May use VLANs (Virtual Local Area Networks) which can drastically change a network
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Physical
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 The actual arrangment of a network. cables, network devices, endpoints, etc. Shows how the network appears.
+</p><ul></p></div><div class='well'><h1> Section 4 OSI Model 
+</h1><p style="">OSI Model uses layers so that different machines are still compatible e.g. A HP windows machine can connect to a CentOS server with no issues </p><p style="">All People Sleeping Through Networking Dont Pass   (Jingle to remember OSI Layers)</p><p style=""></ul></ul></ul><h3> <u>Layers:
+</u></h3><ul></p><p style="">	Layer 1 - Physical</p><p style="">	Layer 2 - Datalink</p><p style="">	Layer 3 - Network</p><p style="">	Layer 4 - Transport </p><p style="">	Layer 5 - Session</p><p style="">	Layer 6 - Presentation</p><p style="">	Layer 7 - Application</p><p style="">	</p><p style=""></ul><h3> <u>Advantages of using the OSI Model:
+</u></h3><ul></p><p style="">	- Standard and Inoperability</p><p style="">	- Split Development. e.g. I don't need to understand networking to develop a website</p><p style="">	</p><p style="">Developer Layers: 		5, 6, 7</p><p style="">Network Eng. Layers: 	1, 2, 3, 4</p><p style=""></ul><h3> <u>Layer 7 - Application Layer:
+</u></h3><ul></p><p style=""><h4 style=''>-	 The Application Layer is the layer dealing with application protocols such as FTP, Telnet, HTTP
+</h4><ul></p><p style=""></ul><h4 style=''>-	 e.g. Microsoft Outlook uses protocols such as IMAP, POP3, and SMTP
+</h4><ul></p><p style="">	</p><p style=""></ul></ul><h3> <u>Layer 6 - Presentation Layer:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Data Representation / Syntax
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 ensures data is receivable by receiving system
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 formats data to be presented to the application layer 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 structures data
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 negotiates data transfer syntax for application layer 
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Layer 5 - Session Layer:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Interhost Communication
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 establishment, maintenance, and termination of sessions between applications 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 two application processes on different machines can establish a session 
+</p><ul></p><p style="">		</p><p style=""></ul></ul></ul><h3> <u>Layer 4 - Transport Layer:
+</u></h3><ul></p><p style=""><h4 style=''>-	 End to End Connections
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 message segmentation
+</p><ul></p><p style=""><p>-			 splits message into smaller parts to be transported
+</p><ul></p><p style=""></ul></ul><p style='font-size: 16px'>-		 handles transportation issues between hosts
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 ensures data transport reliability
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 establishes, maintains, and terminates virtual circuits 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 TCP (Transmission Control Protocol)
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 if packet is missing, packet is retransmitted
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Flow Control 
+</p><ul></p><p style=""><p>-			 manage data transmission
+</p><ul></p><p style=""></ul><p>-			 Ensures the transmitting device does not send more data than the receiving device can handle 
+</p><ul></p><p style=""></ul></ul><p style='font-size: 16px'>-		 Session Multiplexing
+</p><ul></p><p style=""><p>-			 allows multiple message streams or sessions onto one logical link
+</p><ul></p><p style=""></ul></ul></ul><h4 style=''>-	 UDP (User Datagram Protocol)
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 does not provide reliability
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 if packets are dropped then they are lost, packets are not retransmitted
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 lightweight, not as much overhead as TCP 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Used for things such as Live TV, VoIP (Voice over IP), etc.
+</p><ul></p><p style="">		</p><p style=""></ul></ul></ul><h3> <u>Layer 3 - Network Layer:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Data Delivery
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Routes data packets 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Layer 3 switches
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 have router capabilities 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 uses protocols to select best path to deliver data 
+</p><ul></p><p style=""><p>-			 OSPF (Open Shortest Path First)
+</p><ul></p><p style=""></ul><p>-			 BGP (Border Gateway Protocol)
+</p><ul></p><p style=""></ul><p>-			 IS-IS (Intermediate System to Intermediate System)
+</p><ul></p><p style=""></ul></ul><p style='font-size: 16px'>-		 Path determination and logical addressing
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 IP protocols
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 IPv4
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 IPv6
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Criteria for data delivery 
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 cost 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 hop count 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 bandwidth
+</p><ul></p><p style=""><p>-			 OSPF 
+</p><ul></p><p style=""></ul></ul><p style='font-size: 16px'>-		 longest match of network address
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Not concerned with reliability, leaves that to higher level protocols such as TCP in Layer 4
+</h4><ul></p><p style=""></ul></ul><h3> <u>Layer 2 - Data Link Layer:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Access to media 
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 defines how data is formatted for transmission
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 defines how access to the network in controlled
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 provides Error detection that occurs at physical layer 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Ethernet
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 MAC Address (Media Access Control)
+</p><ul></p><p style=""><p>-			 MAC Address is used as the identifier of a device 
+</p><ul></p><p style=""></ul><p>-			 48 bits in length, 6 two-digit hexadecimal numbers, e.g. D8-CB-B8-1F-D7-63
+</p><ul></p><p style=""></ul><p>-			 Broken into 2 parts 
+</p><ul></p><p style="">				- Organization Unique Identifier (OUI)</p><p style="">				- Unique Portion</p><p style=""></ul><p>-			 Manufactured into a Network Card or NIC
+</p><ul></p><p style=""></ul></ul><p style='font-size: 16px'>-		 Formatted according to rules of ethernet 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 may traverse WAN Link that uses PPP (Point to Point Protocol)
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Layer 1 - Physical Layer:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Binary Transmission
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 states represented by 0 or 1 
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Encapsulation and De-Encapsulation:
+</u></h3><ul></p><p style=""><h4 style=''>-	 User Data goes through a stairlike process when it is transmitted 
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 User sends data, it is then encapsulated by going through each layer header: L7 <span class'glyphicon glyphicon-arrow-right'></span> L6 <span class'glyphicon glyphicon-arrow-right'></span> L5 <span class'glyphicon glyphicon-arrow-right'></span> ... <span class'glyphicon glyphicon-arrow-right'></span> L1
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Data gets to receiving end and is then de-encapsulated: L1 <span class'glyphicon glyphicon-arrow-right'></span> L2 <span class'glyphicon glyphicon-arrow-right'></span> ... <span class'glyphicon glyphicon-arrow-right'></span> L6 <span class'glyphicon glyphicon-arrow-right'></span> L7
+</p><ul></p><p style="">Peer to Peer Communication	</p><p style=""></ul></ul><h4 style=''>-	 Each layer in the OSI model only communicates with the equivalent layer.
+</h4><ul></p><p style="">	PC 1					  Data Type					PC 2</p><p style="">	___________________________________________________________________</p><p style="">	Application Layer _______________________________ Application Layer</p><p style="">	Presentation Layer ______________________________ Presentation Layer </p><p style="">	Session Layer ___________________________________ Session Layer </p><p style="">	Transport Layer _________Segments________________ Transport Layer </p><p style="">	Network Layer ___________Packets_________________ Network Layer </p><p style="">	Data Link Layer __________Frames_________________ Data Link Layer </p><p style="">	Physical Layer ____________Bits__________________ Physical Layer </p><p style="">Host Communication</p><p style=""></ul><h4 style=''>-	 Computer A may send different types of data in no specific order to computer B. 
+</h4><ul></p><p style=""><p>-		 Computer A <span class='glyphicon glyphicon-arrow-right'></span> 3 Packets of TFTP, 2 Packets of Telnet, 5 Packets of TFTP <span class='glyphicon glyphicon-arrow-right'></span> Computer B 
+</p><ul></p><p style="">		  Computer B may be running serveral several Layer 3 protocols (IPv4, IPv6)</p><p style="">		  How does computer B know if the traffic arriving at Layer 2 is IPv4 or IPv6?</p><p style=""></ul></ul><p style='font-size: 16px'>-		  	 The ethernet data has a type field, the NIC reads the type field and informs other layers of the type of data (IPv4 or IPv6) 
+</p><ul></p><p style="">TCP/IP Model V.S. OSI Model </p><p style="">OSI Model was not designed for TCP/IP so there is a simplified version of the OSI model called the TCP/IP model </p><p style=""></ul></ul></ul><h3> <u>TCP/IP Model:
+</u></h3><ul></p><p style="">	Layer 4 - Application </p><p style="">	Layer 3 - Transport </p><p style="">	Layer 2 - Internet </p><p style="">	Layer 1 - Network Access</p></div><div class='well'><h1> Section 6 - Hexadecimal 
+</h1><p style=""></ul><h3> <u>Hexadecimal:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Base 16
+</h4><ul></p><p style=""></ul><h4 style=''>-	 0-F, where F is equivalent to 15 in decimal
+</h4><ul></p><p style=""></ul></ul><h3> <u>Converting Decimal to Hexadecimal:
+</u></h3><ul></p><p style=""><h4 style=''>-	 convert the decimal number to binary
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Split the binary number into segments of 4. This is because 4 binary numbers can be equal up to 15 which is the highest hexadecimal number
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Convert to Hexadecimal
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Example:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 128 (decimal)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 10000000 (binary)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 1000 | 0000  (equivalent to 8 | 0 in hexadecimal)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 80 (hexadecimal representation of 128)
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Converting Hexadecimal to Decimal:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Convert each digit of hexadecimal to 4 digits of binary
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Convert the binary to decimal 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Example:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 3A (Hexadecimal)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 0011 | 1010 (Binary, split)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 00111010 (Binary)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 58 (Decimal)
+</p><ul></p></div><div class='well'><h1> Section 7 - IP Addressing 
+</h1></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Overview 
+</i></h2></div><p style=""></ul><h3> <u>Address Classes:
+</u></h3><ul></p><p style=""><h4 style=''>-     Class A
+</h4><ul></p><p style=""></ul><h4 style=''>-     Class B
+</h4><ul></p><p style=""></ul><h4 style=''>-     Class C
+</h4><ul></p><p style=""></ul><h4 style=''>-     Class D
+</h4><ul></p><p style=""></ul><h4 style=''>-     Class E
+</h4><ul></p><p style=""></ul><h4 style=''>-     CIDR
+</h4><ul></p><p style=""></ul></ul><h3> <u>Special Addresses:
+</u></h3><ul></p><p style=""><h4 style=''>-     Loopback address
+</h4><ul></p><p style=""></ul><h4 style=''>-     local broadcast address
+</h4><ul></p><p style=""></ul></ul><h3> <u>Network Masks:
+</u></h3><ul></p></ul><div class='alert alert-info'><h2 style='color: blue;'><i> IPv4 Address 
+</i></h2></div><p style="">A layer 3, network level, logical address assigned by an <span style='color: blue;'>administrator
+</span></p><p style="">Used to identify specific devices on a network</p><p style=""></ul><h3> <u>connectionless protocol:
+</u></h3><ul></p><p style=""><h4 style=''>-	 unlike TCP, a connection protocol, IPv4 does not need a connection to transmit packets
+</h4><ul></p><p style=""></ul></ul><h3> <u>packets treated independently:
+</u></h3><ul></p><p style=""><h4 style=''>-	 may take different paths due to routers load balancing, bandwidth, hopcount, etc.
+</h4><ul></p><p style=""></ul></ul><h3> <u>hierarchical addressing structure:
+</u></h3><ul></p><p style=""><h4 style=''>-	 network and host portion
+</h4><ul></p><p style=""></ul></ul><h3> <u>best effort delivery:
+</u></h3><ul></p><p style=""><h4 style=''>-	 packets may be lost
+</h4><ul></p><p style=""></ul><h4 style=''>-	 no data recovery features
+</h4><ul></p><p style=""></ul><h4 style=''>-	 relies on higher level protocols to implement data recovery (TCP)
+</h4><ul></p><p style=""></ul></ul><h3> <u>IPv4 Address Format:
+</u></h3><ul></p><p style=""><h4 style=''>-     192.168.254.37
+</h4><ul></p><p style=""><p style='font-size: 16px'>-         Binary Conversion: 11000000.10101000.11111110.00100101
+</p><ul></p><p style=""></ul></ul><h4 style=''>-     32 bits total
+</h4><ul></p><p style=""></ul><h4 style=''>-     4 segments, each segment is 8 bits (aka octets)
+</h4><ul></p><p style=""></ul><h4 style=''>-     Network Address Portion (Network ID):
+</h4><ul></p><p style=""><p style='font-size: 16px'>-         identifies a specific network
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Network V.S. Host portion:
+</u></h3><ul></p><p style=""><h4 style=''>-	 portion depends on the class of the address
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 e.g. Class A address, the first octet is the network & the last 3 octets are the host 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Network Address Portion (Network ID):
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 identifies a specific network 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 routers maintain routing tables that contain the network 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 look at destination of IP address and match to network address 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Host address portion (host ID):
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 identifies a specific endpoint on a network 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 server, printers, PCs, IPhone, etc. 
+</p><ul></p><p style="">		</p></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Address Classes 
+</i></h2></div><p style=""></ul><h3> <u>Address Classes Overview:
+</u></h3><ul></p><p style=""></ul><h3> <u>Class A, B, C:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Used for Unicast traffic
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Recall that Unicast is single direction traffic e.g. A <span class='glyphicon glyphicon-arrow-right'></span> B
+</h4><ul></p><p style="">Class D</p><p style=""></ul><h4 style=''>-	 Used for multicast traffic
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Recall multicast is for multiple direction traffic. e.g. A <span class='glyphicon glyphicon-arrow-right'></span> B,C
+</h4><ul></p><p style=""></ul></ul><h3> <u>Class E:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Reserved for future experimental purposes
+</h4><ul></p><p style="">IPv6 does NOT use address classes</p><p style="color: red; font-weight: bold; text-decoration: underline; font-size: 16px;">IPv4 address classes have been replaced by CIDR</p><p style=""><h4 style='color: green;'><b>NOTE: Class A,B,C are used for Unicast traffic
+</b></h4></p><p style=""></ul></ul><h3> <u>Class A:
+</u></h3><ul></p><p style=""><h4 style=''>-	 starts with a binary 0
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 First octet range: 00000000 (0) to 01111111 (127)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 decimal range: 0.0.0.0 to 127.255.255.255
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Exceptions:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 IPs starting with 127 are reserved for <span style'color: blue;'>loopback-addresses
+</span></p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 0.0.0.0 is reserved as the default network 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 cannot assign 127.0.0.1 or 0.0.0.0 as device IP
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Network & Host Portion:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 The first octet is the Network portion
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 The last 3 octets are for the host 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 e.g. 104.168.254.37, 104.0.0.0 would be the network address & 104.168.254.37 would be the host address
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Class B:
+</u></h3><ul></p><p style=""><h4 style=''>-	 starts with a binary 10
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 First octet range is from: 10000000 (128) to 10111111 (191)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 decimal range: 128.0.0.0 to 191.255.255.255
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Network & Host Portion:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 The first 2 octets are the network portion 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 The last 2 octets are the host portion
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 e.g. 128.168.254.37, 128.168.0.0 would be the network address & 128.168.254.37 would be the host address
+</p><ul></p><p style="">	</p><p style=""></ul></ul></ul><h3> <u>Class C:
+</u></h3><ul></p><p style=""><h4 style=''>-	 starts with binary 110
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 First octet range: 11000000 (192) to 11011111 (223)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 decimal range: 192.0.0.0 to 223.255.255.255
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Network & Host Portion:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 First 3 octets are the Network portion 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Last octet is the host portion 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 e.g. 192.168.254.37, 192.168.254.0 is the network address & 192.168.254.37 is the host address
+</p><ul></p><p style="">Recall: <span style='color: blue;'>Unicast</span> is when 1 device talks to 1 device, <span style='color: blue;'>Multicast</span> is when 1 device talks to multiple devices</p><p style=""></ul></ul></ul><h3> <u>Class D:
+</u></h3><ul></p><p style=""><h4 style=''>-	 used for multicast 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Starts with binary 1110:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 first octet range is from: 11100000 (224) to 11101111 (239)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 decimal range: 224.0.0.0 to 239.255.255.255
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Exceptions:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 OSPF routing protocol uses 224.0.0.5 & 224.0.0.6
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 224.0.0.X are <span style'color: blue;'>Link-Local-Multicasts
+</span></p><ul></p><p style=""></ul></ul></ul><h3> <u>Class E:
+</u></h3><ul></p><p style=""><h4 style=''>-	 starts with binary 1111
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 first octet range is from: 11110000 (240) to 11111111 (255)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 decimal range: 240.0.0.0 to 255.255.255.255
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Class E is reserved for experimental purposes 
+</h4><ul></p><p style="color: red; font-weight: bold; text-decoration: underline; font-size: 16px;"><h4 style='color: green;'><b>NOTE: These address classes have been replaced with CIDR
+</b></h4></p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Special Addresses 
+</i></h2></div><p style=""></ul><h3> <u>Local Loopback Addresses:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Address: 127.0.0.1
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 NOTE: Any 127.X.X.X address is considered loopback addresses (seen as a mistake, 16million addresses wasted)
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 used to let a system send a message to itself for testing 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 useful to make sure that TCP/IP stack is correctly installed on machine
+</h4><ul></p><p style=""></ul></ul><h3> <u>Local Broadcast Address:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Communicates with all devices on local network
+</h4><ul></p><p style=""></ul><h4 style=''>-	 entire address is binary 1s
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 11111111.11111111.11111111.11111111 or 255.255.255.255
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Example:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 host boots up and doesn't have an IP address, nor does it know the IP address of the DHCP server 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 host sends a local broadcast to request an IP address from the DHCP server 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Broadcasts are ALWAYS dropped by routers
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 UNLESS DHCP forwarding or DHCP relay is configured to forward the request to a DHCP server 
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Directed Broadcast Address:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Host sends data to all devices on a specific network 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Entire host portion is binary 1s
+</h4><ul></p><p style=""></ul><h4 style=''>-	 e.g. if the Network is 172.31.0.0 (Class B Address)
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Directed Broadcast address is: 172.31.255.255
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Routers can be configured to route directed broadcast
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Disabled by default (due to DoS attacks)
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 DoS attack:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Hacker wants to DoS IP 172.16.0.1
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Hacker sends a ton of traffic to network 172.31.0.0 using a Directed Broadcast with source address being 172.16.0.1 (not the hackers actual IP)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 The directed broadcast would be 172.31.255.255, hence all hosts on 172.31.0.0 would receive the broadcast 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 All of the hosts would then reply to the source address, hence overwhelming the source address host creating a DoS attack 
+</p><ul></p></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> RFC - Private Addressess 
+</i></h2></div><p style=""></ul><h3> <u>RFC (Request For Comments):
+</u></h3><ul></p><p style=""><h4 style=''>-	 Internet standards
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Newer RFCs may replace older RFCs
+</h4><ul></p><p style=""></ul></ul><h3> <u>RFC1918:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Private IP Addresses
+</h4><ul></p><p style=""></ul><h4 style=''>-	 non-routable networks on the internet
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 10.0.0.0 to 10.255.255.255 (1 Class A network)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 172.16.0.0 to 172.31.255.255 (16 class B networks)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 192.168.0.0 to 192.168.255.255 (256 Class C networks)
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 implemented to increase the longevity of IPv4
+</h4><ul></p><p style=""></ul><h4 style=''>-	 in order for your computer with host IP 192.168.X.X to traverse the internet your IP must use <span style='color: blue;'>NAT</span> (Network Address Translated) to convert to a public address
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 NAT is done by your Router 
+</p><ul></p></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> RFC - Link Local Addresses 
+</i></h2></div><p style=""></ul><h3> <u>RFC3927:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Automatic Private IP Address (APIPA)
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Used when a PC is configured for DHCP but no DHCP server is available
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 PC automatically chooses an IP in range 169.254.0.0/16
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Allows two computers to communicate when no DHCP server is available
+</p><ul></p><p style="">		</p></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Network Masks 
+</i></h2></div><p style=""></ul><h3> <u>Network Address:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Used to determine network and host portion
+</h4><ul></p><p style=""></ul><h4 style=''>-	 is a device remote or local?
+</h4><ul></p><p style=""></ul></ul><h3> <u>Network Masks:
+</u></h3><ul></p><p style=""><h4 style=''>-	 allows us to determine the host and network portion of an address 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 this lets us determine if the device we want to talk to is on:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 A remote host (different subnet): can be reached via default gateway 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 A local host (on the same subnet): can be reached without going through the default gateway
+</p><ul></p><p style="color: red; font-weight: bold; text-decoration: underline; font-size: 16px;"></ul></ul><h4 style='color: red; font-weight: bold; text-decoration: underline; font-size: 16px;'>-	 devices are on the same subnet if they are using a /16 mask
+</h4><ul></p><p style="color: red; font-weight: bold; text-decoration: underline; font-size: 16px;"></ul><h4 style='color: red; font-weight: bold; text-decoration: underline; font-size: 16px;'>-	 devices are on different subnets if they are using a /24 mask
+</h4><ul></p><p style="">	</p><p style=""></ul></ul><h3> <u>Class A, B, and C networks have default masks AKA natural masks:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Class A: 255.0.0.0
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Class B: 255.255.0.0
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Class C: 255.255.255.0
+</h4><ul></p><p style=""></ul></ul><h3> <u>Class A network that hasn't been subnetted:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Address/Mask pair:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 10.1.1.1 / 255.0.0.0
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 1 in the mask means network 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 0 in the mask means host 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 hence, with the mask 255.0.0.0 which is binary 11111111.00000000.00000000.00000000 means the network address portion is 10 which means network 10.0.0.0
+</h4><ul></p><p style="color: red; font-weight: bold; text-decoration: underline; font-size: 16px;"></ul></ul><h3> <u>Two Simple Rules:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Any address bits with corresponding mask bits set to 1 represent the network ID 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Any address bits with corresponding mask bits set to 0 represent the host ID 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Example:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 You have an IP of 10.1.1.1 (class A address) and a Network Mask of 255.0.0.0
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 IP: 10.1.1.1 converts to 00001010.00000001.00000001.00000001
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Network Mask: 255.0.0.0 converts to 11111111.00000000.00000000.00000000
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 NetID: 00001010 or 10 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 HostID: 00000001.00000001.00000001 or 1.1.1
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Example 2:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 You have an IP of 1.1.1.1 (Class A) and a Network Mask of 255.255.0.0
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 NetID: 1.1
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 HostID: .1.1
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 NOTICE: This is a class A address yet the Network mask determine the network portion to be the first two octets 
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>How to know if receiving device is Local or Remote?:
+</u></h3><ul></p><p style=""><h4 style=''>-	 To check if other host is local:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Check network portion of address 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Compare to the other host
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 If they are the same network, the other device is local 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 If they are NOT the same network, the other device is remote 
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Discontiguous Network Mask:
+</u></h3><ul></p><p style="color: red; font-weight: bold; text-decoration: underline; font-size: 16px;"><h4 style='color: red; font-weight: bold; text-decoration: underline; font-size: 16px;'>-	 CISCO does NOT support discontiguous masks
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Discontigous masks are network masks that have alternating 1s and 0s
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Example of discontiguous mask: 11110000.11111111.00000110.1100000000 (240.255.3.191)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Example of contiguous mask: 11111111.11110000.00000000.00000000 (255.240.0.0)
+</p><ul></p></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> CIDR 
+</i></h2></div><p style=""></ul><h3> <u>CIDR (Classless Inter-Domain Routing):
+</u></h3><ul></p><p style=""><h4 style=''>-	 Replaces classful IP Addressing 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Variable Length subnet masks (VLSM)
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Changes network mask notation:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Instead of using 10.0.0.0 255.0.0.0
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Use 10.0.0.0/8
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>CIDR Notation:
+</u></h3><ul></p><p style=""><h4 style=''>-	 10.0.0.0/8
+</h4><ul></p><p style=""></ul><h4 style=''>-	 The /8 means that there are 8 binary 1s in the network mask 
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 /8 would convert to 11111111.00000000.00000000.00000000 or 255.0.0.0 (old notation)
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 This notation is possible since network masks are contiguous
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Hence, 10.0.0.0/8 would mean the network portion would be the first octet which would be 10, and the host portion is .0.0.0
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Another Example of CIDR notation:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Network mask 255.255.255.0 can be written as /24 since 255.255.255.0 is equal to 11111111.11111111.11111111.00000000 which is 24 consecutive binary 1s
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 So, 10.0.0.0/24 would have a network portion of 10.0.0 and a host portion of .0
+</p><ul></p><p style="">		</p><p style=""></ul></ul></ul><h3> <u>CIDR Issues:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Class A:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 supports 16,777,214 (or 2^24) host addresses 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Has default mask of 255.0.0.0
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Class B:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 supports 65536 (or 2^16) host addresses 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Has default mask of 255.255.0.0
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Class C:
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 supports 254 (or 2^8) host addresses 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Default mask of 255.255.255.0
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 What if a company wants to support 3000 hosts?
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Class B would be wasting thousands of hosts
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Class C wouldn't be enough hosts 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 CIDR allows you to have variable length subnet masks
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 e.g. with CIDR you can have a network mask of /11 or 255.224.0.0
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 This solves the issue described above as we can come closer to the amount of hosts we need to support without wasting thousands of host addresses 
+</p><ul></p></div><div class='well'><h1> Section 8 - Cisco IOS Software and Initial Device Configuration 
+</h1></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Overview 
+</i></h2></div><p style=""></ul><h3> <u>How to connect to cisco router:
+</u></h3><ul></p><p style=""></ul><h3> <u>How to boot up the router:
+</u></h3><ul></p><p style=""></ul><h3> <u>Various Options: 
+</u></h3><ul></p><p style=""></ul><h3> <u>Nexus Operating System:
+</u></h3><ul></p><p style=""></ul><h3> <u>Basic IOS CLI: 
+</u></h3><ul></p><p style=""></ul><h3> <u>CLI functions and operations:
+</u></h3><ul></p><p style=""><h4 style=''>-	 user mode 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 global config mode 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 privilege mode 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 interface mode 
+</h4><ul></p><p style=""></ul></ul><h3> <u>Embedded Help Options:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Use ? for Help
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Use Tab for command completion 
+</h4><ul></p><p style=""></ul></ul><h3> <u>Manage Configurations:
+</u></h3><ul></p></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Cisco IOS Software 
+</i></h2></div><p style=""></ul><h3> <u>CISCO IOS Software:
+</u></h3><ul></p><p style=""><h4 style=''>-	 The most common network operating system 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 There are other CISCO OSs such as Nexus OS. 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Powers both small and large devices 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Used for routers 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Used for Local Area Network (LAN) Switches 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Used on Wireless Access Points 
+</h4><ul></p><p style=""><h4 style='color: green;'><b>	NOTE: may have slight differences on different devices 
+</b></h4></p><p style="color: red; font-weight: bold; text-decoration: underline; font-size: 16px;">	Need to get very good at EXEC Interface</p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> How to connect to a router or switch 
+</i></h2></div><p style=""></ul><h3> <u>How to connect:
+</u></h3><ul></p><p style=""><h4 style=''>-	 May connect locally via console
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 connect the router/switch to your PC via serial cable 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 May connect remotely using <span style='color: blue;'>telnet</span> or <span style='color: blue;'>ssh
+</span></h4><ul></p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Initial Setup 
+</i></h2></div><p style=""></ul><h3> <u>Initial Setup:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Cisco devices sometimes send out a localbroadcast searching for config files
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Recall: Local broadcast are sent on a special reserved IP address: 255.255.255.255
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Cisco broadcast message: tftp://255.255.255.255/network-confg 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 CISCO will ask you to enter "initial configuration dialog"
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 typically network engineers will skip this part 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 if you say yes, the router/switch will ask various questions to help initially setup the device 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 Questions such as
+</p><ul></p><p style=""><p>-			 Setup Router name 
+</p><ul></p><p style=""></ul><p>-			 Setup IP 
+</p><ul></p><p style=""></ul><p>-			 Setup SNMP 
+</p><ul></p><p style=""></ul><p>-			 etc. 
+</p><ul></p></ul></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> CISCO IOS - Modes 
+</i></h2></div><p style=""></ul><h3> <u>User Mode:
+</u></h3><ul></p><p style=""><h4 style=''>-	 default mode upon bootup 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Has a limited number of monitoring basic commands 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 AKA view only mode 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Shown by terminal prefix - hostname>
+</h4><ul></p><p style=""></ul></ul><h3> <u>Privilege Mode: 
+</u></h3><ul></p><p style="color: red; font-weight: bold; text-decoration: underline; font-size: 16px;"><h4 style='color: red; font-weight: bold; text-decoration: underline; font-size: 16px;'>-	 Accessed by enter the "enable" command from user-mode 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 terminal prefix - hostname#
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Allowed to use many more show commands 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Allows debugging 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Required mode to config the device 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 AKA enable mode 
+</h4><ul></p><p style=""></ul></ul><h3> <u>Global Config Mode: 
+</u></h3><ul></p><p style="color: red; font-weight: bold; text-decoration: underline; font-size: 16px;"><h4 style='color: red; font-weight: bold; text-decoration: underline; font-size: 16px;'>-	 Accessed by entering "conf-t" from privilege mode 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 terminal prefix - hostname(config)#
+</h4><ul></p><p style=""></ul></ul><h3> <u>Interface Mode: 
+</u></h3><ul></p><p style=""><h4 style=''>-	 terminal prefix - hostname(config-if)#
+</h4><ul></p><p style=""></ul><h4 style=''>-	 used to change interface configurations 
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 IP Address 
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 enable/disable interfaces 
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Line Mode:
+</u></h3><ul></p><p style=""><h4 style=''>-	 config console port 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 config aux port 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 config vty (telnet)
+</h4><ul></p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> CISCO IOS - Basic Commands 
+</i></h2></div><p style=""></ul><h3> <u>User Mode Commands: 
+</u></h3><ul></p><p style=""><h4 style=''>-	 enable 
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 takes you into privilege mode 
+</p><ul></p><p style="">	</p><p style=""></ul></ul></ul><h3> <u>Privilege Mode Commands:
+</u></h3><ul></p><p style=""><h4 style=''>-	 conf t 
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 short for "configure terminal"
+</p><ul></p><p style=""></ul><p style='font-size: 16px'>-		 takes you to global configuration mode 
+</p><ul></p><p style="">	</p><p style=""></ul></ul></ul><h3> <u>Global Config. Mode Commands:
+</u></h3><ul></p><p style=""><h4 style=''>-	 ctrl+z
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 takes you back out of global conf. mode 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 interface FastEthernet 0/1
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Enter config mode for FastEthernet port 1 on interface 0 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 hostname <hostname>
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 Change the hostname of the router 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 line console 0
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 go to line mode to configure the console port
+</p><ul></p><p style="">	</p><p style=""></ul></ul></ul><h3> <u>Interface Config Mode Commands:
+</u></h3><ul></p><p style=""><h4 style=''>-	 ctrl+z
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 takes you back to privilege/enable mode 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 ip address (Routers only)
+</h4><ul></p><p style=""></ul></ul><h3> <u>Line Modes:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Line Console 0
+</h4><ul></p><p style=""><p style='font-size: 16px'>-		 password cisco 
+</p><ul></p><p style=""><p>-			 when connecting to device, must enter password "cisco"
+</p><ul></p><p style=""></ul><p>-			 NOTE: Will not be prompted for password if login isn't enabled (see below)
+</p><ul></p><p style=""></ul></ul><p style='font-size: 16px'>-		 login
+</p><ul></p><p style=""><p>-			 enables login requirement
+</p><ul></p></ul></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Configuration of the Router 
+</i></h2></div><p style=""></ul><h3> <u>Config Steps:
+</u></h3><ul></p><p style=""><h4 style=''>-	 On bootup of a factory reset device, skip the initial config dialog 
+</h4><ul></p><p style="color: red; font-weight: bold; text-decoration: underline; font-size: 16px;"></ul><h4 style='color: red; font-weight: bold; text-decoration: underline; font-size: 16px;'>-	 You start of in <span style='color: blue;'>User-Mode,</span> enter "enable" to enter <span style='color: blue;'>Privilege-Mode
+</span></h4><ul></p>
+    </div>
+</body>
+</html>
