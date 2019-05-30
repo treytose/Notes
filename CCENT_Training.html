@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body style="background: gray;">
+    <div class="container">
+    <div class='well'><h1> Udemy Course 
+</h1></div><div class='well'><h1> Section 1 
+</h1>Introduction & Welcome
+</div><div class='well'><h1> Section 2 & 3 
+</h1><h3>Terminology:
+</h3><ul>    NIC (Network Interface Card) - Computer hardware that connects a computer to a network.
+        transforms computer data into a format that can be transported over a wire.
+    Computer Network - Computers that are connected and capable of sharing information.
+    Networking Protocols - Rules for directing internet traffic. Kind of like vehicle traffic has stop signs, traffic lights, etc.
+</ul><h3>Home Network:
+</h3><ul><b><u>    Router</b></u>:     Moves information from one interface to another
+                Make decisions to determine best path for information to travel based on distance or route cost
+<b><u>    Switch</b></u>:     Connects multiple device together (PC, Printer, PC) <span class='glyphicon glyphicon-arrow-right'></span> Switch <span class='glyphicon glyphicon-arrow-right'></span> Router <span class='glyphicon glyphicon-arrow-right'></span> ...
+<b><u>    DNS (Domain Name System)</b></u>: Converts names or domain names to an IP address
+<b><u>    Network Characteristics</b></u>: Similar to how computers have specs such as CPU, RAM, etc. Networks have Characteristics to determine things such as speed.
+Logical V.S. Physical Topology
+<b><u>Logical</b></u>: Desribes the path of which data is transferred in a network. May be very different than physical topology.
+    May use VLANs (Virtual Local Area Networks) which can drastically change a network
+<b><u>Physical</b></u>: The actual arrangment of a network. cables, network devices, endpoints, etc. Shows how the network appears.
+</div><div class='well'><h1> Section 4 - OSI Model 
+</h1></div><div class='well'><h1> Section 7 - IP Addressing 
+</h1><h4><i> Overview 
+</i></h4></ul><h3>Address Classes:
+</h3><ul><h4 style='font-size: 16px;'><b>-     Class A
+</b></h4><ul><p>-         Test case
+</p><ul></ul></ul><h4 style='font-size: 16px;'><b>-     Class B
+</b></h4><ul></ul><h4 style='font-size: 16px;'><b>-     Class C
+</b></h4><ul></ul><h4 style='font-size: 16px;'><b>-     Class D
+</b></h4><ul></ul><h4 style='font-size: 16px;'><b>-     Class E
+</b></h4><ul></ul><h4 style='font-size: 16px;'><b>-     CIDR
+</b></h4><ul></ul></ul><h3>Special Addresses:
+</h3><ul><h4 style='font-size: 16px;'><b>-     Loopback address
+</b></h4><ul></ul><h4 style='font-size: 16px;'><b>-     local broadcast address
+</b></h4><ul></ul></ul><h3>Network Masks:
+</h3><ul></ul><h3>IPv4 Address:
+</h3><ul><h4 style='font-size: 16px;'><b>-     A layer 3, network level, logical address assigned by an administrator
+</b></h4><ul></ul><h4 style='font-size: 16px;'><b>-     Used to identify specific devices on a network
+</b></h4><ul></ul><h4 style='font-size: 16px;'><b>-     connectionless protocol
+</b></h4><ul><p>-         unlike TCP, a connection protocol, IPv4 does not need a connection to transmit packets
+</p><ul></ul></ul><h4 style='font-size: 16px;'><b>-     packets treated independently
+</b></h4><ul><p>-         may take different paths due to routers load balancing, bandwidth, hopcount, etc.
+</p><ul></ul></ul><h4 style='font-size: 16px;'><b>-     hierarchical addressing structure
+</b></h4><ul><p>-         network and host portion
+</p><ul></ul></ul><h4 style='font-size: 16px;'><b>-     best effort delivery
+</b></h4><ul><p>-         packets may be lost
+</p><ul></ul><p>-         no data recovery features
+</p><ul></ul><p>-         relies on higher level protocols to implement data recovery (TCP)
+</p><ul></ul></ul></ul><h3>IPv4 Address Format:
+</h3><ul><h4 style='font-size: 16px;'><b>-     192.168.254.37
+</b></h4><ul><p>-         Binary Conversion: 11000000.10101000.11111110.00100101
+</p><ul></ul></ul><h4 style='font-size: 16px;'><b>-     32 bits total
+</b></h4><ul></ul><h4 style='font-size: 16px;'><b>-     4 segments, each segment is 8 bits (aka octets)
+</b></h4><ul></ul></ul><h3>    * Network Address Portion (Network ID):
+</h3><ul><p>-         identifies a specific network
+</p><ul></ul></ul></ul><h3>Network Address V.S. Host Address:
+</h3><ul><h4 style='font-size: 16px;'><b>-     Routers determine route based on destination given by the Network address
+</b></h4><ul><p>-         Routers have lookup tables in them that are full of network addresses
+</p><ul></ul></ul><h4 style='font-size: 16px;'><b>-     The host address is used to determine the device on the destination network
+</b></h4><ul></ul></ul><h3>Address Classes:
+</h3><ul><h4 style='font-size: 16px;'><b>-     Class A, B, C
+</b></h4><ul><p>-         Used for Unicast traffic
+</p><ul></ul><p>-         Recall that Unicast is single direction traffic e.g. A <span class'glyphicon glyphicon-arrow-right'></span> B
+</p><ul></ul></ul><h4 style='font-size: 16px;'><b>-     Class D
+</b></h4><ul><p>-         Used for multicast traffic
+</p><ul></ul><p>-         Recall multicast is for multiple direction traffic. e.g. A <span class'glyphicon glyphicon-arrow-right'></span> B,C
+</p><ul></ul></ul><h4 style='font-size: 16px;'><b>-     Class E
+</b></h4><ul><p>-         Reserved for future experimental purposes
+</p><ul></ul></ul><h4 style='font-size: 16px;'><b>-     IPv6 does NOT use address classes
+</b></h4><ul></ul><h4 style='font-size: 16px;color: red;'><b>-     IPv4 address classes have been replaced by CIDR
+</b></h4><ul>
+    </div>
+</body>
+</html>

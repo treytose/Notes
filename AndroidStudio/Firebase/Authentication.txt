@@ -1,0 +1,11 @@
+1. Connect app to firebase using Tools -> Firebase
+2. Use the assistant to add the dependencies
+3. Use Authentication.java for reference
+4. Check for errors. If error then check build.gradle files. See notes at bottom of page for more details.
+5. In a web browser, go to firebase console, enable the authentication for each provider you want (google and email)
+6. Add FirebaseUI dependecies to app level build.gradle file:
+    implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
+7. 
+Note: 
+    If you are running into an error check your build.gradle files
+    The project build.gradle file may need to make this change: classpath 'com.google.gms:google-services:4.2.0'

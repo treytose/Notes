@@ -244,7 +244,7 @@ NOTE: You CANNOT make an HTTP request on the main thread because it will make th
           theAdapter = new RvAdapter(100); // init an adapter which will have 100 views (rows or columns)
           LinearLayoutManager llm = new LinearLayoutManager(MainActivity.this); //This is IMPORTANT! or it will not show up
           theRecyclerView.setLayoutManager(llm);
-          theRecyclerView.setHasFixedSize(true);
+          theRecyclerView.setHasFixedSize(true); //more efficient to have fixed size instead of calculating it every time new content is added
 
           //set the recyclerviews adapter to the created adapter
           theRecyclerView.setAdapter(theAdapter);

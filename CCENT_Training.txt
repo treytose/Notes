@@ -1,0 +1,80 @@
+################################### Udemy Course ######################################
+########################### Section 1 #########################
+Introduction & Welcome
+
+########################### Section 2 & 3 #########################
+Terminology:
+    NIC (Network Interface Card) - Computer hardware that connects a computer to a network.
+        transforms computer data into a format that can be transported over a wire.
+    Computer Network - Computers that are connected and capable of sharing information.
+    Networking Protocols - Rules for directing internet traffic. Kind of like vehicle traffic has stop signs, traffic lights, etc.
+
+Home Network:
+    Router:     Moves information from one interface to another
+                Make decisions to determine best path for information to travel based on distance or route cost
+    Switch:     Connects multiple device together (PC, Printer, PC) -> Switch -> Router -> ...
+    DNS (Domain Name System): Converts names or domain names to an IP address
+    Network Characteristics: Similar to how computers have specs such as CPU, RAM, etc. Networks have Characteristics to determine things such as speed.
+
+Logical V.S. Physical Topology
+Logical: Desribes the path of which data is transferred in a network. May be very different than physical topology.
+    May use VLANs (Virtual Local Area Networks) which can drastically change a network
+Physical: The actual arrangment of a network. cables, network devices, endpoints, etc. Shows how the network appears.
+
+########################### Section 4 - OSI Model #########################
+
+
+########################### Section 7 - IP Addressing #####################
+#### Overview ####
+Address Classes:
+    * Class A
+        = Test case
+    * Class B
+    * Class C
+    * Class D
+    * Class E
+    * CIDR
+
+Special Addresses:
+    * Loopback address
+    * local broadcast address
+
+Network Masks:
+IPv4 Address:
+    * A layer 3, network level, logical address assigned by an administrator
+    * Used to identify specific devices on a network
+    * connectionless protocol
+        = unlike TCP, a connection protocol, IPv4 does not need a connection to transmit packets
+    * packets treated independently
+        = may take different paths due to routers load balancing, bandwidth, hopcount, etc.
+    * hierarchical addressing structure
+        = network and host portion
+    * best effort delivery
+        = packets may be lost
+        = no data recovery features
+        = relies on higher level protocols to implement data recovery (TCP)
+
+IPv4 Address Format:
+    * 192.168.254.37
+        = Binary Conversion: 11000000.10101000.11111110.00100101
+    * 32 bits total
+    * 4 segments, each segment is 8 bits (aka octets)
+    * Network Address Portion (Network ID):
+        = identifies a specific network
+
+Network Address V.S. Host Address:
+    * Routers determine route based on destination given by the Network address
+        = Routers have lookup tables in them that are full of network addresses
+    * The host address is used to determine the device on the destination network
+
+Address Classes:
+    * Class A, B, C
+        = Used for Unicast traffic
+        = Recall that Unicast is single direction traffic e.g. A -> B
+    * Class D
+        = Used for multicast traffic
+        = Recall multicast is for multiple direction traffic. e.g. A -> B,C
+    * Class E
+        = Reserved for future experimental purposes
+    * IPv6 does NOT use address classes
+    * !IPv4 address classes have been replaced by CIDR!
