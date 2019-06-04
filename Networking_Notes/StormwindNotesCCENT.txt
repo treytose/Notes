@@ -1,0 +1,86 @@
+################# Section 1 Part 1 ################
+#### Router V.S. Switch ####
+Router:  
+    * used for connecting networks together
+    * typically has far fewer ports than a switch 
+    * can perform many functions, wifi, connecting to internet, etc. 
+    * Typically function in layer 2 of the OSI model 
+        = Multilayer routers may function in mutliple layers 
+
+Switch:
+    * Used for connecting many devices together 
+    * has alot of ports, 24, 48, etc. 
+    * Switches are usually layer 2
+        = There are switches that go layer 2 & layer 3 called ~multilayer switches~
+
+    NOTE: This exam does not focus on multilayer routers/switches
+
+#### Physical V.S. Logical Topology ####
+Physical Topology:
+    * physical layout of cables and devices 
+    * 3 main topologies
+        = ~bus topology~
+            @ rarely used 
+            @ when HUBs were used instead of switches 
+        = ~star topology~
+            @ most common 
+            @ multiple devices connected to a switch 
+        = ~mesh topology~
+            @ multiple connections between devices 
+            @ good for high availability needs 
+            @ good for redundancy 
+            @ Expensive 
+    * core
+        = used when you have tons of connections 
+        = expensive but less expensive for large networks 
+        = scalable 
+
+Logical Topology:
+    * the logical connection of devices 
+    * devices may go through different VLANs so it is different than the physical toplogy 
+
+
+#### Firewalls ####
+Firewalls:
+    * Firewalls provide security by limiting traffic flow 
+    * some traffic is permitted by default because it comes from more trusted interfaces
+
+#### Wireless Access Points and Controllers ####
+Access Points (AP):
+    * Standalone APs do not use a controller 
+        = Manage APs individually 
+        = Traffic flows from end user to AP to end user 
+    * Lightweight APs require a ~WLC ~(Wireless Lan Controller)~
+        = Managed from a central location (WLC)~
+        = Traffic flows from end user to AP to WLC to AP to end user  
+
+#### Standards Based Models ####
+Standards Based Models:
+    * The standardization among models 
+    * allows compatibility between different devices 
+        = e.g. an iphone can communicate with an android through AT&T or Verizon
+        = e.g. firefox and chrome can both access websites 
+    * standardized components 
+    * reduces complexity 
+
+#### OSI Model ####
+Layer 7 - Application 
+Layer 6 - Presentation 
+Layer 5 - Session 
+Layer 4 - Transport 
+Layer 3 - Network 
+Layer 2 - Data Link 
+Layer 1 - Physical
+
+#### TCP/IP Stack ####
+~Application:
+    * Application, Layer 7
+    * Presentation, Layer 6
+    * Session, Layer 5
+~Transport: 
+    * Transport, Layer 4
+~Internet:
+    * Network, Layer 3
+~Link:
+    * Data Link, Layer 2
+    * Physical, Layer 1

@@ -504,7 +504,7 @@ User Mode:
 
 
 Privilege Mode: 
-	* Accessed by enter the "enable"! command from user-mode 
+	* Accessed by entering the "enable"! command from user-mode 
 	* terminal prefix - hostname#
 	* Allowed to use many more show commands 
 	* Allows debugging 
@@ -512,21 +512,30 @@ Privilege Mode:
 	* AKA enable mode 
 
 Global Config Mode: 
-	* Accessed by entering "conf-t"! from privilege mode 
+	* Accessed by entering "conf t"! from privilege mode 
 	* terminal prefix - hostname(config)#
 
 Interface Mode: 
+	* Accessed by entering "interface <interface_name> <interface_num>/<port> from global config mode!
+		= e.g. "interface FastEthernet 0/1"
 	* terminal prefix - hostname(config-if)#
 	* used to change interface configurations 
 		= IP Address 
 		= enable/disable interfaces 
 
 Line Mode:
+	* Accessed by entering "line <line_mode> <port>" from global config mode! 
+		= e.g. "line console 0" will take you to line mode for configuring the console port 
+			@ NOTE: The console port is the port for connecting your terminal 
+	* terminal prefix - hostname(config-line)#
 	* config console port 
 	* config aux port 
 	* config vty (telnet)
 
 #### CISCO IOS - Basic Commands ####
+All Mode Commands:
+	* show history
+		= show the history of commands entered within your current mode 
 
 User Mode Commands: 
 	* enable 
@@ -539,14 +548,11 @@ Privilege Mode Commands:
 	
 Global Config. Mode Commands:
 	* ctrl+z
-		= takes you back out of global conf. mode 
-	* interface FastEthernet 0/1
-		= Enter config mode for FastEthernet port 1 on interface 0 
+		= takes you back to privilege/enable mode  
 	* hostname <hostname>
 		= Change the hostname of the router 
-	* line console 0
-		= go to line mode to configure the console port
-
+	* show version 
+		= display information about this router/switch 
 	
 Interface Config Mode Commands:
 	* ctrl+z
@@ -561,8 +567,123 @@ Line Modes:
 		= login
 			@ enables login requirement
 
-#### Configuration of the Router ####
-Config Steps:
-	* On bootup of a factory reset device, skip the initial config dialog 
-	* You start of in User-Mode~, enter "enable"! to enter Privilege-Mode~
+#### Config Commands ####
+show startup-config:
+	* aka sh start 
+	* shows the startup configuration file 
+show running-config:
+	* aka sh run 
+	* shows the running config file 
 
+#### Copying Config Files V.S. Configure Replace ####
+Config Commands: 
+	* sh start  (show startup-config)
+		= Shows you the startup configuration file. Should return "not present"
+			@ This is the configuration that will be used on bootup
+		= If a config file is already setup use: del flash:config.text to delete the config file 
+	* sh run (show running-config)
+		= Shows you the currently running configuration 
+	* copy start run
+		= merges the start config with the run config
+		= configurations that are conflicting will be replaced by the start config file config options
+	* copy run start 
+		= replaces the start config with the running config 
+	* configure replace nvram:startup-config 
+		= replace the running config with the startup-config 
+		= preferred command, more reliable
+	* copy tftp run 
+		= merge of a config file on a remote server to current running config 
+	* copy start tftp
+		= 
+
+#### Erase Config ####
+erase startup-config:
+	* erases the startup config file 
+
+write memory:
+	* aka "wr" 
+	* saves the running-config as the startup-config 
+
+#### Storing Files in Flash & Terminal Length ####
+sh flash:	
+	* shows files in flash
+cp run flash:run1.cfg:
+	* copies the run config file to a file named run1.cfg in flash 
+
+terminal length <length>:
+	* terminal length is the amount of lines shown when you type a command 
+	* a length of 0 will show all lines 
+
+~NVRAM is where the startup-config is stored!
+~Normal RAM is where the running-config is stored! 
+
+########################################### IP Subnetting #################################################
+Subnetting Answers questions such as:
+	* what subnet is this host on?
+	* what is a last host? 
+	* subnet  this  network into 10 subnets
+	* what IP address would router1 be configured with if it is to use the first ip address in the same subnet as PC1?
+2 Methods:
+	* method 1 - binary 
+	* method 2 - quick method 
+
+#### Binary Method #### 
+Network/Subnet Address: 
+	* Fill the host portion of the address with 0s
+	* AKA all host is 0!
+
+Broadcast Address:
+	* fill the host portion of the address with 1s 
+	* AKA all host is 1!
+
+First Host:
+	* Fill the host portion of an address with binary 0s except for the last bit~ which is set to binary 1
+	* AKA 1 above the subnet address!
+
+Last Host:
+	* Fill the host portion of an address with binary 1s except for the last bit~ which is set to binary 0 
+	* AKA 1 below the broadcast address 
+
+Example: 
+	* Given an IP Address of 192.168.1.18/24 (aka 192.168.1.18 with Network Mask 255.255.255.0)
+	* Network portion is 192.168.1
+	* .18 is the host portion 
+	* Subnet is 192.168.1.00000000
+	* Broadcast Address 192.168.1.11111111 which is 192.168.1.255
+	* 1st host is 192.168.1.00000001 which is 192.168.1.1 
+	* last host is 192.168.1.11111110 which is 192.168.1.254
+
+Example 2:
+	* IP: 172.16.35.123/20
+		= Same as 172.16.35.123 with netmask of 255.255.11110000.000000000 = 255.255.240.0
+
+#### Fast Method ####
+Table:
+	128 | 64  | 32  | 16  | 8   | 4   | 2   | 1
+	128 | 192 | 224 | 240 | 248 | 252 | 254 | 255 
+Example:
+	172.16.35.123/20
+Step 1:
+	* Convert /20 to network mask 
+		= /20 -> 255.255.11110000.00000000 -> 255.255.240.0
+
+Step 2:
+	* Find corresponding number in table (or subtract from 256)
+		= 256 - 240 = 16
+		= This means that the subnet increases by increments of 16!
+
+Step 3:
+	* Find the factor of 16 that is below the 3rd octet of the IP 
+		= 3rd octet is 35
+		= 32~ is factor of 16 below 35
+
+Hence the subnet is:
+	* 172.16.32.0
+	* NOTE: The next subnet would be +16 which is 172.16.48.0
+
+Step 4:
+	* The broadcast address is equal to the next subnet - 1
+	* We add the subnet increment to the first subnet address corresponding octet to get the next subnet address 
+		= 172.16.32.0 -> +16 -> 172.16.48.0
+	* Now subtract 1 from the ~entire address~ to get the broadcast address! 
+		= 172.16.47.0
