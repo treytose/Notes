@@ -453,7 +453,14 @@
 </p><ul></p><p style="color: green; font-weight: bold;"></ul><p style='color: green; font-weight: bold;'>-			 NOTE: Will not be prompted for password if login isn't enabled (see below)
 </p><ul></p><p style=""></ul></ul><p style=''>-		 login
 </p><ul></p><p style=""><p style=''>-			 enables login requirement
-</p><ul></p></ul></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Configuration of the Router 
+</p><ul></p></ul></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Config Commands 
+</i></h2></div><p style=""></ul><h3> <u>show startup-config:
+</u></h3><ul></p><p style=""><h4 style=''>-	 aka sh start 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 shows the startup configuration file 
+</h4><ul></p><p style=""></ul></ul><h3> <u>show running-config:
+</u></h3><ul></p><p style=""><h4 style=''>-	 aka sh run 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 shows the running config file 
+</h4><ul></p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Copying Config Files V.S. Configure Replace 
 </i></h2></div><p style=""></ul><h3> <u>Config Commands: 
 </u></h3><ul></p><p style=""><h4 style=''>-	 sh start  (show startup-config)
 </h4><ul></p><p style=""><p style=''>-		 Shows you the startup configuration file. Should return "not present"
@@ -461,24 +468,260 @@
 </p><ul></p><p style=""></ul></ul><p style=''>-		 If a config file is already setup use: del flash:config.text to delete the config file 
 </p><ul></p><p style=""></ul></ul><h4 style=''>-	 sh run (show running-config)
 </h4><ul></p><p style=""><p style=''>-		 Shows you the currently running configuration 
-</p><ul></p></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> start_config file & run_config file 
-</i></h2></div><p style=""><h4 style=''>-	 start_config:
-</h4><ul></p><p style=""><p style=''>-		 the config of the switch/router that will be used upon reboot 
-</p><ul></p><p style=""></ul></ul><h4 style=''>-	 run_config:
-</h4><ul></p><p style=""><p style=''>-		 the currently running configuration 
-</p><ul></p><p style=""></ul></ul><h4 style=''>-	 copy run start
-</h4><ul></p><p style=""><p style=''>-		 copies the currently running config to the startup config file
-</p><ul></p><p style="color: green; font-weight: bold;"></ul><p style='color: green; font-weight: bold;'>-		 NOTE: This will merge the two files 
-</p><ul></p><p style=""></ul></ul></ul><h3> <u>		= Example: 
-</u></h3><ul></p><p style=""><p style=''>-			 sh <span style='color: blue;'>run</span> | b vty
-</p><ul></p><p style="">				- vty 0-10 login </p><p style="">				- vty 11-15 no login </p><p style=""></ul><p style=''>-			 sh <span style='color: blue;'>start</span> | b vty 
-</p><ul></p><p style="">				- vty 0-10 no login </p><p style=""></ul><p style=''>-			 copy start run
-</p><ul></p><p style=""></ul><p style=''>-			 sh <span style='color: blue;'>run</span> | b vty
-</p><ul></p><p style="">				- vty 0-10 <span style='color: blue;'>no</span> <span style='color: blue;'>login</span> </p><p style="">				- vty 11-15 <span style='color: blue;'>no</span> <span style='color: blue;'>login</span> </p><p style="color: green; font-weight: bold;"></ul><p style='color: green; font-weight: bold;'>-			 NOTE: Notice how the running config still has vty 11-15. This is because it is not a true copy, it is merging the two files. 
-</p><ul></p><p style=""></ul></ul></ul></ul><h3> <u>Config Steps:
-</u></h3><ul></p><p style=""><h4 style=''>-	 On bootup of a factory reset device, skip the initial config dialog 
-</h4><ul></p><p style="color: red; font-weight: bold; font-size: 16px;"></ul><h4 style='color: red; font-weight: bold; font-size: 16px;'>-	 You start of in <span style='color: blue;'>User-Mode,</span> enter "enable" to enter <span style='color: blue;'>Privilege-Mode
-</span></h4><ul></p>
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 copy start run
+</h4><ul></p><p style=""><p style=''>-		 merges the start config with the run config
+</p><ul></p><p style=""></ul><p style=''>-		 configurations that are conflicting will be replaced by the start config file config options
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 copy run start 
+</h4><ul></p><p style=""><p style=''>-		 replaces the start config with the running config 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 configure replace nvram:startup-config 
+</h4><ul></p><p style=""><p style=''>-		 replace the running config with the startup-config 
+</p><ul></p><p style=""></ul><p style=''>-		 preferred command, more reliable
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 copy tftp run 
+</h4><ul></p><p style=""><p style=''>-		 merge of a config file on a remote server to current running config 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 copy start tftp
+</h4><ul></p><p style=""><p style=''>-		 
+</p><ul></p></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Erase Config 
+</i></h2></div><p style=""></ul><h3> <u>erase startup-config:
+</u></h3><ul></p><p style=""><h4 style=''>-	 erases the startup config file 
+</h4><ul></p><p style=""></ul></ul><h3> <u>write memory:
+</u></h3><ul></p><p style=""><h4 style=''>-	 aka "wr" 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 saves the running-config as the startup-config 
+</h4><ul></p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Storing Files in Flash & Terminal Length 
+</i></h2></div><p style=""></ul><h3> <u>sh flash:	
+</u></h3><ul></p><p style=""><h4 style=''>-	 shows files in flash
+</h4><ul></p><p style=""></ul></ul><h3> <u>cp run flash:run1.cfg:
+</u></h3><ul></p><p style=""><h4 style=''>-	 copies the run config file to a file named run1.cfg in flash 
+</h4><ul></p><p style=""></ul></ul><h3> <u>terminal length &ltlength&gt:
+</u></h3><ul></p><p style=""><h4 style=''>-	 terminal length is the amount of lines shown when you type a command 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 a length of 0 will show all lines 
+</h4><ul></p><p style="color: red; font-weight: bold; font-size: 16px;"><span style='color: blue;'>NVRAM</span> is where the startup-config is stored</p><p style="color: red; font-weight: bold; font-size: 16px;"><span style='color: blue;'>Normal</span> RAM is where the running-config is stored </p></div><div class='well'><h1> IP Subnetting 
+</h1><p style=""></ul></ul><h3> <u>Subnetting Answers questions such as:
+</u></h3><ul></p><p style=""><h4 style=''>-	 what subnet is this host on?
+</h4><ul></p><p style=""></ul><h4 style=''>-	 what is a last host? 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 subnet  this  network into 10 subnets
+</h4><ul></p><p style=""></ul><h4 style=''>-	 what IP address would router1 be configured with if it is to use the first ip address in the same subnet as PC1?
+</h4><ul></p><p style=""></ul></ul><h3> <u>2 Methods:
+</u></h3><ul></p><p style=""><h4 style=''>-	 method 1 - binary 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 method 2 - quick method 
+</h4><ul></p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Binary Method  
+</i></h2></div><p style=""></ul><h3> <u>Network/Subnet Address: 
+</u></h3><ul></p><p style=""><h4 style=''>-	 Fill the host portion of the address with 0s
+</h4><ul></p><p style="color: red; font-weight: bold; font-size: 16px;"></ul><h4 style='color: red; font-weight: bold; font-size: 16px;'>-	 AKA all host is 0
+</h4><ul></p><p style=""></ul></ul><h3> <u>Broadcast Address:
+</u></h3><ul></p><p style=""><h4 style=''>-	 fill the host portion of the address with 1s 
+</h4><ul></p><p style="color: red; font-weight: bold; font-size: 16px;"></ul><h4 style='color: red; font-weight: bold; font-size: 16px;'>-	 AKA all host is 1
+</h4><ul></p><p style=""></ul></ul><h3> <u>First Host:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Fill the host portion of an address with binary 0s except for the last <span style='color: blue;'>bit</span> which is set to binary 1
+</h4><ul></p><p style="color: red; font-weight: bold; font-size: 16px;"></ul><h4 style='color: red; font-weight: bold; font-size: 16px;'>-	 AKA 1 above the subnet address
+</h4><ul></p><p style=""></ul></ul><h3> <u>Last Host:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Fill the host portion of an address with binary 1s except for the last <span style='color: blue;'>bit</span> which is set to binary 0 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 AKA 1 below the broadcast address 
+</h4><ul></p><p style=""></ul></ul><h3> <u>Example: 
+</u></h3><ul></p><p style=""><h4 style=''>-	 Given an IP Address of 192.168.1.18/24 (aka 192.168.1.18 with Network Mask 255.255.255.0)
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Network portion is 192.168.1
+</h4><ul></p><p style=""></ul><h4 style=''>-	 .18 is the host portion 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Subnet is 192.168.1.00000000
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Broadcast Address 192.168.1.11111111 which is 192.168.1.255
+</h4><ul></p><p style=""></ul><h4 style=''>-	 1st host is 192.168.1.00000001 which is 192.168.1.1 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 last host is 192.168.1.11111110 which is 192.168.1.254
+</h4><ul></p><p style=""></ul></ul><h3> <u>Example 2:
+</u></h3><ul></p><p style=""><h4 style=''>-	 IP: 172.16.35.123/20
+</h4><ul></p><p style=""><p style=''>-		 Same as 172.16.35.123 with netmask of 255.255.11110000.000000000  255.255.240.0
+</p><ul></p></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Fast Method 
+</i></h2></div><p style=""></ul><h3> <u>Table:
+</u></h3><ul></p><p style="">	128 | 64  | 32  | 16  | 8   | 4   | 2   | 1</p><p style="">	128 | 192 | 224 | 240 | 248 | 252 | 254 | 255 </p><p style=""></ul><h3> <u>Example:
+</u></h3><ul></p><p style="">	172.16.35.123/20</p><p style=""></ul><h3> <u>Step 1:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Convert /20 to network mask 
+</h4><ul></p><p style=""><p style=''>-		 /20 <span class'glyphicon glyphicon-arrow-right'></span> 255.255.11110000.00000000 <span class'glyphicon glyphicon-arrow-right'></span> 255.255.240.0
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Step 2:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Find corresponding number in table (or subtract from 256)
+</h4><ul></p><p style=""><p style=''>-		 256 - 240  16
+</p><ul></p><p style="color: red; font-weight: bold; font-size: 16px;"></ul><p style='color: red; font-weight: bold; font-size: 16px;'>-		 This means that the subnet increases by increments of 16
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Step 3:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Find the factor of 16 that is below the 3rd octet of the IP 
+</h4><ul></p><p style=""><p style=''>-		 3rd octet is 35
+</p><ul></p><p style=""></ul><p style=''>-		 <span style'color: blue;'>32</span> is factor of 16 below 35
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Hence the subnet is:
+</u></h3><ul></p><p style=""><h4 style=''>-	 172.16.32.0
+</h4><ul></p><p style="color: green; font-weight: bold;"></ul><h4 style='color: green; font-weight: bold;'>-	 NOTE: The next subnet would be +16 which is 172.16.48.0
+</h4><ul></p><p style=""></ul></ul><h3> <u>Step 4:
+</u></h3><ul></p><p style=""><h4 style=''>-	 The broadcast address is equal to the next subnet - 1
+</h4><ul></p><p style=""></ul><h4 style=''>-	 We add the subnet increment to the first subnet address corresponding octet to get the next subnet address 
+</h4><ul></p><p style=""><p style=''>-		 172.16.32.0 <span class'glyphicon glyphicon-arrow-right'></span> +16 <span class'glyphicon glyphicon-arrow-right'></span> 172.16.48.0
+</p><ul></p><p style="color: red; font-weight: bold; font-size: 16px;"></ul></ul><h4 style='color: red; font-weight: bold; font-size: 16px;'>-	 Now subtract 1 from the <span style='color: blue;'>entire</span> <span style='color: blue;'>address</span> to get the broadcast address 
+</h4><ul></p><p style=""><p style=''>-		 172.16.47.0
+</p><ul></p></div><div class='well'><h1> Chapter 3 - CCENT Book 
+</h1></div><div class='well'><h1> Leased Lines 
+</h1><p style=""></ul></ul></ul><h3> <u>Leased lines only define Layer 1 services:
+</u></h3><ul></p><p style=""><h4 style=''>-	 since they only define layer 1, companies use Layer 2 Protocols of HDLC (High-Level Data Link Control) and PPP (Point to Point Protocol)
+</h4><ul></p><p style="">Recall: Layer 2 (Data Link) protocols always define how to control the delivery of data over a physical link of a particular type</p><p style=""></ul></ul><h3> <u>HDLC:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Layer 2 Protocol 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 When a router sends an HDLC frame, it can go only one place: to the other end of the link. 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 HDLC has an address field but the destination is already implied (only 1 place to go)
+</h4><ul></p><p style="">	</p><p style=""></ul></ul><h3> <u>PoP:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Point of Precense for a Service Provider 
+</h4><ul></p><p style=""></ul></ul><h3> <u>EoMPLS:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Ethernet over Multi-Protocol Label Switching
+</h4><ul></p><p style=""></ul><h4 style=''>-	 This protocol allows us to view a WAN as a simple ethernet connection between two routers 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 e.g. cust1 &lt--&gt Router A &lt--&gt (WAN using EoMPLS) &lt--&gt Router B &lt--&gt cust2
+</h4><ul></p><p style=""></ul></ul><h3> <u>DSL:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Process of using telephone lines to provide internet
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Digital Subscriber Line 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 another WAN technology, creates short high-speed WAN between customer and ISP
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Uses the already existing phone line for providing internet 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Uses RJ-11 connectors (smaller version of ethernet cable aka RJ-45 connector)
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Consumers need a <span style='color: blue;'>Modem</span> to be able to connect to the internet via Phone Lines 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 DSLAM
+</h4><ul></p><p style=""><p style=''>-		 DSL Access MultiPlexer 
+</p><ul></p><p style=""></ul><p style=''>-		 Allows the in home Router to be able to send data to/form the internet.
+</p><ul></p><p style=""></ul><p style=''>-		 Basically splits internet traffic and voice telephone traffic 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 DSL supports <span style='color: blue;'>Assymetric</span> <span style='color: blue;'>Speeds</span> which means download speeds are much faster than upload speeds 
+</h4><ul></p><p style=""></ul></ul><h3> <u>Cable:
+</u></h3><ul></p><p style=""><h4 style=''>-	 process of using TV Cable lines to provide internet 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 creates an internet access services which has many similarities to DSL. 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 like DSL, takes advantage of existing cabling.
+</h4><ul></p><p style=""></ul><h4 style=''>-	 like DSL, uses Assymetric speeds hence download is much faster than upload 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 uses a special "Cable Modem"
+</h4><ul></p><p style=""></ul><h4 style=''>-	 connects using a <span style='color: blue;'>coaxial</span> <span style='color: blue;'>cable</span> 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 generally a bit faster than DSL 
+</h4><ul></p></div><div class='well'><h1> Chapter 4 - CCENT Book  
+</h1></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Topics Covered 
+</i></h2></div><p style=""></ul><h3> <u>IP Routing:
+</u></h3><ul></p><p style=""><h4 style=''>-	 The process of hosts and routers forwarding IP packets (Layer 3 Protocol)
+</h4><ul></p><p style=""></ul></ul><h3> <u>IP Addressing:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Addresses used to identify a packet's source and destination host computer. 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Addressing rules also organize addresses into groups, which greatly assists the routing process.
+</h4><ul></p><p style=""></ul></ul><h3> <u>IP routing protocol:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Protocol that aids routers by dynamically learning about the IP address groups so that a router knows where to route IP packets 
+</h4><ul></p><p style="">		so that they go to the correct destination host. </p><p style=""></ul></ul><h3> <u>Other:
+</u></h3><ul></p><p style=""><h4 style=''>-	 DNS (Domain Name System)
+</h4><ul></p><p style=""></ul><h4 style=''>-	 ARP (Address Resolution Protocol) 
+</h4><ul></p></div><div class='well'><h1> Do I know this? Pretest 
+</h1><p style=""></ul></ul><h3> <u>Question 4.1:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - A, C  (Correct)
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.2:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - D  ( Wrong )
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.3:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - A  ( Wrong ) 
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.4:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - A ( Wrong )
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.5:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - B, A ( Wrong )
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.6:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - C ( Correct ) 
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.7:
+</u></h3><ul></p><p style=""><h4 style=''>-	  Answer - A, D ( Wrong )
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.8:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - C, D ( Wrong )
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.9:
+</u></h3><ul></p><p style=""><h4 style=''>-	 C  ( Correct )
+</h4><ul></p><p style="">	</p><p style="">Score: 3 / 9 </p></div><div class='well'><h1> IP Routing 
+</h1><p style=""></ul></ul><h3> <u>A host determines where to send a packet depending on its destination address:
+</u></h3><ul></p><p style=""><h4 style=''>-	 If the destination is not within the same LAN, it sends the packet to its default gateway (router)
+</h4><ul></p></div><div class='well'><h1> R1 and R2s Logic - Routing Data Across the Network 
+</h1><p style=""></ul></ul><h3> <u>Routers Keep an IP Routing Table:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Lists IP address groupings called IP <span style='color: blue;'>networks</span> and IP <span style='color: blue;'>subnets</span> 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Router receives a packet and compares the packet's destination IP address to the entries in the routing table 
+</h4><ul></p><p style=""><p style=''>-		 The IP Routing Table tells the router where to forward the packet too 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 Think of routers as a freeway with a bunch of signs telling packets (cars) where to go to reach their destination 
+</h4><ul></p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> R3's Logic - Delivering Data to the End Destination 
+</i></h2></div><p style=""><h4 style=''>-	 If the routers destination is the actual host and not another router the protocol changes (LAN v.s. WAN) 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Discussed below 
+</h4><ul></p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> How Network Layer Routing Uses LANs and WANs 
+</i></h2></div><p style="">Layer 3 protocols focus only on logical pathing e.g. device A needs to get to device B</p><p style="">Layer 3 leaves the details to layer 2 data link layer. </p><p style=""></ul><h3> <u>Example:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Host A <span class='glyphicon glyphicon-arrow-right'></span> Encapsulates an IP Packet with Ethernet <span class='glyphicon glyphicon-arrow-right'></span> Sends to default gateway
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Default Gateway <span class='glyphicon glyphicon-arrow-right'></span> extracts the IP Packet and encapsulates it with HDLC header/trailer for WAN transport over HDLC 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Router 2 <span class='glyphicon glyphicon-arrow-right'></span> extracts the IP Packet and encapsulates it with ethetnet header/trailer 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Router 3 - extracts IP packet and encapsulates in a new ethernet header/trailer 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Host B <span class='glyphicon glyphicon-arrow-right'></span> Receives and extracts the IP Packet 
+</h4><ul></p><p style=""></ul></ul><h3> <u>ARP:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Address Resolution Protocol 
+</h4><ul></p><p style="color: red; font-weight: bold; font-size: 16px;"></ul><h4 style='color: red; font-weight: bold; font-size: 16px;'>-	 Used for dynamically learning the data-link address of an IP host connected to a lan 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 e.g. A router doesn't know the MAC Address of where to send a packet so it sends an ARP request 
+</h4><ul></p><p style="color: red; font-weight: bold; font-size: 16px;"><p style='color: red; font-weight: bold; font-size: 16px;'>-		 ARP <span class'glyphicon glyphicon-arrow-right'></span> Who has the IP of 192.168.254.37? <span class'glyphicon glyphicon-arrow-right'></span> Host B gets the request and says "I do Here's my MAC Address" <span class'glyphicon glyphicon-arrow-right'></span> Router now knows where to forward packets for the given IP 
+</p><ul></p></ul></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> IP Addressing and How Addressing Helps IP Routing 
+</i></h2></div><p style=""></ul><h3> <u>TCP/IP groups IP addresses together:
+</u></h3><ul></p><p style=""><h4 style=''>-	 this is done because now addresses on the same physical network are part of the same group
+</h4><ul></p><p style="color: red; font-weight: bold; font-size: 16px;"></ul><h4 style='color: red; font-weight: bold; font-size: 16px;'>-	 These groups are called an IP <span style='color: blue;'>Network</span> or an IP <span style='color: blue;'>Subnet
+</span></h4><ul></p><p style=""></ul><h4 style=''>-	 This is useful because now routing tables only need to store the the subnet location not every single IP Address 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 e.g. a postal services knows to send all 73762 mail to okarche and doesn't care which specific address in okarche, okarche will handle that. 
+</h4><ul></p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Rules for IP Addresses 
+</i></h2></div><p style=""></ul><h3> <u>IPv4 Addresses:
+</u></h3><ul></p><p style=""><h4 style=''>-	 consist of a 32-bit number (4 bytes or 4 octets)
+</h4><ul></p><p style="color: green; font-weight: bold;">NOTE: It isn't your computer that has an IP Address but your NIC (Network Interface Card)</p><p style="">			hence if you have a wireless NIC and an ethernet NIC then your computer has 2 IP Addresses </p><p style="">			Similarily a router with multiple interfaces has multiple IP Addresses </p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Class A, B, and C IPv4 Networks 
+</i></h2></div><p style=""></ul><h3> <u>Class A:
+</u></h3><ul></p><p style=""><h4 style=''>-	 All IP Addresses that start with 1-126 
+</h4><ul></p><p style=""></ul></ul><h3> <u>Class B:
+</u></h3><ul></p><p style=""><h4 style=''>-	 All IP Addresses that start with 128 - 191
+</h4><ul></p><p style=""></ul></ul><h3> <u>Class C:
+</u></h3><ul></p><p style=""><h4 style=''>-	 All IP Addresses that start with 192 - 223
+</h4><ul></p><p style="">Class A,B,C define Unicast Addresses </p><p style=""></ul></ul><h3> <u>Class D:
+</u></h3><ul></p><p style=""><h4 style=''>-	 defines multicast addresses 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 All IP Addresses from 224-239
+</h4><ul></p><p style=""></ul></ul><h3> <u>Class E:
+</u></h3><ul></p><p style=""><h4 style=''>-	 originally reserved for experimental use but are now just reserved for future use 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 All IP Addresses from 240-255
+</h4><ul></p></div><div class='well'><h1> IPv4 Routing 
+</h1><p style=""></ul></ul><h3> <u>IPv4 Host Routing:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Hosts use 2 step logic when deciding where to send a packet (assuming that the network design uses subnetting)
+</h4><ul></p><p style="color: red; font-weight: bold; font-size: 16px;"></ul><h4 style='color: red; font-weight: bold; font-size: 16px;'>-	 Step 1 - if the destination IP address is in the same IP subnet, send the packet directly to that destination host
+</h4><ul></p><p style="color: red; font-weight: bold; font-size: 16px;"></ul><h4 style='color: red; font-weight: bold; font-size: 16px;'>-	 Step 2 - else send the packet to the default gateway
+</h4><ul></p><p style=""></ul></ul><h3> <u>IPv4 Router Forwarding Decisions:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Router receives data-link frame 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 router checks the FCS (Frame Check Sequence) field to ensure that the frame has no errors; if errors occured discard the frame 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 router extracts the IP packet and discards the data-link header/trailer 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 compare the IP packet's destination address to the routing table and find the best route matching the IP address.
+</h4><ul></p><p style=""></ul><h4 style=''>-	 encapsulate the IP packet insade a new data-link header and trailer that matches the outgoing interface and forward the frame 
+</h4><ul></p><p style=""></ul></ul><h3> <u>Routing Table:
+</u></h3><ul></p><p style=""><h4 style=''>-	 each router adds a route, for each connected subnet, into its routing table 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 routers use the routing protocol to tell its neighbors about the routes in its routing table 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 after learning a new route from a neight, the router adds the route to its IP routing table
+</h4><ul></p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Chapter 4 Quiz - Post Assessment 
+</i></h2></div><p style=""></ul><h3> <u>Question 4.1:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - A, C (Correct)
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.2:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - B (Correct)
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.3:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - D (Correct)
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.4:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - D, F  (Correct)
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.5:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - A (Correct)
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.6:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - C (Correct)
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.7:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - C, B (Correct)
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.8:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - A, C (Correct)
+</h4><ul></p><p style=""></ul></ul><h3> <u>Question 4.9:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Answer - C (Correct)
+</h4><ul></p></div><div class='well'><h1>	 Chapter 5 
+</h1></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i>	 Chapter 5 Pre-Assesment Quiz 
+</i></h2></div><p style="">	1. (D,E) (correct) </p><p style="">	2. A, B, C, F  (correct) </p><p style="">	3. C (correct)</p><p style="">	4. C, B (Half Wrong)</p><p style="">	5. C (wrong)</p><p style="">	6. A, C (half wrong)</p></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Transport Layer (Layer 4 on TCP/IP Stack) - Features 
+</i></h2></div><p style=""></ul><h3> <u>Main Protocols:
+</u></h3><ul></p><p style=""><h4 style=''>-	 TCP 
+</h4><ul></p><p style=""><p style=''>-		 Transmission Control Protocol 
+</p><ul></p><p style=""></ul></ul><h4 style=''>-	 UDP
+</h4><ul></p><p style=""><p style=''>-		 
+</p><ul></p><p style=""></ul></ul></ul><h3> <u>Multiplexing:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Allows host to choose correct app based on port number 
+</h4><ul></p><p style=""></ul></ul><h3> <u>Error Recovery:
+</u></h3><ul></p><p style=""><h4 style=''>-	 	
+</h4><ul></p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> TCP Header  
+</i></h2></div><p style=""></ul><h3> <u>Contains:
+</u></h3><ul></p><p style=""><h4 style=''>-	 Source Port 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Destination Port 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 Sequence Number 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 etc. 
+</h4><ul></p></ul></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Chapter 5 Post-Assesment Quiz 
+</i></h2></div><p style="">100%</p></div><div class='well'><h1> Chapter 6 - CLI 
+</h1></ul><div class='alert alert-info'><h2 style='color: blue;'><i> Quiz - Pre assesment 
+</i></h2></div><p style="">Answers: (B,C), B, D, A, F, (A,D)</p></div><div class='well'><h1> Chapter 7 - Ethernet LAN Switching 
+</h1><p style=""></ul><h3> <u>Overview of Switching Logic:
+</u></h3><ul></p><p style=""><h4 style=''>-	 LAN switches ultimate goal is to forward <span style='color: blue;'>ethernet</span> <span style='color: blue;'>frame</span> to the correct destination MAC address. 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 It makes decisions on where to send the frame based on the source AND destination MAC address in the ethernet frame header. 
+</h4><ul></p><p style=""></ul><h4 style=''>-	 A switch either forwards the frame or discards the frame (filtering)
+</h4><ul></p><p style="">	</p>
     </div>
 </body>
 </html>

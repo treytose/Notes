@@ -687,3 +687,380 @@ Step 4:
 		= 172.16.32.0 -> +16 -> 172.16.48.0
 	* Now subtract 1 from the ~entire address~ to get the broadcast address! 
 		= 172.16.47.0
+
+
+
+############################################## Chapter 3 - CCENT Book ###################################################
+#### Leased Lines #####
+Leased lines only define Layer 1 services:
+	* since they only define layer 1, companies use Layer 2 Protocols of HDLC (High-Level Data Link Control) and PPP (Point to Point Protocol)
+
+Recall: Layer 2 (Data Link) protocols always define how to control the delivery of data over a physical link of a particular type
+
+HDLC:
+	* Layer 2 Protocol 
+	* When a router sends an HDLC frame, it can go only one place: to the other end of the link. 
+	* HDLC has an address field but the destination is already implied (only 1 place to go)
+	
+PoP:
+	* Point of Precense for a Service Provider 
+
+EoMPLS:
+	* Ethernet over Multi-Protocol Label Switching
+	* This protocol allows us to view a WAN as a simple ethernet connection between two routers 
+	* e.g. cust1 <--> Router A <--> (WAN using EoMPLS) <--> Router B <--> cust2
+
+DSL:
+	* Process of using telephone lines to provide internet
+	* Digital Subscriber Line 
+	* another WAN technology, creates short high-speed WAN between customer and ISP
+	* Uses the already existing phone line for providing internet 
+	* Uses RJ-11 connectors (smaller version of ethernet cable aka RJ-45 connector)
+	* Consumers need a ~Modem~ to be able to connect to the internet via Phone Lines 
+
+	* DSLAM
+		= DSL Access MultiPlexer 
+		= Allows the in home Router to be able to send data to/form the internet.
+		= Basically splits internet traffic and voice telephone traffic 
+
+	* DSL supports ~Assymetric Speeds~ which means download speeds are much faster than upload speeds 
+
+Cable:
+	* process of using TV Cable lines to provide internet 
+	* creates an internet access services which has many similarities to DSL. 
+	* like DSL, takes advantage of existing cabling.
+	* like DSL, uses Assymetric speeds hence download is much faster than upload 
+	* uses a special "Cable Modem"
+	* connects using a ~coaxial cable~ 
+	* generally a bit faster than DSL 
+
+
+############################### Chapter 4 - CCENT Book  #####################################
+#### Topics Covered ####
+IP Routing:
+	* The process of hosts and routers forwarding IP packets (Layer 3 Protocol)
+
+IP Addressing:
+	* Addresses used to identify a packet's source and destination host computer. 
+	* Addressing rules also organize addresses into groups, which greatly assists the routing process.
+
+IP routing protocol:
+	* Protocol that aids routers by dynamically learning about the IP address groups so that a router knows where to route IP packets 
+		so that they go to the correct destination host. 
+
+Other:
+	* DNS (Domain Name System)
+	* ARP (Address Resolution Protocol) 
+
+##### Do I know this? Pretest ######
+Question 4.1:
+	* Answer - A, C  (Correct)
+
+Question 4.2:
+	* Answer - D  ( Wrong )
+
+Question 4.3:
+	* Answer - A  ( Wrong ) 
+
+Question 4.4:
+	* Answer - A ( Wrong )
+
+Question 4.5:
+	* Answer - B, A ( Wrong )
+
+Question 4.6:
+	* Answer - C ( Correct ) 
+
+Question 4.7:
+	 * Answer - A, D ( Wrong )
+
+Question 4.8:
+	* Answer - C, D ( Wrong )
+
+Question 4.9:
+	* C  ( Correct )
+	
+
+Score: 3 / 9 
+
+### IP Routing ###
+
+A host determines where to send a packet depending on its destination address:
+	* If the destination is not within the same LAN, it sends the packet to its default gateway (router)
+
+### R1 and R2s Logic - Routing Data Across the Network ####
+Routers Keep an IP Routing Table:
+	* Lists IP address groupings called IP networks~ and IP subnets~ 
+	* Router receives a packet and compares the packet's destination IP address to the entries in the routing table !
+		= The IP Routing Table tells the router where to forward the packet too 
+	* Think of routers as a freeway with a bunch of signs telling packets (cars) where to go to reach their destination 
+
+#### R3's Logic - Delivering Data to the End Destination ####
+	* If the routers destination is the actual host and not another router the protocol changes (LAN v.s. WAN) 
+	* Discussed below 
+
+#### How Network Layer Routing Uses LANs and WANs ####
+Layer 3 protocols focus only on logical pathing e.g. device A needs to get to device B
+Layer 3 leaves the details to layer 2 data link layer. 
+
+Example:
+	* Host A -> Encapsulates an IP Packet with Ethernet -> Sends to default gateway
+	* Default Gateway -> extracts the IP Packet and encapsulates it with HDLC header/trailer for WAN transport over HDLC 
+	* Router 2 -> extracts the IP Packet and encapsulates it with ethetnet header/trailer 
+	* Router 3 - extracts IP packet and encapsulates in a new ethernet header/trailer 
+	* Host B -> Receives and extracts the IP Packet 
+
+
+ARP:
+	* Router may know the destination IP address but it doesn't know how to format the Layer 2 Header if the destination device MAC Address insn't in the routing table. !
+	* Address Resolution Protocol 
+	* Used for dynamically learning the data-link address of an IP host connected to a lan! 
+	* e.g. A router doesn't know the MAC Address of where to send a packet so it sends an ARP request 
+		= ARP -> Who has the IP of 192.168.254.37? -> Host B gets the request and says "I do! Here's my MAC Address!" -> Router now knows where to forward packets for the given IP 
+
+
+#### IP Addressing and How Addressing Helps IP Routing ####
+TCP/IP groups IP addresses together:
+	* this is done because now addresses on the same physical network are part of the same group
+	* These groups are called an IP Network~ or an IP Subnet~!
+	* This is useful because now routing tables only need to store the the subnet location not every single IP Address 
+	* e.g. a postal services knows to send all 73762 mail to okarche and doesn't care which specific address in okarche, okarche will handle that. 
+
+
+#### Rules for IP Addresses ####
+IPv4 Addresses:
+	* consist of a 32-bit number (4 bytes or 4 octets)
+
+NOTE: It isn't your computer that has an IP Address but your NIC (Network Interface Card)
+			hence if you have a wireless NIC and an ethernet NIC then your computer has 2 IP Addresses 
+			Similarily a router with multiple interfaces has multiple IP Addresses 
+
+#### Class A, B, and C IPv4 Networks ####
+Class A:
+	* All IP Addresses that start with 1-126 
+
+Class B:
+	* All IP Addresses that start with 128 - 191
+
+Class C:
+	* All IP Addresses that start with 192 - 223
+
+Class A,B,C define Unicast Addresses 
+
+Class D:
+	* defines multicast addresses 
+	* All IP Addresses from 224-239
+
+Class E:
+	* originally reserved for experimental use but are now just reserved for future use 
+	* All IP Addresses from 240-255
+
+##### IPv4 Routing ####
+IPv4 Host Routing:
+	* Hosts use 2 step logic when deciding where to send a packet (assuming that the network design uses subnetting)
+	* Step 1 - if the destination IP address is in the same IP subnet, send the packet directly to that destination host!
+	* Step 2 - else send the packet to the default gateway!
+
+
+IPv4 Router Forwarding Decisions:
+	* Router receives data-link frame 
+	* router checks the FCS (Frame Check Sequence) field to ensure that the frame has no errors; if errors occured discard the frame 
+	* router extracts the IP packet and discards the data-link header/trailer 
+	* compare the IP packet's destination address to the routing table and find the best route matching the IP address.
+	* encapsulate the IP packet insade a new data-link header and trailer that matches the outgoing interface and forward the frame 
+
+Routing Table:
+	* each router adds a route, for each connected subnet, into its routing table 
+	* routers use the routing protocol to tell its neighbors about the routes in its routing table 
+	* after learning a new route from a neight, the router adds the route to its IP routing table
+
+
+#### Chapter 4 Quiz - Post Assessment ####
+Question 4.1:
+	* Answer - A, C (Correct)
+
+Question 4.2:
+	* Answer - B (Correct)
+
+Question 4.3:
+	* Answer - D (Correct)
+
+Question 4.4:
+	* Answer - D, F  (Correct)
+
+Question 4.5:
+	* Answer - A (Correct)
+
+Question 4.6:
+	* Answer - C (Correct)
+
+Question 4.7:
+	* Answer - C, B (Correct)
+
+Question 4.8:
+	* Answer - A, C (Correct)
+
+Question 4.9:
+	* Answer - C (Correct)
+
+
+	####################################################### Chapter 5 ##################################################
+	#### Chapter 5 Pre-Assesment Quiz ####
+	1. (D,E) (correct) 
+	2. A, B, C, F  (correct) 
+	3. C (correct)
+	4. C, B (Half Wrong)
+	5. C (wrong)
+	6. A, C (half wrong)
+
+#### Transport Layer (Layer 4 on TCP/IP Stack) - Features ####
+Main Protocols:
+	* TCP 
+		= Transmission Control Protocol 
+	* UDP
+		= 
+
+Multiplexing:
+	* Allows host to choose correct app based on port number 
+Error Recovery:
+	* 	
+
+#### TCP Header #### 
+Contains:
+	* Source Port 
+	* Destination Port 
+	* Sequence Number 
+	* etc. 
+
+
+#### Chapter 5 Post-Assesment Quiz ####
+100%
+
+
+############################################## Chapter 6 - CLI ############################################
+#### Quiz - Pre assesment ####
+Answers: (B,C), B, D, A, F, (A,D)
+
+############################################# Chapter 7 - Ethernet LAN Switching ###########################
+Overview of Switching Logic:
+	* LAN switches ultimate goal is to forward ~ethernet frame~ to the correct destination MAC address. 
+	* It makes decisions on where to send the frame based on the source AND destination MAC address in the ethernet frame header. 
+
+	* A switch either forwards the frame or discards the frame (filtering)
+
+Forwarding Known Unicast Frames:
+	* Switches compare destination MAC addresses to their MAC Address table to decide where to forward a frame or ignore it! 
+	* A switches MAC address table links a MAC address to an interface on the switch.
+		= e.g. The MAC address table has made the link of MAC Address 0200.3333.3333 to interface G0/1
+		= It made this link dynamically because it has received data from 0200.3333.3333 from interface G0/1
+		=	An ethernet frame with ~destination~ MAC of 0200.3333.3333 now knows to be send through the interface G0/1 and no other interfaces 
+
+How Switches Learn MAC Addresses:
+	* switches listen to incoming ethernet frames and examine the ~source MAC~ address~
+	* “The source is MAC 0200.1111.1111, the frame entered F0/1, so from my
+		perspective, 0200.1111.1111 must be reachable out my port F0/1.”
+
+	
+Flooding Unknown Unicast and Broadcast Frames:
+	* When the switch doesn't know where to send the received frame, it ~floods~ the switch meaning it sends the frame out of all of its interfaces except the one it received the frame from. 
+	* switches also ~flood~ broadcast frames (frames with destination address of FFFF-FFFF-FFFF)	
+
+
+Avoiding Loops with STP (Spanning Tree Protocol):
+	* Switches prevent packets from looping by using STP 
+	* STP!
+		= Blocks some ports from forwarding frames sso that only one active path exists between a pair of LANs 
+		= Prevents frames from infinitely looping 
+		= Switches turn of a subset of interfaces and prevent them from receiving/forwarding. This prevents looping 
+
+NOTE: If a switch receives a known unicast frame but the forwarding interface is the same as the receiving interface, then the switch discards the frame. 
+
+VLAN and Switching:
+	* switches only forward frames within the same VLAN 
+		= e.g. if an interface G0/1 is on VLAN 1 then it will only forward the frame through another interface within VLAN 1 
+
+
+
+
+############################### Chapter 8 - Configuring Basic Switch Management ##############################################
+### Securing User Mode and Privileged Mode with Simple Passwords ###
+
+Setup Enable Mode Password:
+	* enter global config mode (conf t)
+	* enter command ~enable ~secret <password> 
+
+Setup Password for Console Access:
+	* Note that this includes user level access to the console 
+	* enter global config mode (conf t)
+	* enter command ~line ~console ~0 
+		= This enters config mode the console 
+	* enter command ~password <password>~
+	* enter command ~login~ to enable password requirement 
+
+
+Setup Password for Telnet:
+	* ~configure terminal~
+	* ~line vty 0 15
+	* ~password <password>
+	* ~login 
+
+Setup SHH:
+	* NOTE SSH requires a username to be setup 
+	* SSH is much more secure than Telnet since Telnet communicate over plain text 
+	* conf t -> line vty 0 15 -> username <un> secret <pass> -> line vty 0 15 -> login local 
+
+
+### Setting up and IPv4 for a switch ###
+
+Switches need an IPv4 address to use things such as SSH and SNMP 
+
+Switches don't have a physical NIC (network interface card) like computers. Instead they use things called SVI! (Switch Virtual Interface) aka VLAN:
+	* The SVI acts like a virtual interface allowing the switch to have an IP address 
+
+Configured the IP address of your VLAN:
+	* conf t 
+	* interface vlan 1 
+	* ip address <ip> <subnet> 
+		= e.g. ip address 192.168.254.38 255.255.255.128
+	* no shutdown !
+		= ~no shutdown~ enables an interface 
+		= use ~shutdown~ to disable an interface 
+	* back in conf t 
+	* ip default-gateway <ip> 
+		= set the IP of the default gateway for your switch 
+
+Using DHCP to to dynamically set IPv4 settings on a switch:
+	* you must tell the switch to use DHCP on an interface and then enable the interface (no shutdown) 
+	* conf t 
+	* interface vlan 1 
+	* ip address dhcp 
+	* no shutdown 
+
+
+
+############################### Chapter 9 - Configuring Switch Interfaces #######################################
+Duplex System:
+	* used in point-to-point systems
+	* used to allow two or more devices to communicate back and forth with eachother	
+
+Full Duplex:
+	* both parties can communicate with eachother at the same time !
+	* Think of it as a phone conversation where both users may speak and hear at the same time 
+
+Half Duplex:
+	* both parties can communicate with eachother but not at the same time! 
+	* Think of it as a walkie talkie system where only one user may speak at a time 
+
+
+NOTE: Show all interface status using ~show interface~ status~ 
+
+
+### Autonegotiation under working conditions ### 
+Ethernet devices must use the same standard or they cannot correctly send data: 
+	* a NIC with 100BASE-T which uses a UTP cable with a 100-Mbps speed cannot connect to a NIC with 1000BASE-T 
+		= one end sending 100 Mbps and the other end trying to receive 1000 Mbps does NOT work! 
+	* This creates an issue that if you upgrade your PC from 100Mbps NIC to a 1000Mbps then the switch must be upgraded which causes a huge chain reaction of upgrade requirements 
+		= This problem is solved by using IEEE auto negotiation which automatically configures the NIC speed !
+	* NIC by default chooses the fastest speed and full duplex over half duplex 
+	
+	

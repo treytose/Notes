@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<style>
+    #chart {
+        width: 800px;
+        height: 400px;
+        background: white;
+        margin: 25px auto;
+    }
+
+    .bar {
+        display: inline-block;
+        width: 25px;
+        height: 300px;
+        background-color: #7ed26d;
+        margin-right: 5px;
+    }
+  
+</style>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+    <div id="chart"> </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    var data = [
+        { date: '07/01/2017', num: 20},
+        { date: '07/02/2017', num: 37},
+        { date: '07/03/2017', num: 25},
+        { date: '07/04/2017', num: 45},
+        { date: '07/05/2017', num: 23},
+        { date: '07/06/2017', num: 33},
+        { date: '07/07/2017', num: 49},
+        { date: '07/08/2017', num: 40},
+        { date: '07/09/2017', num: 36},
+        { date: '07/10/2017', num: 27},
+    ];
+
+    var time_parse = d3.timeParse("%m/%d/%Y");
+    var time_format = d3.timeFormat('%b %e');
+
+    //convert dates to actual date objects 
+    data.forEach(function(e, i) {
+        data[i].date = time_parse(e.date);
+    });
+
+    var chart_width = 800;
+    var chart_height = 400;
+    var padding = 50;
+
+    var svg = d3.select("#chart")
+        .append('svg')
+        .attr('width', chart_width)
+        .attr('height', chart_height);
+
+    var xScale = d3.scaleTime()
+        .domain([d3.min(data, function(d) {
+            return d.date;
+        }), d3.max(data, function(d) {
+            return d.date;
+        })])
+        .range([padding, chart_width - padding]);
+
+    var yScale = d3.scaleLinear()
+        .domain([0, d3.max(data, function(d) {
+            return d.num;
+        })])
+        .range([chart_height - padding, padding]);
+
+    var rScale = d3.scaleLinear()
+        .domain([0, d3.max(data, function(d) {
+            return d.num;
+        })])
+        .range([5,30]);
+
+    var aScale = d3.scaleSqrt()
+        .domain([0, d3.max(data, function(d) {
+            return d.num;
+        })])
+        .range([5,30]);
+
+    // create axis
+    var x_axis = d3.axisTop()
+        .scale(xScale);
+
+    var y_axis = d3.axisRight()
+        .scale(yScale);
+
+    svg.append('g')
+        .attr('class', 'x-axis')
+        .attr('transform', 'translate(0, ' + (chart_height - 2) + ')')
+        .call(x_axis);
+
+    svg.append('g')
+        .call(y_axis);
+
+    svg.selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr('r', function(d) {
+            return aScale(d.num);
+        })
+        .attr('fill', 'green')
+        .attr('cx', function(d) {
+            return xScale(d.date);
+        })
+        .attr('cy', function(d) {
+            return yScale(d.num);
+        });
+
+    svg.append('g').
+        selectAll('text')
+        .data(data)
+        .enter()
+        .append('text')
+        .text(function(d) {
+            return d.num;
+        })
+        .attr('text-anchor', 'middle')
+        .attr('x', function(d) {
+            return xScale(d.date);
+        })
+        .attr('y', function(d) {
+            return yScale(d.num);
+        });
+
+    
+
+</script>
+{% endblock %}

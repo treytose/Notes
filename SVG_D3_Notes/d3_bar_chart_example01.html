@@ -1,0 +1,81 @@
+<style>
+        #chart {
+            width: 800px;
+            height: 400px;
+            background: white;
+            margin: 25px auto;
+        }
+    
+        .bar {
+            display: inline-block;
+            width: 25px;
+            height: 300px;
+            background-color: #7ed26d;
+            margin-right: 5px;
+        }
+      
+    </style>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    
+    {% endblock %}
+    
+    {% block content %}
+        <div id="chart"> </div>
+    {% endblock %}
+    
+    {% block scripts %}
+    <script>
+        var data = [];
+        for(var i = 0; i < 30; i++) {
+            data.push(Math.round(d3.randomUniform(1,50)()));
+        }
+    
+        var chart_width = 800;
+        var chart_height = 400;
+        var bar_padding = 5;
+    
+        var svg = d3.select("#chart")
+            .append('svg')
+            .attr('width', chart_width)
+            .attr('height', chart_height);
+    
+    
+        svg.selectAll('rect')
+            .data(data)
+            .enter()
+            .append('rect')
+            .attr('x', function(d, index) {
+                return index * (chart_width / data.length );
+            })
+            .attr('y', function(d) {
+                return chart_height - d * 5;
+            })
+            .attr('width', chart_width / data.length - bar_padding)
+            .attr('height', function(d) {
+                return d * 5;
+            })
+            .attr('fill', function(d) {
+                return 'rgb(' + (d*2) + ',' + (d*4) + ',' + (d*2) + ')';
+            })
+            .attr('stroke', 'black')
+            .attr('stroke-width', '1');
+            
+        svg.selectAll('text')
+            .data(data)
+            .enter()
+            .append('text')
+            .text(function(d) {
+                return d;
+            })
+            .attr('x', function(d, index) {
+                return index * (chart_width / data.length) + 
+                                (chart_width / data.length - bar_padding ) / 2;
+            })
+            .attr('y', function(d) {
+                return chart_height - d * 5 + 20;
+            })
+            .style('fill', 'white')
+            .attr('font-size', '14px')
+            .attr('text-anchor', 'middle');
+    
+    </script>

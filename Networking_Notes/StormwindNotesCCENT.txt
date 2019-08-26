@@ -63,7 +63,7 @@ Standards Based Models:
     * standardized components 
     * reduces complexity 
 
-#### OSI Model ####
+#### OSI Model ####!
 Layer 7 - Application 
 Layer 6 - Presentation 
 Layer 5 - Session 
@@ -72,15 +72,209 @@ Layer 3 - Network
 Layer 2 - Data Link 
 Layer 1 - Physical
 
-#### TCP/IP Stack ####
+#### TCP/IP Stack ####!
 ~Application:
     * Application, Layer 7
     * Presentation, Layer 6
     * Session, Layer 5
 ~Transport: 
     * Transport, Layer 4
+    * data is called ~segments~
 ~Internet:
     * Network, Layer 3
+    * data is called ~packets~
 ~Link:
     * Data Link, Layer 2
     * Physical, Layer 1
+    * data is called ~frames~ or ~bits~ at the physical layer 
+
+############################### Layer 1 - Physical Layer ####################################
+#### Encapsulation and De-Encapsulating ####
+Computer sends data:
+    * starts at app layer -> transport layer -> internet layer -> Link Layer 
+    * this is call encapsulation~
+
+Other computer receives data:
+    * Link Layer -> internet layer -> transport layer -> app layer 
+    * this is called ~de-encapsulation~
+
+#### Layer 1 - Copper ####
+Copper:
+    * connections are made through ethernet  
+    * unshielded twisted pair cable
+        = most commonly used 
+        = 8 wires in pairs of 2 which are twisted together 
+        = least expensive 
+    * shielded twisted pair cable 
+        = prevents electromagnetic interference 
+        = wires wrapped in tin foil stuff 
+    * standard used to be that the copper cable length was 100m or 328 feet long 
+
+Types of Copper:
+    * CAT 5
+        = 100Mbps for 100 meter cable 
+    * CAT 5e
+        = 1Gbps for 100 meter cable 
+    * CAT 6
+        = 1Gbps for 100 meter cable 
+        = 10Gbps for 55 meter cable
+        
+Ethernet Cable:
+    * Used for copper twisted-pair cabling 
+    * Has RJ-45~ connector (same as telephone)
+
+Ehternet Two wiring standards:
+    * The standard for what each wire does on the ethernet cable 
+    * Think of it as one end connector on the ethernet
+    * NOTE: We need two different standards so that we may have ~crossover cabling~      
+    * T-568A            
+    * T-568B
+    * ~Straight-through cabling~ is when T-568A goes to T-568A or T-568B goes to T-568B
+        = Used 
+    * ~Crossover cabling~ is when a T-568A goes to T-568B or vice versa 
+        = We use crossover-cabling when we need to connect the transmit wire to the receive wire 
+        = For example a phone microphone goes to a different phones speaker (sender to receiver)
+            @ we dont do straight-through cabling here because microphone to microphone connection doesn't make sense 
+        = Used for switch-to-switch connections 
+        = NOTE: Newer devices are capable of autodetecting what is really going on making straight-through and crossover cabling both work 
+    * General Rule:
+        = use ~straight-through cabling when connecting ~unlike devices together!
+        = use ~crossover cabling when connecting like~ devices together!
+
+
+#### Layer 1 - Fiber ####
+Types of fiber:
+    * Multimode Fiber (MMF)
+        @ Uses LED 
+        @ lower bandwidth
+        @ less expensive than single-mode fiber 
+    * Single-Mode Fiber (SMF)
+        @ Uses Lasers
+        @ Used for long distance (miles)
+
+############################## Layer 2 - Data Link Layer ##################################
+This layer is in charge of the intelligence needed to convert data to and from the physical layer 
+Important Layer 2 operations:
+    * Frame Encapsulation
+    * Switching aka Frame Forwarding 
+    * Media conetention
+    * MAC Addresses 
+
+Major layer 2 protocols:
+    * LAN 
+    * WLAN
+    * WAN 
+
+#### Layer 2 - Ethernet Frame ####
+Ethernet Frame:
+    * 8 bit ~premable
+        = used to make aware that a frame is coming in 
+    * 6 byte ~desination address~
+        = who we are trying to reach    
+    * 6 byte ~source address~ 
+        = who is sending the data 
+    * 2 byte ~type 
+        = type of data so we know where to send it 
+    * 46-1500 bytes ~data
+        = contains a range such as ~46-1500 bytes~ which is the min/max data for each frame 
+    * 4 bytes ~FCS (Frame Check Sequence)
+        = calculation performed by sending devices
+        = receiving device performs calculation as well, if same number retrieved then we know the frame hasn't been modified or damaged 
+        = makes sure we dont receive corrupted frames 
+
+#### Layer 2 - Addresses ####
+MAC addresses uniquiely identify devices at layer 2
+Switches use MACs to forward frames 
+ARP (Address Resolution Protocol):
+    * Takes a layer 3 address and finds the layer 2 addresses associated with it 
+    * Who is 172.16.3.2 ? -> ARP -> Thats me! Here is my MAC address ->
+    * ARP uses the Layer 2 broadcast address of ff-ff-ff-ff-ff-ff!
+    * ARP broadcast "Who has the mac address for IP 172.168.1.1?" -> *gets MAC address* -> ARP replies "Here is the MAC Address"
+
+    * We do not need to ARP every time we need to speak to another device
+        = We can store MAC addresses of previously communicated devices within the ~ARP Cache~
+
+MAC Address Formats:
+    * CISCO
+        = 0000.0c43.2e09
+        = Hexadecimal (4 bits each char)
+
+    * Linux
+        = 00:00:0c:43:2e:08
+    
+    * Microsoft
+        = 00-00-0C-43-2E-08
+
+    * OUI (Organization Unique Identifier)
+        = The first 6 digits of a MAC address uniquely identify an Organization
+    * Vendor
+        = The last 6 digits of a MAC address 
+
+    * example
+        = [OUI]    [Vendor]
+        = [00:00:0][C-43-2E-08]
+
+
+NOTE: MAC Addresses do not have to be unique accross the world 
+MAC address only have to be unique among a LAN, VLAN, etc. 
+    
+###################### Layer 3 - Networking Layer #########################
+Important layer 3 operations:
+    * Packet encapsulation
+    * Routing or packet switching 
+    * IP Addressing 
+
+Major Layer 3 protocols:
+    * IPv4
+        = Globally uniquely identify devices
+    * IPv6
+
+##### Packet Structure! #####
+Fits within the Frame~:
+    * max size of a packet is 1500 bytes 
+
+Version:
+    * Determines if IPv4 or IPv6 
+
+Service Type!:
+    * DSCP
+    * Allows us to differentiate different types of traffic 
+        = some traffic is more important than others hence we give some traffic precedence over others 
+        = This is possible due to knowing the service type of the packet 
+
+Total Length:
+    
+TTL (Time To Live):
+    * Maximum lifespan of the packet (when the packet will expire)
+    * A hop count of how many routers the packet hops through 
+    * Prevents the packet from living forever
+    * When TTL expires, router sends to PC message through ICMP "TTL exceded message"
+
+Protocol:
+    * Helps identify what is going on at the transport layer (TCP or UDP)
+
+
+Checksum:
+    * Used to ensure the data is not corrupted (just like the FCS in layer 2)
+
+Source Address:
+
+Destination Address:
+
+!!!! Must know Source Address, Destination Address, Protocol, and DSCP for exam !!!!
+
+
+###################### Layer 4 - Transport Layer #########################
+Important layer 4 operations:
+    * segment~ encapsulation
+    * Reliability/Acknowledgements (optional)
+    * Flow control 
+    * Connection oriented 
+    * Application layer identification 
+
+Important Layer 4 protocols:
+    * TCP 
+    * UDP 
+
+NOTE: Transport layer in TCP/IP stack is the same as the transport layer in the OSI model 
+
